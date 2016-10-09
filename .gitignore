@@ -1,0 +1,6 @@
+/.vs/RSBot/v14/*.suo
+/Engine/bin
+/Engine/obj
+/RSBot/bin
+/RSBot/obj
+/packages
