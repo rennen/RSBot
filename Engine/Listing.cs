@@ -13,6 +13,9 @@ namespace Engine
         [Column("asin")]
         public string Asin { get; set; }
 
+        [Column("upc")]
+        public string Upc { get; set; }
+
         [Column("quantity")]
         public int Quantity { get; set; }
 

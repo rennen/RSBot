@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -16,6 +17,7 @@ namespace Engine
         private const string FilesFolder = @"C:\rsbot-files";
 
         private readonly FirefoxProfile firefoxProfile;
+        private readonly CsvReader csvReader;
 
         public AutomationEngine()
         {
@@ -24,6 +26,8 @@ namespace Engine
             firefoxProfile.SetPreference("browser.download.folderList", 2);//browser dir
             firefoxProfile.SetPreference("browser.download.dir", FilesFolder);
             firefoxProfile.SetPreference("browser.helperApps.neverAsk.saveToDisk","text/csv");
+
+            csvReader = new CsvReader();
         }
 
         public string UploadRevised(string connectionString, string username, string password)
@@ -82,7 +86,7 @@ namespace Engine
             return refId;
         }
 
-        public bool VerifyNoErrors(string uploadRefId)
+        public bool VerifyUploadNoErrors(string uploadRefId)
         {
             var filename = $"{FilesFolder}\\FileExchange_Response_{uploadRefId}.csv";
 
@@ -138,7 +142,7 @@ namespace Engine
             }
         }
 
-        public string PrepareDownload(string username, string password)
+        public string PrepareDownload(string username, string password, bool addUpc = false)
         {
             const string url = "http://k2b-bulk.ebay.com/ws/eBayISAPI.dll?SMDownloadRequest&ssPageName=STRK:ME:LNLK";
 
@@ -152,9 +156,18 @@ namespace Engine
 
                 driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 0, 10));
 
-                var list = driver.FindElement(By.Id("ListingFilter"));
-                new SelectElement(list).SelectByText("Active");
-                list.Submit();
+                var listFilters = driver.FindElement(By.Id("ListingFilter"));
+                new SelectElement(listFilters).SelectByText("Active");
+
+                if (addUpc)
+                {
+                    driver.FindElement(By.Id("DownloadFormatType2")).Click();
+
+                    var listAddUPC = driver.FindElement(By.Id("FEActiveDownloadType"));
+                    new SelectElement(listAddUPC).SelectByValue("5");
+                }
+
+                listFilters.Submit();
 
                 driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 0, 10));
 
@@ -202,11 +215,29 @@ namespace Engine
             }
         }
 
-        public void CsvToDb(string refId, string connectionString)
+        public void ImportListings(string refId, string connectionString)
         {
             var filename = $"{FilesFolder}\\FileExchange_Response_{refId}.csv";
 
-            var listings = CsvToListings(filename);
+            var listings =
+                csvReader.Read(filename).Select(line =>
+                    new Listing
+                    {
+                        EbayId = line["Item ID"],
+                        Asin = line["Custom Label"],
+                        Quantity = int.Parse(line["Quantity Available"]),
+                        Purchases = int.Parse(line["Purchases"]),
+                        Price = double.Parse(line["Price"].Trim('$')),
+                        StartDate = string.IsNullOrWhiteSpace(line["Start Date"])
+                            ? (DateTime?) null
+                            : DateTime.Parse(line["Start Date"]),
+                        EndDate =
+                            string.IsNullOrWhiteSpace(line["End Date"])
+                                ? (DateTime?) null
+                                : DateTime.Parse(line["End Date"]),
+                        Title = line["Item Title"],
+                        Category = line["Category Leaf Name"]
+                    });
 
             using (var db = GetDb(connectionString))
             {
@@ -218,43 +249,26 @@ namespace Engine
             }
         }
 
-        private List<Listing> CsvToListings(string filename)
+        public void ImportUpcCodes(string refId, string connectionString)
         {
-            var result = new List<Listing>();
+            var filename = $"{FilesFolder}\\FileExchange_Response_{refId}.csv";
 
-            var reader = new StreamReader(File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
-            if (reader.EndOfStream)
+            using (var db = GetDb(connectionString))
             {
-                return null;
-            }
-
-            var headers = reader.ReadLine().Split(',');
-
-            while (!reader.EndOfStream)
-            {
-                var line = reader.ReadLine();
-                if (string.IsNullOrWhiteSpace(line))
+                foreach (var line in csvReader.Read(filename))
                 {
-                    continue;
+                    var ebayId = line["ItemID"];
+                    var upc = line["Product:UPC"];
+
+                    if (upc != "does not apply")
+                    {
+                        var dbListring = db.SingleById<Listing>(ebayId);
+
+                        dbListring.Upc = upc;
+                        db.Save(dbListring);
+                    }
                 }
-
-                var lineParts = line.Split(',');
-
-                result.Add(new Listing()
-                {
-                    EbayId = lineParts[0],
-                    Asin = lineParts[1],
-                    Quantity = int.Parse(lineParts[5]),
-                    Purchases = int.Parse(lineParts[6]),
-                    Price = double.Parse(lineParts[8].Trim('$')),
-                    StartDate = string.IsNullOrWhiteSpace(lineParts[9]) ? (DateTime?) null : DateTime.Parse(lineParts[9]),
-                    EndDate = string.IsNullOrWhiteSpace(lineParts[10]) ? (DateTime?) null : DateTime.Parse(lineParts[10]),
-                    Title = lineParts[13],
-                    Category = lineParts[15],
-                });
             }
-
-            return result;
         }
 
         private static void NavigateWithLogin(string username, string password, IWebDriver driver, string url)

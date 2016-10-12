@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomationEngine.cs" />
+    <Compile Include="CsvLine.cs" />
+    <Compile Include="CsvReader.cs" />
     <Compile Include="Listing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

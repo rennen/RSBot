@@ -25,7 +25,7 @@ namespace RSBot
 
         private void btnToDb_Click(object sender, EventArgs e)
         {
-            engine.CsvToDb(txtDownloadRefId.Text, txtDbConnectionString.Text);
+            engine.ImportListings(txtDownloadRefId.Text, txtDbConnectionString.Text);
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -38,9 +38,24 @@ namespace RSBot
             engine.DownloadUploadVerification(txtUsername.Text, txtPassword.Text, txtUploadRefId.Text);
         }
 
-        private void tnVerifyNoErrors_Click(object sender, EventArgs e)
+        private void btnVerifyUploadNoErrors_Click(object sender, EventArgs e)
         {
-            txtUploadResult.Text = engine.VerifyNoErrors(txtUploadRefId.Text).ToString();
+            txtUploadResult.Text = engine.VerifyUploadNoErrors(txtUploadRefId.Text).ToString();
+        }
+
+        private void btnPrepareDownloadUpc_Click(object sender, EventArgs e)
+        {
+            txtDownloadUPCRefId.Text = engine.PrepareDownload(txtUsername.Text, txtPassword.Text, true);
+        }
+
+        private void btnDownloadUpc_Click(object sender, EventArgs e)
+        {
+            engine.Download(txtUsername.Text, txtPassword.Text, txtDownloadUPCRefId.Text);
+        }
+
+        private void btnImportUpcCodes_Click(object sender, EventArgs e)
+        {
+            engine.ImportUpcCodes(txtDownloadUPCRefId.Text, txtDbConnectionString.Text);
         }
     }
 }
