@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using NPoco;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using eBay.Service;
 
 namespace Engine
 {
@@ -79,11 +81,51 @@ namespace Engine
                         }
                     }
 
-
                     driver.Close();
                 }
             }
             return refId;
+        }
+
+        public void DownloadImages(string connectionString)
+        {
+            using (var db = GetDb(connectionString))
+            {
+                var dbListring = db.Query<Listing>().ToArray();
+                var client = new HttpClient();
+
+                foreach (var listing in dbListring)
+                {
+                    string url = $"http://www.ebay.com/itm/{listing.EbayId}";
+
+                    var requestTask = client.GetAsync(url);
+                    requestTask.Wait();
+
+                    var contentTask = requestTask.Result.Content.ReadAsStringAsync();
+                    contentTask.Wait();
+
+                    var result = contentTask.Result;
+
+                    Regex regex = new Regex("http://i.ebayimg.com/images/g/[a-z|A-Z|0-9]*/s-l[0-9]*.jpg");
+                    var matches = regex.Matches(result);
+
+                    var imageUrls = new List<string>();
+                    for (var matchIndex = 0; matchIndex < matches.Count; matchIndex++)
+                    {
+                        var match = matches[matchIndex];
+                        
+                        var fixedUrl = match.Value.Substring(0, match.Value.LastIndexOf("s-")) + "s-l1000.jpg";
+                        imageUrls.Add(fixedUrl);
+                    }
+
+                    listing.PicUrl = imageUrls.Distinct().Aggregate((left,right) => left + "|" + right);
+
+                    db.Save(listing);
+                    Console.WriteLine(listing.PicUrl);
+                }
+
+            }
+
         }
 
         public bool VerifyUploadNoErrors(string uploadRefId)

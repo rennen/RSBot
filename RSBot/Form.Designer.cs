@@ -238,7 +238,6 @@
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.BackColor = System.Drawing.Color.Orange;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.button7.Location = new System.Drawing.Point(12, 538);
             this.button7.Name = "button7";
@@ -246,7 +245,7 @@
             this.button7.TabIndex = 4;
             this.button7.Text = "Download Images";
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.btnToDb_Click);
+            this.button7.Click += new System.EventHandler(this.btnDownloadImages_Click);
             // 
             // btnVerifyUpload
             // 

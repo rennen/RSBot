@@ -57,5 +57,10 @@ namespace RSBot
         {
             engine.ImportUpcCodes(txtDownloadUPCRefId.Text, txtDbConnectionString.Text);
         }
+
+        private void btnDownloadImages_Click(object sender, EventArgs e)
+        {
+            engine.DownloadImages(txtDbConnectionString.Text);
+        }
     }
 }
