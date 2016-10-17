@@ -64,10 +64,13 @@ namespace RSBot
             this.txtCloudinaryAppName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.pg10 = new System.Windows.Forms.ProgressBar();
             this.pg9 = new System.Windows.Forms.ProgressBar();
             this.pg8 = new System.Windows.Forms.ProgressBar();
             this.pg7 = new System.Windows.Forms.ProgressBar();
+            this.pg13 = new System.Windows.Forms.ProgressBar();
             this.pg12 = new System.Windows.Forms.ProgressBar();
             this.pg11 = new System.Windows.Forms.ProgressBar();
             this.pg6 = new System.Windows.Forms.ProgressBar();
@@ -75,6 +78,7 @@ namespace RSBot
             this.pg4 = new System.Windows.Forms.ProgressBar();
             this.pg3 = new System.Windows.Forms.ProgressBar();
             this.pg2 = new System.Windows.Forms.ProgressBar();
+            this.chk13 = new System.Windows.Forms.CheckBox();
             this.pg1 = new System.Windows.Forms.ProgressBar();
             this.chk12 = new System.Windows.Forms.CheckBox();
             this.chk11 = new System.Windows.Forms.CheckBox();
@@ -108,9 +112,9 @@ namespace RSBot
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button1.Location = new System.Drawing.Point(23, 15);
+            this.button1.Location = new System.Drawing.Point(12, 41);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(377, 30);
+            this.button1.Size = new System.Drawing.Size(360, 30);
             this.button1.TabIndex = 0;
             this.button1.Text = "Create Listing from Asins";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -124,9 +128,9 @@ namespace RSBot
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button2.Location = new System.Drawing.Point(23, 52);
+            this.button2.Location = new System.Drawing.Point(12, 78);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(377, 30);
+            this.button2.Size = new System.Drawing.Size(360, 30);
             this.button2.TabIndex = 0;
             this.button2.Text = "Prepare Download ebay Listings";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -142,9 +146,9 @@ namespace RSBot
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button3.Location = new System.Drawing.Point(23, 311);
+            this.button3.Location = new System.Drawing.Point(12, 337);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(377, 30);
+            this.button3.Size = new System.Drawing.Size(360, 30);
             this.button3.TabIndex = 1;
             this.button3.Text = "Local Optimization Title";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -159,9 +163,9 @@ namespace RSBot
             this.btnOptimizeImages.FlatAppearance.BorderSize = 0;
             this.btnOptimizeImages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOptimizeImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnOptimizeImages.Location = new System.Drawing.Point(23, 348);
+            this.btnOptimizeImages.Location = new System.Drawing.Point(12, 374);
             this.btnOptimizeImages.Name = "btnOptimizeImages";
-            this.btnOptimizeImages.Size = new System.Drawing.Size(377, 30);
+            this.btnOptimizeImages.Size = new System.Drawing.Size(360, 30);
             this.btnOptimizeImages.TabIndex = 1;
             this.btnOptimizeImages.Text = "Local Optimization Images";
             this.btnOptimizeImages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -177,9 +181,9 @@ namespace RSBot
             this.btnUpload.FlatAppearance.BorderSize = 0;
             this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnUpload.Location = new System.Drawing.Point(23, 385);
+            this.btnUpload.Location = new System.Drawing.Point(12, 411);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(377, 30);
+            this.btnUpload.Size = new System.Drawing.Size(360, 30);
             this.btnUpload.TabIndex = 1;
             this.btnUpload.Text = "Upload optimized to ebay";
             this.btnUpload.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -193,7 +197,7 @@ namespace RSBot
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.txtUsername.Location = new System.Drawing.Point(184, 15);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(666, 26);
+            this.txtUsername.Size = new System.Drawing.Size(655, 26);
             this.txtUsername.TabIndex = 2;
             this.txtUsername.Text = "info@theoriginalsinstore.com";
             // 
@@ -204,7 +208,7 @@ namespace RSBot
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.txtPassword.Location = new System.Drawing.Point(184, 47);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(666, 26);
+            this.txtPassword.Size = new System.Drawing.Size(655, 26);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.Text = "rz7356sh$";
             // 
@@ -236,9 +240,9 @@ namespace RSBot
             this.button6.FlatAppearance.BorderSize = 0;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button6.Location = new System.Drawing.Point(23, 89);
+            this.button6.Location = new System.Drawing.Point(12, 115);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(377, 30);
+            this.button6.Size = new System.Drawing.Size(360, 30);
             this.button6.TabIndex = 4;
             this.button6.Text = "Download ebay Listings";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -262,7 +266,7 @@ namespace RSBot
             this.txtDownloadRefId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.txtDownloadRefId.Location = new System.Drawing.Point(184, 79);
             this.txtDownloadRefId.Name = "txtDownloadRefId";
-            this.txtDownloadRefId.Size = new System.Drawing.Size(666, 26);
+            this.txtDownloadRefId.Size = new System.Drawing.Size(655, 26);
             this.txtDownloadRefId.TabIndex = 5;
             // 
             // btnToDb
@@ -273,9 +277,9 @@ namespace RSBot
             this.btnToDb.FlatAppearance.BorderSize = 0;
             this.btnToDb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnToDb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnToDb.Location = new System.Drawing.Point(23, 126);
+            this.btnToDb.Location = new System.Drawing.Point(12, 152);
             this.btnToDb.Name = "btnToDb";
-            this.btnToDb.Size = new System.Drawing.Size(377, 30);
+            this.btnToDb.Size = new System.Drawing.Size(360, 30);
             this.btnToDb.TabIndex = 4;
             this.btnToDb.Text = "Import listings to DB";
             this.btnToDb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -287,10 +291,10 @@ namespace RSBot
             this.txtDbConnectionString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDbConnectionString.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.txtDbConnectionString.Location = new System.Drawing.Point(184, 190);
+            this.txtDbConnectionString.Location = new System.Drawing.Point(184, 183);
             this.txtDbConnectionString.Multiline = true;
             this.txtDbConnectionString.Name = "txtDbConnectionString";
-            this.txtDbConnectionString.Size = new System.Drawing.Size(666, 55);
+            this.txtDbConnectionString.Size = new System.Drawing.Size(655, 55);
             this.txtDbConnectionString.TabIndex = 5;
             this.txtDbConnectionString.Text = "SERVER=rsbot.chsskanxfjmo.us-west-2.rds.amazonaws.com;DATABASE=rsbot;UID=root;PAS" +
     "SWORD=Zaq1Zaq1;";
@@ -299,7 +303,7 @@ namespace RSBot
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label4.Location = new System.Drawing.Point(3, 193);
+            this.label4.Location = new System.Drawing.Point(3, 186);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 20);
             this.label4.TabIndex = 6;
@@ -313,9 +317,9 @@ namespace RSBot
             this.button7.FlatAppearance.BorderSize = 0;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button7.Location = new System.Drawing.Point(23, 274);
+            this.button7.Location = new System.Drawing.Point(12, 300);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(377, 30);
+            this.button7.Size = new System.Drawing.Size(360, 30);
             this.button7.TabIndex = 4;
             this.button7.Text = "Download Images";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -331,9 +335,9 @@ namespace RSBot
             this.btnVerifyUpload.FlatAppearance.BorderSize = 0;
             this.btnVerifyUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerifyUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnVerifyUpload.Location = new System.Drawing.Point(23, 422);
+            this.btnVerifyUpload.Location = new System.Drawing.Point(12, 448);
             this.btnVerifyUpload.Name = "btnVerifyUpload";
-            this.btnVerifyUpload.Size = new System.Drawing.Size(377, 30);
+            this.btnVerifyUpload.Size = new System.Drawing.Size(360, 30);
             this.btnVerifyUpload.TabIndex = 1;
             this.btnVerifyUpload.Text = "Verify file uploaded";
             this.btnVerifyUpload.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -345,16 +349,16 @@ namespace RSBot
             this.txtUploadRefId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUploadRefId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.txtUploadRefId.Location = new System.Drawing.Point(184, 157);
+            this.txtUploadRefId.Location = new System.Drawing.Point(184, 145);
             this.txtUploadRefId.Name = "txtUploadRefId";
-            this.txtUploadRefId.Size = new System.Drawing.Size(666, 26);
+            this.txtUploadRefId.Size = new System.Drawing.Size(655, 26);
             this.txtUploadRefId.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label5.Location = new System.Drawing.Point(3, 160);
+            this.label5.Location = new System.Drawing.Point(3, 148);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 20);
             this.label5.TabIndex = 6;
@@ -369,9 +373,9 @@ namespace RSBot
             this.tnVerifyNoErrors.FlatAppearance.BorderSize = 0;
             this.tnVerifyNoErrors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tnVerifyNoErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.tnVerifyNoErrors.Location = new System.Drawing.Point(23, 459);
+            this.tnVerifyNoErrors.Location = new System.Drawing.Point(12, 485);
             this.tnVerifyNoErrors.Name = "tnVerifyNoErrors";
-            this.tnVerifyNoErrors.Size = new System.Drawing.Size(377, 30);
+            this.tnVerifyNoErrors.Size = new System.Drawing.Size(360, 30);
             this.tnVerifyNoErrors.TabIndex = 1;
             this.tnVerifyNoErrors.Text = "Verify no errors during upload";
             this.tnVerifyNoErrors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -386,7 +390,7 @@ namespace RSBot
             this.txtUploadResult.Location = new System.Drawing.Point(184, 251);
             this.txtUploadResult.Name = "txtUploadResult";
             this.txtUploadResult.ReadOnly = true;
-            this.txtUploadResult.Size = new System.Drawing.Size(666, 26);
+            this.txtUploadResult.Size = new System.Drawing.Size(655, 26);
             this.txtUploadResult.TabIndex = 5;
             // 
             // label6
@@ -407,9 +411,9 @@ namespace RSBot
             this.btnUpcCodes.FlatAppearance.BorderSize = 0;
             this.btnUpcCodes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpcCodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnUpcCodes.Location = new System.Drawing.Point(23, 237);
+            this.btnUpcCodes.Location = new System.Drawing.Point(12, 263);
             this.btnUpcCodes.Name = "btnUpcCodes";
-            this.btnUpcCodes.Size = new System.Drawing.Size(377, 30);
+            this.btnUpcCodes.Size = new System.Drawing.Size(360, 30);
             this.btnUpcCodes.TabIndex = 9;
             this.btnUpcCodes.Text = "Import UPC to DB";
             this.btnUpcCodes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -424,9 +428,9 @@ namespace RSBot
             this.btnDownloadUpc.FlatAppearance.BorderSize = 0;
             this.btnDownloadUpc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDownloadUpc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnDownloadUpc.Location = new System.Drawing.Point(23, 200);
+            this.btnDownloadUpc.Location = new System.Drawing.Point(12, 226);
             this.btnDownloadUpc.Name = "btnDownloadUpc";
-            this.btnDownloadUpc.Size = new System.Drawing.Size(377, 30);
+            this.btnDownloadUpc.Size = new System.Drawing.Size(360, 30);
             this.btnDownloadUpc.TabIndex = 8;
             this.btnDownloadUpc.Text = "Download UPC (ebay)";
             this.btnDownloadUpc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -441,9 +445,9 @@ namespace RSBot
             this.btnPrepareDownloadUpc.FlatAppearance.BorderSize = 0;
             this.btnPrepareDownloadUpc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrepareDownloadUpc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnPrepareDownloadUpc.Location = new System.Drawing.Point(23, 163);
+            this.btnPrepareDownloadUpc.Location = new System.Drawing.Point(12, 189);
             this.btnPrepareDownloadUpc.Name = "btnPrepareDownloadUpc";
-            this.btnPrepareDownloadUpc.Size = new System.Drawing.Size(377, 30);
+            this.btnPrepareDownloadUpc.Size = new System.Drawing.Size(360, 30);
             this.btnPrepareDownloadUpc.TabIndex = 7;
             this.btnPrepareDownloadUpc.Text = "Prepare Download ebay UPC";
             this.btnPrepareDownloadUpc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -457,7 +461,7 @@ namespace RSBot
             this.txtDownloadUPCRefId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.txtDownloadUPCRefId.Location = new System.Drawing.Point(184, 111);
             this.txtDownloadUPCRefId.Name = "txtDownloadUPCRefId";
-            this.txtDownloadUPCRefId.Size = new System.Drawing.Size(666, 26);
+            this.txtDownloadUPCRefId.Size = new System.Drawing.Size(655, 26);
             this.txtDownloadUPCRefId.TabIndex = 5;
             // 
             // label7
@@ -478,7 +482,7 @@ namespace RSBot
             this.txtCloudinaryKey.Location = new System.Drawing.Point(184, 314);
             this.txtCloudinaryKey.Name = "txtCloudinaryKey";
             this.txtCloudinaryKey.ReadOnly = true;
-            this.txtCloudinaryKey.Size = new System.Drawing.Size(666, 26);
+            this.txtCloudinaryKey.Size = new System.Drawing.Size(655, 26);
             this.txtCloudinaryKey.TabIndex = 5;
             this.txtCloudinaryKey.Text = "757673843368737";
             // 
@@ -500,7 +504,7 @@ namespace RSBot
             this.txtCloudinarySecret.Location = new System.Drawing.Point(170, 343);
             this.txtCloudinarySecret.Name = "txtCloudinarySecret";
             this.txtCloudinarySecret.ReadOnly = true;
-            this.txtCloudinarySecret.Size = new System.Drawing.Size(379, 26);
+            this.txtCloudinarySecret.Size = new System.Drawing.Size(1072, 26);
             this.txtCloudinarySecret.TabIndex = 5;
             this.txtCloudinarySecret.Text = "58C8IyRHHQkAJm7Tk9lfNHDn9E8";
             // 
@@ -522,7 +526,7 @@ namespace RSBot
             this.txtCloudinaryAppName.Location = new System.Drawing.Point(184, 283);
             this.txtCloudinaryAppName.Name = "txtCloudinaryAppName";
             this.txtCloudinaryAppName.ReadOnly = true;
-            this.txtCloudinaryAppName.Size = new System.Drawing.Size(666, 26);
+            this.txtCloudinaryAppName.Size = new System.Drawing.Size(655, 26);
             this.txtCloudinaryAppName.TabIndex = 5;
             this.txtCloudinaryAppName.Text = "dotpi3eua";
             // 
@@ -546,6 +550,7 @@ namespace RSBot
             // 
             // splitContainer.Panel1
             // 
+            this.splitContainer.Panel1.AutoScroll = true;
             this.splitContainer.Panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.splitContainer.Panel1.Controls.Add(this.label1);
             this.splitContainer.Panel1.Controls.Add(this.txtUsername);
@@ -570,10 +575,14 @@ namespace RSBot
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.AutoScroll = true;
+            this.splitContainer.Panel2.Controls.Add(this.linkLabel2);
+            this.splitContainer.Panel2.Controls.Add(this.linkLabel1);
             this.splitContainer.Panel2.Controls.Add(this.pg10);
             this.splitContainer.Panel2.Controls.Add(this.pg9);
             this.splitContainer.Panel2.Controls.Add(this.pg8);
             this.splitContainer.Panel2.Controls.Add(this.pg7);
+            this.splitContainer.Panel2.Controls.Add(this.pg13);
             this.splitContainer.Panel2.Controls.Add(this.pg12);
             this.splitContainer.Panel2.Controls.Add(this.pg11);
             this.splitContainer.Panel2.Controls.Add(this.pg6);
@@ -581,6 +590,7 @@ namespace RSBot
             this.splitContainer.Panel2.Controls.Add(this.pg4);
             this.splitContainer.Panel2.Controls.Add(this.pg3);
             this.splitContainer.Panel2.Controls.Add(this.pg2);
+            this.splitContainer.Panel2.Controls.Add(this.chk13);
             this.splitContainer.Panel2.Controls.Add(this.pg1);
             this.splitContainer.Panel2.Controls.Add(this.chk12);
             this.splitContainer.Panel2.Controls.Add(this.chk11);
@@ -611,86 +621,132 @@ namespace RSBot
             this.splitContainer.SplitterDistance = 343;
             this.splitContainer.TabIndex = 12;
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.linkLabel2.Location = new System.Drawing.Point(786, 7);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(47, 20);
+            this.linkLabel2.TabIndex = 26;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "None";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.selectNone_Click);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.linkLabel1.Location = new System.Drawing.Point(754, 7);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(26, 20);
+            this.linkLabel1.TabIndex = 25;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "All";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.selectAll_Click);
+            // 
             // pg10
             // 
-            this.pg10.Location = new System.Drawing.Point(734, 352);
+            this.pg10.Location = new System.Drawing.Point(723, 378);
             this.pg10.Name = "pg10";
             this.pg10.Size = new System.Drawing.Size(116, 27);
             this.pg10.TabIndex = 24;
             // 
             // pg9
             // 
-            this.pg9.Location = new System.Drawing.Point(734, 315);
+            this.pg9.Location = new System.Drawing.Point(723, 341);
             this.pg9.Name = "pg9";
             this.pg9.Size = new System.Drawing.Size(116, 27);
             this.pg9.TabIndex = 23;
             // 
             // pg8
             // 
-            this.pg8.Location = new System.Drawing.Point(734, 278);
+            this.pg8.Location = new System.Drawing.Point(723, 304);
             this.pg8.Name = "pg8";
             this.pg8.Size = new System.Drawing.Size(116, 27);
             this.pg8.TabIndex = 24;
             // 
             // pg7
             // 
-            this.pg7.Location = new System.Drawing.Point(734, 241);
+            this.pg7.Location = new System.Drawing.Point(723, 267);
             this.pg7.Name = "pg7";
             this.pg7.Size = new System.Drawing.Size(116, 27);
             this.pg7.TabIndex = 23;
             // 
+            // pg13
+            // 
+            this.pg13.Location = new System.Drawing.Point(723, 488);
+            this.pg13.Name = "pg13";
+            this.pg13.Size = new System.Drawing.Size(116, 27);
+            this.pg13.TabIndex = 22;
+            // 
             // pg12
             // 
-            this.pg12.Location = new System.Drawing.Point(734, 426);
+            this.pg12.Location = new System.Drawing.Point(723, 452);
             this.pg12.Name = "pg12";
             this.pg12.Size = new System.Drawing.Size(116, 27);
             this.pg12.TabIndex = 22;
             // 
             // pg11
             // 
-            this.pg11.Location = new System.Drawing.Point(734, 389);
+            this.pg11.Location = new System.Drawing.Point(723, 415);
             this.pg11.Name = "pg11";
             this.pg11.Size = new System.Drawing.Size(116, 27);
             this.pg11.TabIndex = 21;
             // 
             // pg6
             // 
-            this.pg6.Location = new System.Drawing.Point(734, 204);
+            this.pg6.Location = new System.Drawing.Point(723, 230);
             this.pg6.Name = "pg6";
             this.pg6.Size = new System.Drawing.Size(116, 27);
             this.pg6.TabIndex = 20;
             // 
             // pg5
             // 
-            this.pg5.Location = new System.Drawing.Point(734, 167);
+            this.pg5.Location = new System.Drawing.Point(723, 193);
             this.pg5.Name = "pg5";
             this.pg5.Size = new System.Drawing.Size(116, 27);
             this.pg5.TabIndex = 19;
             // 
             // pg4
             // 
-            this.pg4.Location = new System.Drawing.Point(734, 130);
+            this.pg4.Location = new System.Drawing.Point(723, 156);
             this.pg4.Name = "pg4";
             this.pg4.Size = new System.Drawing.Size(116, 27);
             this.pg4.TabIndex = 18;
             // 
             // pg3
             // 
-            this.pg3.Location = new System.Drawing.Point(734, 93);
+            this.pg3.Location = new System.Drawing.Point(723, 119);
             this.pg3.Name = "pg3";
             this.pg3.Size = new System.Drawing.Size(116, 27);
             this.pg3.TabIndex = 17;
             // 
             // pg2
             // 
-            this.pg2.Location = new System.Drawing.Point(734, 56);
+            this.pg2.Location = new System.Drawing.Point(723, 82);
             this.pg2.Name = "pg2";
             this.pg2.Size = new System.Drawing.Size(116, 27);
             this.pg2.TabIndex = 16;
             // 
+            // chk13
+            // 
+            this.chk13.AutoSize = true;
+            this.chk13.Checked = true;
+            this.chk13.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.chk13.Location = new System.Drawing.Point(430, 488);
+            this.chk13.Name = "chk13";
+            this.chk13.Size = new System.Drawing.Size(225, 24);
+            this.chk13.TabIndex = 11;
+            this.chk13.Text = "Verify no erors duing upload";
+            this.chk13.UseVisualStyleBackColor = true;
+            // 
             // pg1
             // 
-            this.pg1.Location = new System.Drawing.Point(734, 19);
+            this.pg1.Location = new System.Drawing.Point(723, 45);
             this.pg1.Name = "pg1";
             this.pg1.Size = new System.Drawing.Size(116, 27);
             this.pg1.TabIndex = 15;
@@ -701,7 +757,7 @@ namespace RSBot
             this.chk12.Checked = true;
             this.chk12.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk12.Location = new System.Drawing.Point(441, 426);
+            this.chk12.Location = new System.Drawing.Point(430, 452);
             this.chk12.Name = "chk12";
             this.chk12.Size = new System.Drawing.Size(251, 24);
             this.chk12.TabIndex = 11;
@@ -714,7 +770,7 @@ namespace RSBot
             this.chk11.Checked = true;
             this.chk11.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk11.Location = new System.Drawing.Point(441, 389);
+            this.chk11.Location = new System.Drawing.Point(430, 415);
             this.chk11.Name = "chk11";
             this.chk11.Size = new System.Drawing.Size(189, 24);
             this.chk11.TabIndex = 12;
@@ -727,7 +783,7 @@ namespace RSBot
             this.chk10.Checked = true;
             this.chk10.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk10.Location = new System.Drawing.Point(441, 352);
+            this.chk10.Location = new System.Drawing.Point(430, 378);
             this.chk10.Name = "chk10";
             this.chk10.Size = new System.Drawing.Size(293, 24);
             this.chk10.TabIndex = 13;
@@ -739,7 +795,7 @@ namespace RSBot
             this.chk9.AutoSize = true;
             this.chk9.Enabled = false;
             this.chk9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk9.Location = new System.Drawing.Point(441, 315);
+            this.chk9.Location = new System.Drawing.Point(430, 341);
             this.chk9.Name = "chk9";
             this.chk9.Size = new System.Drawing.Size(123, 24);
             this.chk9.TabIndex = 14;
@@ -752,7 +808,7 @@ namespace RSBot
             this.chk8.Checked = true;
             this.chk8.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk8.Location = new System.Drawing.Point(441, 278);
+            this.chk8.Location = new System.Drawing.Point(430, 304);
             this.chk8.Name = "chk8";
             this.chk8.Size = new System.Drawing.Size(156, 24);
             this.chk8.TabIndex = 10;
@@ -765,7 +821,7 @@ namespace RSBot
             this.chk7.Checked = true;
             this.chk7.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk7.Location = new System.Drawing.Point(441, 241);
+            this.chk7.Location = new System.Drawing.Point(430, 267);
             this.chk7.Name = "chk7";
             this.chk7.Size = new System.Drawing.Size(164, 24);
             this.chk7.TabIndex = 10;
@@ -778,7 +834,7 @@ namespace RSBot
             this.chk4.Checked = true;
             this.chk4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk4.Location = new System.Drawing.Point(441, 130);
+            this.chk4.Location = new System.Drawing.Point(430, 156);
             this.chk4.Name = "chk4";
             this.chk4.Size = new System.Drawing.Size(171, 24);
             this.chk4.TabIndex = 10;
@@ -791,7 +847,7 @@ namespace RSBot
             this.chk6.Checked = true;
             this.chk6.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk6.Location = new System.Drawing.Point(441, 204);
+            this.chk6.Location = new System.Drawing.Point(430, 230);
             this.chk6.Name = "chk6";
             this.chk6.Size = new System.Drawing.Size(192, 24);
             this.chk6.TabIndex = 10;
@@ -804,7 +860,7 @@ namespace RSBot
             this.chk3.Checked = true;
             this.chk3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk3.Location = new System.Drawing.Point(441, 93);
+            this.chk3.Location = new System.Drawing.Point(430, 119);
             this.chk3.Name = "chk3";
             this.chk3.Size = new System.Drawing.Size(199, 24);
             this.chk3.TabIndex = 10;
@@ -817,7 +873,7 @@ namespace RSBot
             this.chk5.Checked = true;
             this.chk5.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk5.Location = new System.Drawing.Point(441, 167);
+            this.chk5.Location = new System.Drawing.Point(430, 193);
             this.chk5.Name = "chk5";
             this.chk5.Size = new System.Drawing.Size(196, 24);
             this.chk5.TabIndex = 10;
@@ -830,7 +886,7 @@ namespace RSBot
             this.chk2.Checked = true;
             this.chk2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk2.Location = new System.Drawing.Point(441, 56);
+            this.chk2.Location = new System.Drawing.Point(430, 82);
             this.chk2.Name = "chk2";
             this.chk2.Size = new System.Drawing.Size(238, 24);
             this.chk2.TabIndex = 10;
@@ -842,7 +898,7 @@ namespace RSBot
             this.chk1.AutoSize = true;
             this.chk1.Enabled = false;
             this.chk1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk1.Location = new System.Drawing.Point(443, 19);
+            this.chk1.Location = new System.Drawing.Point(432, 45);
             this.chk1.Name = "chk1";
             this.chk1.Size = new System.Drawing.Size(212, 24);
             this.chk1.TabIndex = 10;
@@ -874,6 +930,7 @@ namespace RSBot
             // 
             // btnStart
             // 
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.BackColor = System.Drawing.Color.Indigo;
             this.btnStart.FlatAppearance.BorderSize = 0;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -889,6 +946,7 @@ namespace RSBot
             // 
             // btnShowSettings
             // 
+            this.btnShowSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShowSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnShowSettings.ForeColor = System.Drawing.Color.Indigo;
             this.btnShowSettings.Location = new System.Drawing.Point(560, 13);
@@ -984,6 +1042,10 @@ namespace RSBot
         private ProgressBar pg3;
         private ProgressBar pg2;
         private ProgressBar pg1;
+        private ProgressBar pg13;
+        private CheckBox chk13;
+        private LinkLabel linkLabel2;
+        private LinkLabel linkLabel1;
     }
 }
 

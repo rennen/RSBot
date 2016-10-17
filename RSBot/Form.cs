@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Engine;
 
 namespace RSBot
@@ -26,6 +27,7 @@ namespace RSBot
             workflow.Add(chk10, pg10, () => { });
             workflow.Add(chk11, pg11, () => { });
             workflow.Add(chk12, pg12, () => { });
+            workflow.Add(chk13, pg13, () => { });
         }
 
         private void btnPrepare_Click(object sender, EventArgs e)
@@ -92,6 +94,22 @@ namespace RSBot
         private void btnStart_Click(object sender, EventArgs e)
         {
             workflow.Start();
+        }
+
+        private void selectAll_Click(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            foreach (var step in workflow.Steps.Where(step => step.StepCheckBox.Enabled))
+            {
+                step.StepCheckBox.Checked = true;
+            }
+        }
+
+        private void selectNone_Click(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            foreach (var step in workflow.Steps.Where(step => step.StepCheckBox.Enabled))
+            {
+                step.StepCheckBox.Checked = false;
+            }
         }
     }
 }

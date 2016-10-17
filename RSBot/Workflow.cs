@@ -13,6 +13,8 @@ namespace RSBot
             steps = new List<Step>();
         }
 
+        public IEnumerable<Step> Steps => steps.AsReadOnly();
+
         public void Add(CheckBox checkBox, ProgressBar proessbar, Action action)
         {
             Add(new Step(checkBox, proessbar, action));

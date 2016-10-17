@@ -14,7 +14,6 @@ namespace RSBot
 
         public CheckBox StepCheckBox { get; }
         public ProgressBar StepProgressBar { get; }
-
         public Action Action { get; }
     }
 }
