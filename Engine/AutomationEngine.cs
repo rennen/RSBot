@@ -10,12 +10,16 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using eBay.Service;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using eBay.Service.Core.Soap;
 
 namespace Engine
 {
     public class AutomationEngine
     {
-        const string ReviseFileHeaders = "Action(SiteID=US|Country=US|Currency=USD|Version=585|CC=ISO-8859-1),ItemID,Title,PicUrl";
+        private const string EbayImageSeparator = "|";
+        private const string ReviseFileHeaders = "Action(SiteID=US|Country=US|Currency=USD|Version=585|CC=ISO-8859-1),ItemID,Title,PicUrl";
         private const string FilesFolder = @"C:\rsbot-files";
 
         private readonly FirefoxProfile firefoxProfile;
@@ -118,7 +122,7 @@ namespace Engine
                         imageUrls.Add(fixedUrl);
                     }
 
-                    listing.PicUrl = imageUrls.Distinct().Aggregate((left,right) => left + "|" + right);
+                    listing.PicUrl = imageUrls.Distinct().Aggregate((left,right) => left + EbayImageSeparator + right);
 
                     db.Save(listing);
                     Console.WriteLine(listing.PicUrl);
@@ -309,6 +313,101 @@ namespace Engine
                         dbListring.Upc = upc;
                         db.Save(dbListring);
                     }
+                }
+            }
+        }
+
+        public void OptimizeImages(string connectionString, string cloudinaryName, string cloudinaryApiKey,
+            string cloudinaryApiSecret, string watermarkId = "hyq46fqeex1k690polat")
+        {
+            var account = new Account(cloudinaryName, cloudinaryApiKey, cloudinaryApiSecret);
+            var cloudinary = new Cloudinary(account);
+
+            Listing[] listings = null;
+
+            using (var db = GetDb(connectionString))
+            {
+                listings =
+                    db.Query<Listing>(Sql.Builder.Where("ebay_id not in (select ebay_id from listing_trans_log)"))
+                        .ToArray();
+            }
+
+            var tranformationLogs = new List<ListingTransformationLog>();
+
+            foreach (var listing in listings)
+            {
+                var picUrls = listing.PicUrl.Split(EbayImageSeparator[0]);
+
+                var uploadResults = new List<ImageUploadResult>();
+                var updatedImageUrls = new List<string>();
+
+                foreach (var image in picUrls)
+                {
+                    var uploadParams = new ImageUploadParams {File = new FileDescription(image)};
+                    var uploadResult = cloudinary.Upload(uploadParams);
+
+                    uploadResults.Add(uploadResult);
+
+                    var url = cloudinary.Api.UrlImgUp.Transform(new Transformation()
+                        .Flags("sanitize", "text_disallow_overflow")
+                        .Height(1000)
+                        .Quality("auto:eco")
+                        .Width(1000)
+                        .Crop("mfit")
+                        .Chain()
+                        .Effect("gradient_fade:20")
+                        .Gravity("south_east")
+                        .Height(100)
+                        .Overlay(watermarkId)
+                        .Opacity(30)
+                        .Width(100)
+                        .X(10)
+                        .Y(10)
+                        .Crop("thumb")).BuildImageTag(uploadResult.PublicId + ".jpg");
+
+                    updatedImageUrls.Add(url.ToHtmlString());
+                }
+
+                var addCollage = uploadResults.Count > 1;
+
+                if (addCollage)
+                {
+                    var collageCandidates =
+                        uploadResults.Where(item => item.Faces != null && item.Faces.Length >= 1)
+                            .Concat(uploadResults.Where(item => item.Faces == null)).Take(2).ToList();
+
+                    var collageUrl = cloudinary.Api.UrlImgUp.Transform(new Transformation()
+                        .Width(500).Height(1000).Crop("fill").Chain()
+                        .Overlay(collageCandidates[1].PublicId)
+                        .Width(500).Height(1000).X(250).Crop("fill").Quality("auto:eco").Chain()
+                        .Effect("gradient_fade:20").Gravity("south_east")
+                        .Height(100).Width(100)
+                        .X(10).Y(10)
+                        .Overlay(watermarkId)
+                        .Opacity(30)
+                        .Crop("thumb")).BuildImageTag(collageCandidates[0].PublicId + ".jpg");
+
+                    updatedImageUrls.Insert(0, collageUrl.ToHtmlString());
+                }
+
+                tranformationLogs.Add(new ListingTransformationLog
+                {
+                    Timestamp = DateTime.UtcNow,
+                    EbayId = listing.EbayId,
+                    CollageAdded = addCollage
+                });
+
+                listing.PicUrl =
+                    updatedImageUrls.Distinct().Aggregate((left, right) => left + EbayImageSeparator + right);
+            }
+
+            using (var db = GetDb(connectionString))
+            {
+                db.InsertBatch(tranformationLogs, new BatchOptions {BatchSize = 100});
+
+                foreach (var listing in listings)
+                {
+                    db.Save(listing);
                 }
             }
         }
