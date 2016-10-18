@@ -96,6 +96,7 @@ namespace RSBot
             this.label11 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnShowSettings = new System.Windows.Forms.Button();
+            this.settings = new System.Windows.Forms.PropertyGrid();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -114,7 +115,7 @@ namespace RSBot
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.button1.Location = new System.Drawing.Point(12, 41);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(360, 30);
+            this.button1.Size = new System.Drawing.Size(343, 30);
             this.button1.TabIndex = 0;
             this.button1.Text = "Create Listing from Asins";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -130,7 +131,7 @@ namespace RSBot
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.button2.Location = new System.Drawing.Point(12, 78);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(360, 30);
+            this.button2.Size = new System.Drawing.Size(343, 30);
             this.button2.TabIndex = 0;
             this.button2.Text = "Prepare Download ebay Listings";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -148,7 +149,7 @@ namespace RSBot
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.button3.Location = new System.Drawing.Point(12, 337);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(360, 30);
+            this.button3.Size = new System.Drawing.Size(343, 30);
             this.button3.TabIndex = 1;
             this.button3.Text = "Local Optimization Title";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -165,7 +166,7 @@ namespace RSBot
             this.btnOptimizeImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnOptimizeImages.Location = new System.Drawing.Point(12, 374);
             this.btnOptimizeImages.Name = "btnOptimizeImages";
-            this.btnOptimizeImages.Size = new System.Drawing.Size(360, 30);
+            this.btnOptimizeImages.Size = new System.Drawing.Size(343, 30);
             this.btnOptimizeImages.TabIndex = 1;
             this.btnOptimizeImages.Text = "Local Optimization Images";
             this.btnOptimizeImages.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -183,7 +184,7 @@ namespace RSBot
             this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnUpload.Location = new System.Drawing.Point(12, 411);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(360, 30);
+            this.btnUpload.Size = new System.Drawing.Size(343, 30);
             this.btnUpload.TabIndex = 1;
             this.btnUpload.Text = "Upload optimized to ebay";
             this.btnUpload.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -242,7 +243,7 @@ namespace RSBot
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.button6.Location = new System.Drawing.Point(12, 115);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(360, 30);
+            this.button6.Size = new System.Drawing.Size(343, 30);
             this.button6.TabIndex = 4;
             this.button6.Text = "Download ebay Listings";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -279,7 +280,7 @@ namespace RSBot
             this.btnToDb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnToDb.Location = new System.Drawing.Point(12, 152);
             this.btnToDb.Name = "btnToDb";
-            this.btnToDb.Size = new System.Drawing.Size(360, 30);
+            this.btnToDb.Size = new System.Drawing.Size(343, 30);
             this.btnToDb.TabIndex = 4;
             this.btnToDb.Text = "Import listings to DB";
             this.btnToDb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -319,7 +320,7 @@ namespace RSBot
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.button7.Location = new System.Drawing.Point(12, 300);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(360, 30);
+            this.button7.Size = new System.Drawing.Size(343, 30);
             this.button7.TabIndex = 4;
             this.button7.Text = "Download Images";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -337,7 +338,7 @@ namespace RSBot
             this.btnVerifyUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnVerifyUpload.Location = new System.Drawing.Point(12, 448);
             this.btnVerifyUpload.Name = "btnVerifyUpload";
-            this.btnVerifyUpload.Size = new System.Drawing.Size(360, 30);
+            this.btnVerifyUpload.Size = new System.Drawing.Size(343, 30);
             this.btnVerifyUpload.TabIndex = 1;
             this.btnVerifyUpload.Text = "Verify file uploaded";
             this.btnVerifyUpload.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -375,7 +376,7 @@ namespace RSBot
             this.tnVerifyNoErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.tnVerifyNoErrors.Location = new System.Drawing.Point(12, 485);
             this.tnVerifyNoErrors.Name = "tnVerifyNoErrors";
-            this.tnVerifyNoErrors.Size = new System.Drawing.Size(360, 30);
+            this.tnVerifyNoErrors.Size = new System.Drawing.Size(343, 30);
             this.tnVerifyNoErrors.TabIndex = 1;
             this.tnVerifyNoErrors.Text = "Verify no errors during upload";
             this.tnVerifyNoErrors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -413,7 +414,7 @@ namespace RSBot
             this.btnUpcCodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnUpcCodes.Location = new System.Drawing.Point(12, 263);
             this.btnUpcCodes.Name = "btnUpcCodes";
-            this.btnUpcCodes.Size = new System.Drawing.Size(360, 30);
+            this.btnUpcCodes.Size = new System.Drawing.Size(343, 30);
             this.btnUpcCodes.TabIndex = 9;
             this.btnUpcCodes.Text = "Import UPC to DB";
             this.btnUpcCodes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -430,7 +431,7 @@ namespace RSBot
             this.btnDownloadUpc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnDownloadUpc.Location = new System.Drawing.Point(12, 226);
             this.btnDownloadUpc.Name = "btnDownloadUpc";
-            this.btnDownloadUpc.Size = new System.Drawing.Size(360, 30);
+            this.btnDownloadUpc.Size = new System.Drawing.Size(343, 30);
             this.btnDownloadUpc.TabIndex = 8;
             this.btnDownloadUpc.Text = "Download UPC (ebay)";
             this.btnDownloadUpc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -447,7 +448,7 @@ namespace RSBot
             this.btnPrepareDownloadUpc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnPrepareDownloadUpc.Location = new System.Drawing.Point(12, 189);
             this.btnPrepareDownloadUpc.Name = "btnPrepareDownloadUpc";
-            this.btnPrepareDownloadUpc.Size = new System.Drawing.Size(360, 30);
+            this.btnPrepareDownloadUpc.Size = new System.Drawing.Size(343, 30);
             this.btnPrepareDownloadUpc.TabIndex = 7;
             this.btnPrepareDownloadUpc.Text = "Prepare Download ebay UPC";
             this.btnPrepareDownloadUpc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -501,12 +502,13 @@ namespace RSBot
             this.txtCloudinarySecret.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCloudinarySecret.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.txtCloudinarySecret.Location = new System.Drawing.Point(170, 343);
+            this.txtCloudinarySecret.Location = new System.Drawing.Point(184, 343);
             this.txtCloudinarySecret.Name = "txtCloudinarySecret";
             this.txtCloudinarySecret.ReadOnly = true;
-            this.txtCloudinarySecret.Size = new System.Drawing.Size(1072, 26);
+            this.txtCloudinarySecret.Size = new System.Drawing.Size(655, 26);
             this.txtCloudinarySecret.TabIndex = 5;
             this.txtCloudinarySecret.Text = "58C8IyRHHQkAJm7Tk9lfNHDn9E8";
+            this.txtCloudinarySecret.TextChanged += new System.EventHandler(this.txtCloudinarySecret_TextChanged);
             // 
             // label9
             // 
@@ -543,7 +545,6 @@ namespace RSBot
             // splitContainer
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.IsSplitterFixed = true;
             this.splitContainer.Location = new System.Drawing.Point(0, 67);
             this.splitContainer.Name = "splitContainer";
             this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -552,6 +553,7 @@ namespace RSBot
             // 
             this.splitContainer.Panel1.AutoScroll = true;
             this.splitContainer.Panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitContainer.Panel1.Controls.Add(this.settings);
             this.splitContainer.Panel1.Controls.Add(this.label1);
             this.splitContainer.Panel1.Controls.Add(this.txtUsername);
             this.splitContainer.Panel1.Controls.Add(this.txtPassword);
@@ -618,7 +620,7 @@ namespace RSBot
             this.splitContainer.Panel2.Controls.Add(this.button6);
             this.splitContainer.Panel2.Controls.Add(this.btnUpload);
             this.splitContainer.Size = new System.Drawing.Size(862, 806);
-            this.splitContainer.SplitterDistance = 343;
+            this.splitContainer.SplitterDistance = 401;
             this.splitContainer.TabIndex = 12;
             // 
             // linkLabel2
@@ -626,7 +628,7 @@ namespace RSBot
             this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.linkLabel2.Location = new System.Drawing.Point(786, 7);
+            this.linkLabel2.Location = new System.Drawing.Point(769, 7);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(47, 20);
             this.linkLabel2.TabIndex = 26;
@@ -639,7 +641,7 @@ namespace RSBot
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.linkLabel1.Location = new System.Drawing.Point(754, 7);
+            this.linkLabel1.Location = new System.Drawing.Point(737, 7);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(26, 20);
             this.linkLabel1.TabIndex = 25;
@@ -907,7 +909,7 @@ namespace RSBot
             // 
             // panel
             // 
-            this.panel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel.BackColor = System.Drawing.Color.White;
             this.panel.Controls.Add(this.label11);
             this.panel.Controls.Add(this.btnStart);
             this.panel.Controls.Add(this.btnShowSettings);
@@ -920,11 +922,11 @@ namespace RSBot
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label11.Font = new System.Drawing.Font("Mistral", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Indigo;
-            this.label11.Location = new System.Drawing.Point(23, 13);
+            this.label11.Location = new System.Drawing.Point(12, 10);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(126, 42);
+            this.label11.Size = new System.Drawing.Size(95, 44);
             this.label11.TabIndex = 1;
             this.label11.Text = "RSBot";
             // 
@@ -956,6 +958,15 @@ namespace RSBot
             this.btnShowSettings.Text = "Show Settings";
             this.btnShowSettings.UseVisualStyleBackColor = true;
             this.btnShowSettings.Click += new System.EventHandler(this.btnShowSettings_Click);
+            // 
+            // settings
+            // 
+            this.settings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.settings.Location = new System.Drawing.Point(315, 7);
+            this.settings.Name = "settings";
+            this.settings.Size = new System.Drawing.Size(535, 391);
+            this.settings.TabIndex = 7;
+            this.settings.ToolbarVisible = false;
             // 
             // Form
             // 
@@ -1046,6 +1057,7 @@ namespace RSBot
         private CheckBox chk13;
         private LinkLabel linkLabel2;
         private LinkLabel linkLabel1;
+        private PropertyGrid settings;
     }
 }
 

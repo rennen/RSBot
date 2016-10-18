@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DictionaryPropertyDescriptor.cs" />
+    <Compile Include="DictionaryPropertyGridAdapter.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
     </Compile>

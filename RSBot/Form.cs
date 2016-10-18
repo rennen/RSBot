@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Drawing;
 using System.Linq;
 using Engine;
 
@@ -13,6 +15,13 @@ namespace RSBot
         {
             InitializeComponent();
             engine = new AutomationEngine();
+
+            IDictionary data = new Hashtable();
+            data["Hello:Ebay"] = "World";
+            data["Meaning:Ebay"] = 42;
+            data["Shade:X"] = Color.ForestGreen;
+
+            settings.SelectedObject = new DictionaryPropertyGridAdapter(data);
 
             workflow = new Workflow();
             workflow.Add(chk1, pg1, () => { });
@@ -110,6 +119,11 @@ namespace RSBot
             {
                 step.StepCheckBox.Checked = false;
             }
+        }
+
+        private void txtCloudinarySecret_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
