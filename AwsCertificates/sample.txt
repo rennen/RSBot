@@ -1,0 +1,1 @@
+http://webservices.amazon.com/onca/xml?%20Service=AWSECommerceService%20&Operation=ItemLookup%20&ResponseGroup=Images%20&IdType=ASIN&%20&ItemId=B004HO6I4M%20&AWSAccessKeyId=AKIAIBI4FBBRAOOH2YEQ&Signature=123456&Timestamp=2016-10-19T18:20:00
