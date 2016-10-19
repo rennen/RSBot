@@ -4,29 +4,37 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using NPoco;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-using eBay.Service;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using eBay.Service.Core.Soap;
 
 namespace Engine
 {
     public class AutomationEngine
     {
+        public delegate void ProgressEventHandler(object sender, EventArgs<int> args);
+        public event ProgressEventHandler OnProgress;
+
+        public delegate void ErrorEventHandler(object sender, EventArgs<string> args);
+        public event ErrorEventHandler OnError;
+
         private const string EbayImageSeparator = "|";
         private const string ReviseFileHeaders = "Action(SiteID=US|Country=US|Currency=USD|Version=585|CC=ISO-8859-1),ItemID,Title,PicUrl";
         private const string FilesFolder = @"C:\rsbot-files";
 
         private readonly FirefoxProfile firefoxProfile;
         private readonly CsvReader csvReader;
+        private readonly SettingsData settings;
 
-        public AutomationEngine()
+        public AutomationEngine(SettingsData settings)
         {
+            this.settings = settings;
+
             firefoxProfile = new FirefoxProfile();
             firefoxProfile.AcceptUntrustedCertificates = true;
             firefoxProfile.SetPreference("browser.download.folderList", 2);//browser dir
@@ -36,11 +44,11 @@ namespace Engine
             csvReader = new CsvReader();
         }
 
-        public string UploadRevised(string connectionString, string username, string password)
+        public void UploadRevised()
         {
-            string refId = null;
+            settings.UploadRefId = null;
 
-            using (var db = GetDb(connectionString))
+            using (var db = GetDb())
             {
                 var listings = db.Query<Listing>().ToArray();
 
@@ -63,7 +71,7 @@ namespace Engine
                 {
                     driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 0, 10));
 
-                    NavigateWithLogin(username, password, driver, url);
+                    NavigateWithLogin(driver, url);
 
                     driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 0, 10));
                     driver.FindElement(By.CssSelector("input[type='file']")).SendKeys(filename);
@@ -81,19 +89,18 @@ namespace Engine
                         var match = regex.Match(candidate.Text);
                         if (match.Success)
                         {
-                            refId = new Regex(@"\d+").Match(match.Value).Value;
+                            settings.UploadRefId = new Regex(@"\d+").Match(match.Value).Value;
                         }
                     }
 
                     driver.Close();
                 }
             }
-            return refId;
         }
 
-        public void DownloadImages(string connectionString)
+        public void DownloadImages()
         {
-            using (var db = GetDb(connectionString))
+            using (var db = GetDb())
             {
                 var dbListring = db.Query<Listing>().ToArray();
                 var client = new HttpClient();
@@ -127,19 +134,18 @@ namespace Engine
                     db.Save(listing);
                     Console.WriteLine(listing.PicUrl);
                 }
-
             }
-
         }
 
-        public bool VerifyUploadNoErrors(string uploadRefId)
+        public void VerifyUploadNoErrors()
         {
-            var filename = $"{FilesFolder}\\FileExchange_Response_{uploadRefId}.csv";
+            var refId = settings.UploadRefId;
+            var filename = $"{FilesFolder}\\FileExchange_Response_{refId}.csv";
 
             var reader = new StreamReader(File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
             if (reader.EndOfStream)
             {
-                return false;
+                return;
             }
 
             var headers = reader.ReadLine().Split(',').ToList();
@@ -158,14 +164,12 @@ namespace Engine
 
                 if (status != "Success" && status != "Warning")
                 {
-                    return false;
+                    return;
                 }
             }
-
-            return true;
         }
 
-        public void DownloadUploadVerification(string username, string password, string refId)
+        public void DownloadUploadVerification()
         {
             const string url = "http://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeUploadResults&ssPageName=STRK:ME:LNLK";
 
@@ -173,22 +177,33 @@ namespace Engine
             {
                 driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 0, 10));
 
-                NavigateWithLogin(username, password, driver, url);
+                NavigateWithLogin(driver, url);
 
                 driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 0, 10));
                 var row =
-                    driver.FindElements(By.CssSelector("tr")).Where(item => item.Text.Contains(refId)).ToList().Last();
+                    driver.FindElements(By.CssSelector("tr")).Where(item => item.Text.Contains(settings.UploadRefId)).ToList().Last();
 
                 while (!row.Text.Contains("Complete"))
                 {
                     driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 1, 0));
                 }
 
+                var refId = settings.UploadRefId;
                 driver.Navigate().GoToUrl($"http://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeDownload&jobId={refId}");
             }
         }
 
-        public string PrepareDownload(string username, string password, bool addUpc = false)
+        public void PrepareDownloadListing()
+        {
+            settings.DownloadRefId = PrepareDownload(false);
+        }
+
+        public void PrepareDownloadUpc()
+        {
+            settings.DownloadUpcRefId = PrepareDownload(true);
+        }
+
+        private string PrepareDownload(bool addUpc)
         {
             const string url = "http://k2b-bulk.ebay.com/ws/eBayISAPI.dll?SMDownloadRequest&ssPageName=STRK:ME:LNLK";
 
@@ -198,7 +213,7 @@ namespace Engine
             {
                 driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 0, 10));
 
-                NavigateWithLogin(username, password, driver, url);
+                NavigateWithLogin(driver, url);
 
                 driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 0, 10));
 
@@ -235,34 +250,19 @@ namespace Engine
             return refId;
         }
 
-        public void Download(string username, string password, string refId)
+        public void DownloadListing()
         {
-            const string url = "http://k2b-bulk.ebay.com/ws/eBayISAPI.dll?SMDownloadPickup&ssPageName=STRK:ME:LNLK";
-
-            using (IWebDriver driver = GetDriver())
-            {
-                driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 0, 10));
-                NavigateWithLogin(username, password, driver, url);
-
-                driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 0, 10));
-                var row =
-                    driver.FindElements(By.CssSelector("tr")).Where(item => item.Text.Contains(refId)).ToList().Last();
-
-                while (!row.Text.Contains("File Complete"))
-                {
-                    driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 1, 0));
-                }
-
-                driver.Navigate().GoToUrl($"http://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeDownload&RefId={refId}");
-
-                driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 1, 0));
-
-                driver.Close();
-            }
+            Download(settings.DownloadRefId); 
         }
 
-        public void ImportListings(string refId, string connectionString)
+        public void DownloadUpc()
         {
+            Download(settings.DownloadUpcRefId);
+        }
+
+        public void ImportListings()
+        {
+            var refId = settings.DownloadRefId;
             var filename = $"{FilesFolder}\\FileExchange_Response_{refId}.csv";
 
             var listings =
@@ -285,7 +285,7 @@ namespace Engine
                         Category = line["Category Leaf Name"]
                     });
 
-            using (var db = GetDb(connectionString))
+            using (var db = GetDb())
             {
                 // There is no save bulk. Only insert bulk. We want to make sure we insert or update existing
                 foreach (var listing in listings)
@@ -295,11 +295,13 @@ namespace Engine
             }
         }
 
-        public void ImportUpcCodes(string refId, string connectionString)
+        public void ImportUpcCodes()
         {
+            var refId = settings.DownloadUpcRefId;
+
             var filename = $"{FilesFolder}\\FileExchange_Response_{refId}.csv";
 
-            using (var db = GetDb(connectionString))
+            using (var db = GetDb())
             {
                 foreach (var line in csvReader.Read(filename))
                 {
@@ -317,15 +319,14 @@ namespace Engine
             }
         }
 
-        public void OptimizeImages(string connectionString, string cloudinaryName, string cloudinaryApiKey,
-            string cloudinaryApiSecret, string watermarkId = "hyq46fqeex1k690polat")
+        public void OptimizeImages()
         {
-            var account = new Account(cloudinaryName, cloudinaryApiKey, cloudinaryApiSecret);
+            var account = new Account(settings.CloudinaryAppName, settings.CloudinaryKey, settings.CloudinarySecret);
             var cloudinary = new Cloudinary(account);
 
             Listing[] listings = null;
 
-            using (var db = GetDb(connectionString))
+            using (var db = GetDb())
             {
                 listings =
                     db.Query<Listing>(Sql.Builder.Where("ebay_id not in (select ebay_id from listing_trans_log)"))
@@ -358,7 +359,7 @@ namespace Engine
                         .Effect("gradient_fade:20")
                         .Gravity("south_east")
                         .Height(100)
-                        .Overlay(watermarkId)
+                        .Overlay(settings.CloudinaryWatermarkId)
                         .Opacity(30)
                         .Width(100)
                         .X(10)
@@ -383,7 +384,7 @@ namespace Engine
                         .Effect("gradient_fade:20").Gravity("south_east")
                         .Height(100).Width(100)
                         .X(10).Y(10)
-                        .Overlay(watermarkId)
+                        .Overlay(settings.CloudinaryWatermarkId)
                         .Opacity(30)
                         .Crop("thumb")).BuildImageTag(collageCandidates[0].PublicId + ".jpg");
 
@@ -401,7 +402,7 @@ namespace Engine
                     updatedImageUrls.Distinct().Aggregate((left, right) => left + EbayImageSeparator + right);
             }
 
-            using (var db = GetDb(connectionString))
+            using (var db = GetDb())
             {
                 db.InsertBatch(tranformationLogs, new BatchOptions {BatchSize = 100});
 
@@ -412,23 +413,49 @@ namespace Engine
             }
         }
 
-        private static void NavigateWithLogin(string username, string password, IWebDriver driver, string url)
+        private void Download(string refId)
+        {
+            const string url = "http://k2b-bulk.ebay.com/ws/eBayISAPI.dll?SMDownloadPickup&ssPageName=STRK:ME:LNLK";
+
+            using (IWebDriver driver = GetDriver())
+            {
+                driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 0, 10));
+                NavigateWithLogin(driver, url);
+
+                driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 0, 10));
+                var row =
+                    driver.FindElements(By.CssSelector("tr")).Where(item => item.Text.Contains(refId)).ToList().Last();
+
+                while (!row.Text.Contains("File Complete"))
+                {
+                    driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 1, 0));
+                }
+
+                driver.Navigate().GoToUrl($"http://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeDownload&RefId={refId}");
+
+                driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 1, 0));
+
+                driver.Close();
+            }
+        }
+
+        private void NavigateWithLogin(IWebDriver driver, string url)
         {
             driver.Navigate().GoToUrl(url);
 
             var usernameElement =
                 driver.FindElements(By.CssSelector("input[placeholder='Email or username']"))
                     .Single(element => element.Displayed);
-            usernameElement.SendKeys(username);
+            usernameElement.SendKeys(settings.EbayUser);
 
             var passwordElement = driver.FindElement(By.CssSelector("input[type='password']"));
-            passwordElement.SendKeys(password);
+            passwordElement.SendKeys(settings.EbayPassword);
             passwordElement.Submit();
         }
 
-        private Database GetDb(string connectionString)
+        private Database GetDb()
         {
-            return new Database(connectionString, DatabaseType.MySQL);
+            return new Database(settings.Database, DatabaseType.MySQL);
         }
 
         private IWebDriver GetDriver()

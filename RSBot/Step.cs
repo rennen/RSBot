@@ -5,15 +5,31 @@ namespace RSBot
 {
     public class Step
     {
-        public Step(CheckBox checkBox, ProgressBar proessbar, Action action)
+        public Action action;
+
+        public Step(CheckBox checkBox, ProgressBar progressbar, Action action)
         {
             StepCheckBox = checkBox;
-            StepProgressBar = proessbar;
-            Action = action;
+            StepProgressBar = progressbar;
+            this.action = action;
+
+            progressbar.Minimum = 0;
+            progressbar.Maximum = 100;
         }
 
         public CheckBox StepCheckBox { get; }
         public ProgressBar StepProgressBar { get; }
-        public Action Action { get; }
+
+        public void Run()
+        {
+            StepProgressBar.Value = 0;
+            action();
+            StepProgressBar.Value = 100;
+        }
+
+        public void Progress(int value)
+        {
+            StepProgressBar.Value = value;
+        }
     }
 }

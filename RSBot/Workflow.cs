@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RSBot
@@ -25,11 +26,11 @@ namespace RSBot
             steps.Add(step);
         }
 
-        public void Start()
-        {
-            foreach (var step in steps)
+        public void Run()
+        {            
+            foreach (var step in steps.Where(step => step.StepCheckBox.Checked))
             {
-                step.Action();
+                step.Run();
             }
         }
     }

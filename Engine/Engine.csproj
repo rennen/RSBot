@@ -79,9 +79,11 @@
     <Compile Include="AutomationEngine.cs" />
     <Compile Include="CsvLine.cs" />
     <Compile Include="CsvReader.cs" />
+    <Compile Include="EventArgs.cs" />
     <Compile Include="Listing.cs" />
     <Compile Include="ListingTransformationLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
