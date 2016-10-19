@@ -4,6 +4,6 @@ namespace Engine
 {
     public class EventArgs<T> : EventArgs
     {
-        public T Data { get; set; }
+        public T Content { get; set; }
     }
 }

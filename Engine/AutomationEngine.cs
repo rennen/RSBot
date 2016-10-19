@@ -1,28 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Threading;
 using NPoco;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using RSBot;
 
 namespace Engine
 {
     public class AutomationEngine
     {
-        public delegate void ProgressEventHandler(object sender, EventArgs<int> args);
-        public event ProgressEventHandler OnProgress;
-
-        public delegate void ErrorEventHandler(object sender, EventArgs<string> args);
-        public event ErrorEventHandler OnError;
-
         private const string EbayImageSeparator = "|";
         private const string ReviseFileHeaders = "Action(SiteID=US|Country=US|Currency=USD|Version=585|CC=ISO-8859-1),ItemID,Title,PicUrl";
         private const string FilesFolder = @"C:\rsbot-files";
@@ -44,7 +38,7 @@ namespace Engine
             csvReader = new CsvReader();
         }
 
-        public void UploadRevised()
+        public void PrepareRevisedFile(IActionController controller)
         {
             settings.UploadRefId = null;
 
@@ -57,48 +51,53 @@ namespace Engine
 
                 foreach (var listing in listings)
                 {
-                    string currentLine = $"Revise,{ listing.EbayId },{ listing.Title },{listing.PicUrl}";
+                    string currentLine = $"Revise,{listing.EbayId},{listing.Title},{listing.PicUrl}";
                     lines.Add(currentLine);
                 }
 
                 var filename = FilesFolder + "\\" + Guid.NewGuid() + ".csv";
                 File.WriteAllLines(filename, lines);
 
-                const string url =
-                    "http://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeUploadForm&ssPageName=STRK:ME:LNLK";
-
-                using (IWebDriver driver = GetDriver())
-                {
-                    driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 0, 10));
-
-                    NavigateWithLogin(driver, url);
-
-                    driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 0, 10));
-                    driver.FindElement(By.CssSelector("input[type='file']")).SendKeys(filename);
-
-                    driver.FindElement(By.Id("Upload")).Click();
-
-                    driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 1, 0));
-
-                    var refCandidates =
-                        driver.FindElements(By.CssSelector("table > tbody > tr > td")).Where(item => item.Text.Contains("ref")).ToList();
-
-                    var regex = new Regex(@"Your ref # is \d+");
-                    foreach (var candidate in refCandidates)
-                    {
-                        var match = regex.Match(candidate.Text);
-                        if (match.Success)
-                        {
-                            settings.UploadRefId = new Regex(@"\d+").Match(match.Value).Value;
-                        }
-                    }
-
-                    driver.Close();
-                }
+                settings.RevisedFileToUpload = filename;
             }
         }
 
-        public void DownloadImages()
+        public void UploadRevised(IActionController controller)
+        {
+            const string url =
+                "http://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeUploadForm&ssPageName=STRK:ME:LNLK";
+
+            using (IWebDriver driver = GetDriver())
+            {
+                driver.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, 0, 10));
+
+                NavigateWithLogin(driver, url);
+
+                driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 0, 10));
+                driver.FindElement(By.CssSelector("input[type='file']")).SendKeys(settings.RevisedFileToUpload);
+
+                driver.FindElement(By.Id("Upload")).Click();
+
+                driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 1, 0));
+
+                var refCandidates =
+                    driver.FindElements(By.CssSelector("table > tbody > tr > td")).Where(item => item.Text.Contains("ref")).ToList();
+
+                var regex = new Regex(@"Your ref # is \d+");
+                foreach (var candidate in refCandidates)
+                {
+                    var match = regex.Match(candidate.Text);
+                    if (match.Success)
+                    {
+                        settings.UploadRefId = new Regex(@"\d+").Match(match.Value).Value;
+                    }
+                }
+
+                driver.Close();
+            }
+        }
+
+        public void DownloadImages(IActionController controller)
         {
             using (var db = GetDb())
             {
@@ -137,7 +136,7 @@ namespace Engine
             }
         }
 
-        public void VerifyUploadNoErrors()
+        public void VerifyUploadNoErrors(IActionController controller)
         {
             var refId = settings.UploadRefId;
             var filename = $"{FilesFolder}\\FileExchange_Response_{refId}.csv";
@@ -169,7 +168,7 @@ namespace Engine
             }
         }
 
-        public void DownloadUploadVerification()
+        public void DownloadUploadVerification(IActionController controller)
         {
             const string url = "http://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeUploadResults&ssPageName=STRK:ME:LNLK";
 
@@ -193,12 +192,12 @@ namespace Engine
             }
         }
 
-        public void PrepareDownloadListing()
+        public void PrepareDownloadListing(IActionController controller)
         {
             settings.DownloadRefId = PrepareDownload(false);
         }
 
-        public void PrepareDownloadUpc()
+        public void PrepareDownloadUpc(IActionController controller)
         {
             settings.DownloadUpcRefId = PrepareDownload(true);
         }
@@ -250,17 +249,17 @@ namespace Engine
             return refId;
         }
 
-        public void DownloadListing()
+        public void DownloadListing(IActionController controller)
         {
             Download(settings.DownloadRefId); 
         }
 
-        public void DownloadUpc()
+        public void DownloadUpc(IActionController controller)
         {
             Download(settings.DownloadUpcRefId);
         }
 
-        public void ImportListings()
+        public void ImportListings(IActionController controller)
         {
             var refId = settings.DownloadRefId;
             var filename = $"{FilesFolder}\\FileExchange_Response_{refId}.csv";
@@ -287,15 +286,18 @@ namespace Engine
 
             using (var db = GetDb())
             {
-                // There is no save bulk. Only insert bulk. We want to make sure we insert or update existing
-                foreach (var listing in listings)
-                {
-                    db.Save(listing);
-                }
+                db.DeleteMany<Listing>().Execute();
+                db.InsertBulk(listings);
+
+                //// There is no save bulk. Only insert bulk. We want to make sure we insert or update existing
+                //foreach (var listing in listings)
+                //{
+                //    db.Save(listing);
+                //}
             }
         }
 
-        public void ImportUpcCodes()
+        public void ImportUpcs(IActionController controller)
         {
             var refId = settings.DownloadUpcRefId;
 
@@ -319,7 +321,7 @@ namespace Engine
             }
         }
 
-        public void OptimizeImages()
+        public void OptimizeImages(IActionController controller)
         {
             var account = new Account(settings.CloudinaryAppName, settings.CloudinaryKey, settings.CloudinarySecret);
             var cloudinary = new Cloudinary(account);
@@ -411,6 +413,16 @@ namespace Engine
                     db.Save(listing);
                 }
             }
+        }
+
+        public void WaitForFile(IActionController controller)
+        {
+            Thread.Sleep(settings.WaitForListingFileSeconds * 1000);
+        }
+
+        public void OptimizeTitles(IActionController obj)
+        {
+            // TODO
         }
 
         private void Download(string refId)

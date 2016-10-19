@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
-using System.Drawing;
 using System.Linq;
 using Engine;
 
@@ -24,31 +21,36 @@ namespace RSBot
 
             workflow = new Workflow();
 
-            workflow.Add(chk1, pg1, () => { });
+            workflow.Add(stepPrepareListingDownload, engine.PrepareDownloadListing);
+            workflow.Add(stepWaitForListingDownload, engine.WaitForFile);
+            workflow.Add(stepDownloadListing, engine.DownloadListing);
+            workflow.Add(stepImportListings, engine.ImportListings);
 
-            workflow.Add(chk2, pg2, () => engine.PrepareDownloadListing());
+            workflow.Add(stepPrepareUpcDownload, engine.PrepareDownloadUpc);
+            workflow.Add(stepWaitUpcFile, engine.WaitForFile);
+            workflow.Add(stepDownloadUpc, engine.DownloadUpc);
+            workflow.Add(stepImportUpcs, engine.ImportUpcs);
 
-            workflow.Add(chk3, pg3, () => engine.DownloadListing());
+            workflow.Add(stepDownloadImages, engine.DownloadImages);
+            workflow.Add(stepOptimizeImages, engine.OptimizeImages);
+            workflow.Add(stepOptimizeTitles, engine.OptimizeTitles);
 
-            workflow.Add(chk4, pg4, () => engine.ImportListings());
+            workflow.Add(stepPrepareRevisedFile, engine.PrepareRevisedFile);
+            workflow.Add(stepUploadRevised, engine.UploadRevised);
+            workflow.Add(stepDownloadVerificationForUpload, engine.DownloadUploadVerification);
+            workflow.Add(stepUploadVerify, engine.VerifyUploadNoErrors);
 
-            workflow.Add(chk5, pg5, () => engine.PrepareDownloadUpc());
+            //workflow.Add(chk8, pg8, () => engine.DownloadImages());
 
-            workflow.Add(chk6, pg6, () => engine.DownloadUpc());
+            //workflow.Add(chk9, pg9, () => { });
 
-            workflow.Add(chk7, pg7, () => engine.ImportUpcCodes());
+            //workflow.Add(chk10, pg10, () => engine.OptimizeImages());
 
-            workflow.Add(chk8, pg8, () => engine.DownloadImages());
+            //workflow.Add(chk11, pg11, () => engine.UploadRevised());
 
-            workflow.Add(chk9, pg9, () => { });
+            //workflow.Add(chk12, pg12, () => engine.DownloadUploadVerification());
 
-            workflow.Add(chk10, pg10, () => engine.OptimizeImages());
-
-            workflow.Add(chk11, pg11, () => engine.UploadRevised());
-
-            workflow.Add(chk12, pg12, () => engine.DownloadUploadVerification());
-
-            workflow.Add(chk13, pg13, () => engine.VerifyUploadNoErrors());
+            //workflow.Add(chk13, pg13, () => engine.VerifyUploadNoErrors());
         }
 
         private void btnShowSettings_Click(object sender = null, EventArgs e = null)
@@ -58,17 +60,17 @@ namespace RSBot
 
         private void selectAll_Click(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            foreach (var step in workflow.Steps.Where(step => step.StepCheckBox.Enabled))
+            foreach (var step in workflow.Steps.Where(step => step.Enabled))
             {
-                step.StepCheckBox.Checked = true;
+                step.Checked = true;
             }
         }
 
         private void selectNone_Click(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            foreach (var step in workflow.Steps.Where(step => step.StepCheckBox.Enabled))
+            foreach (var step in workflow.Steps.Where(step => step.Enabled))
             {
-                step.StepCheckBox.Checked = false;
+                step.Checked = false;
             }
         }
 

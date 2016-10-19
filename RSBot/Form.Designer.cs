@@ -34,36 +34,26 @@ namespace RSBot
             this.settingsGrid = new System.Windows.Forms.PropertyGrid();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.pg10 = new System.Windows.Forms.ProgressBar();
-            this.pg9 = new System.Windows.Forms.ProgressBar();
-            this.pg8 = new System.Windows.Forms.ProgressBar();
-            this.pg7 = new System.Windows.Forms.ProgressBar();
-            this.pg13 = new System.Windows.Forms.ProgressBar();
-            this.pg12 = new System.Windows.Forms.ProgressBar();
-            this.pg11 = new System.Windows.Forms.ProgressBar();
-            this.pg6 = new System.Windows.Forms.ProgressBar();
-            this.pg5 = new System.Windows.Forms.ProgressBar();
-            this.pg4 = new System.Windows.Forms.ProgressBar();
-            this.pg3 = new System.Windows.Forms.ProgressBar();
-            this.pg2 = new System.Windows.Forms.ProgressBar();
-            this.chk13 = new System.Windows.Forms.CheckBox();
-            this.pg1 = new System.Windows.Forms.ProgressBar();
-            this.chk12 = new System.Windows.Forms.CheckBox();
-            this.chk11 = new System.Windows.Forms.CheckBox();
-            this.chk10 = new System.Windows.Forms.CheckBox();
-            this.chk9 = new System.Windows.Forms.CheckBox();
-            this.chk8 = new System.Windows.Forms.CheckBox();
-            this.chk7 = new System.Windows.Forms.CheckBox();
-            this.chk4 = new System.Windows.Forms.CheckBox();
-            this.chk6 = new System.Windows.Forms.CheckBox();
-            this.chk3 = new System.Windows.Forms.CheckBox();
-            this.chk5 = new System.Windows.Forms.CheckBox();
-            this.chk2 = new System.Windows.Forms.CheckBox();
-            this.chk1 = new System.Windows.Forms.CheckBox();
             this.panel = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnShowSettings = new System.Windows.Forms.Button();
+            this.stepPrepareUpcDownload = new RSBot.StepControl();
+            this.stepImportListings = new RSBot.StepControl();
+            this.stepDownloadListing = new RSBot.StepControl();
+            this.stepUploadVerify = new RSBot.StepControl();
+            this.stepDownloadVerificationForUpload = new RSBot.StepControl();
+            this.stepUploadRevised = new RSBot.StepControl();
+            this.stepPrepareRevisedFile = new RSBot.StepControl();
+            this.stepOptimizeTitles = new RSBot.StepControl();
+            this.stepDownloadImages = new RSBot.StepControl();
+            this.stepOptimizeImages = new RSBot.StepControl();
+            this.stepImportUpcs = new RSBot.StepControl();
+            this.stepDownloadUpc = new RSBot.StepControl();
+            this.stepWaitUpcFile = new RSBot.StepControl();
+            this.stepWaitForListingDownload = new RSBot.StepControl();
+            this.stepCreateListings = new RSBot.StepControl();
+            this.stepPrepareListingDownload = new RSBot.StepControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -88,35 +78,25 @@ namespace RSBot
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.AutoScroll = true;
+            this.splitContainer.Panel2.Controls.Add(this.stepPrepareUpcDownload);
+            this.splitContainer.Panel2.Controls.Add(this.stepImportListings);
+            this.splitContainer.Panel2.Controls.Add(this.stepDownloadListing);
+            this.splitContainer.Panel2.Controls.Add(this.stepUploadVerify);
+            this.splitContainer.Panel2.Controls.Add(this.stepDownloadVerificationForUpload);
+            this.splitContainer.Panel2.Controls.Add(this.stepUploadRevised);
+            this.splitContainer.Panel2.Controls.Add(this.stepPrepareRevisedFile);
+            this.splitContainer.Panel2.Controls.Add(this.stepOptimizeTitles);
+            this.splitContainer.Panel2.Controls.Add(this.stepDownloadImages);
+            this.splitContainer.Panel2.Controls.Add(this.stepOptimizeImages);
+            this.splitContainer.Panel2.Controls.Add(this.stepImportUpcs);
+            this.splitContainer.Panel2.Controls.Add(this.stepDownloadUpc);
+            this.splitContainer.Panel2.Controls.Add(this.stepWaitUpcFile);
+            this.splitContainer.Panel2.Controls.Add(this.stepWaitForListingDownload);
+            this.splitContainer.Panel2.Controls.Add(this.stepCreateListings);
+            this.splitContainer.Panel2.Controls.Add(this.stepPrepareListingDownload);
             this.splitContainer.Panel2.Controls.Add(this.linkLabel2);
             this.splitContainer.Panel2.Controls.Add(this.linkLabel1);
-            this.splitContainer.Panel2.Controls.Add(this.pg10);
-            this.splitContainer.Panel2.Controls.Add(this.pg9);
-            this.splitContainer.Panel2.Controls.Add(this.pg8);
-            this.splitContainer.Panel2.Controls.Add(this.pg7);
-            this.splitContainer.Panel2.Controls.Add(this.pg13);
-            this.splitContainer.Panel2.Controls.Add(this.pg12);
-            this.splitContainer.Panel2.Controls.Add(this.pg11);
-            this.splitContainer.Panel2.Controls.Add(this.pg6);
-            this.splitContainer.Panel2.Controls.Add(this.pg5);
-            this.splitContainer.Panel2.Controls.Add(this.pg4);
-            this.splitContainer.Panel2.Controls.Add(this.pg3);
-            this.splitContainer.Panel2.Controls.Add(this.pg2);
-            this.splitContainer.Panel2.Controls.Add(this.chk13);
-            this.splitContainer.Panel2.Controls.Add(this.pg1);
-            this.splitContainer.Panel2.Controls.Add(this.chk12);
-            this.splitContainer.Panel2.Controls.Add(this.chk11);
-            this.splitContainer.Panel2.Controls.Add(this.chk10);
-            this.splitContainer.Panel2.Controls.Add(this.chk9);
-            this.splitContainer.Panel2.Controls.Add(this.chk8);
-            this.splitContainer.Panel2.Controls.Add(this.chk7);
-            this.splitContainer.Panel2.Controls.Add(this.chk4);
-            this.splitContainer.Panel2.Controls.Add(this.chk6);
-            this.splitContainer.Panel2.Controls.Add(this.chk3);
-            this.splitContainer.Panel2.Controls.Add(this.chk5);
-            this.splitContainer.Panel2.Controls.Add(this.chk2);
-            this.splitContainer.Panel2.Controls.Add(this.chk1);
-            this.splitContainer.Size = new System.Drawing.Size(862, 534);
+            this.splitContainer.Size = new System.Drawing.Size(862, 696);
             this.splitContainer.SplitterDistance = 267;
             this.splitContainer.TabIndex = 12;
             // 
@@ -157,277 +137,6 @@ namespace RSBot
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Select All";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.selectAll_Click);
-            // 
-            // pg10
-            // 
-            this.pg10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg10.Location = new System.Drawing.Point(452, 378);
-            this.pg10.Name = "pg10";
-            this.pg10.Size = new System.Drawing.Size(398, 27);
-            this.pg10.TabIndex = 24;
-            // 
-            // pg9
-            // 
-            this.pg9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg9.Location = new System.Drawing.Point(452, 341);
-            this.pg9.Name = "pg9";
-            this.pg9.Size = new System.Drawing.Size(398, 27);
-            this.pg9.TabIndex = 23;
-            // 
-            // pg8
-            // 
-            this.pg8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg8.Location = new System.Drawing.Point(452, 304);
-            this.pg8.Name = "pg8";
-            this.pg8.Size = new System.Drawing.Size(398, 27);
-            this.pg8.TabIndex = 24;
-            // 
-            // pg7
-            // 
-            this.pg7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg7.Location = new System.Drawing.Point(452, 267);
-            this.pg7.Name = "pg7";
-            this.pg7.Size = new System.Drawing.Size(398, 27);
-            this.pg7.TabIndex = 23;
-            // 
-            // pg13
-            // 
-            this.pg13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg13.Location = new System.Drawing.Point(452, 488);
-            this.pg13.Name = "pg13";
-            this.pg13.Size = new System.Drawing.Size(398, 27);
-            this.pg13.TabIndex = 22;
-            // 
-            // pg12
-            // 
-            this.pg12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg12.Location = new System.Drawing.Point(452, 452);
-            this.pg12.Name = "pg12";
-            this.pg12.Size = new System.Drawing.Size(398, 27);
-            this.pg12.TabIndex = 22;
-            // 
-            // pg11
-            // 
-            this.pg11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg11.Location = new System.Drawing.Point(452, 415);
-            this.pg11.Name = "pg11";
-            this.pg11.Size = new System.Drawing.Size(398, 27);
-            this.pg11.TabIndex = 21;
-            // 
-            // pg6
-            // 
-            this.pg6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg6.Location = new System.Drawing.Point(452, 230);
-            this.pg6.Name = "pg6";
-            this.pg6.Size = new System.Drawing.Size(398, 27);
-            this.pg6.TabIndex = 20;
-            // 
-            // pg5
-            // 
-            this.pg5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg5.Location = new System.Drawing.Point(452, 193);
-            this.pg5.Name = "pg5";
-            this.pg5.Size = new System.Drawing.Size(398, 27);
-            this.pg5.TabIndex = 19;
-            // 
-            // pg4
-            // 
-            this.pg4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg4.Location = new System.Drawing.Point(452, 156);
-            this.pg4.Name = "pg4";
-            this.pg4.Size = new System.Drawing.Size(398, 27);
-            this.pg4.TabIndex = 18;
-            // 
-            // pg3
-            // 
-            this.pg3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg3.Location = new System.Drawing.Point(452, 119);
-            this.pg3.Name = "pg3";
-            this.pg3.Size = new System.Drawing.Size(398, 27);
-            this.pg3.TabIndex = 17;
-            // 
-            // pg2
-            // 
-            this.pg2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg2.Location = new System.Drawing.Point(452, 82);
-            this.pg2.Name = "pg2";
-            this.pg2.Size = new System.Drawing.Size(398, 27);
-            this.pg2.TabIndex = 16;
-            // 
-            // chk13
-            // 
-            this.chk13.AutoSize = true;
-            this.chk13.Checked = true;
-            this.chk13.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk13.Location = new System.Drawing.Point(16, 488);
-            this.chk13.Name = "chk13";
-            this.chk13.Size = new System.Drawing.Size(225, 24);
-            this.chk13.TabIndex = 11;
-            this.chk13.Text = "Verify no erors duing upload";
-            this.chk13.UseVisualStyleBackColor = true;
-            // 
-            // pg1
-            // 
-            this.pg1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pg1.Location = new System.Drawing.Point(452, 45);
-            this.pg1.Name = "pg1";
-            this.pg1.Size = new System.Drawing.Size(398, 27);
-            this.pg1.TabIndex = 15;
-            // 
-            // chk12
-            // 
-            this.chk12.AutoSize = true;
-            this.chk12.Checked = true;
-            this.chk12.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk12.Location = new System.Drawing.Point(16, 452);
-            this.chk12.Name = "chk12";
-            this.chk12.Size = new System.Drawing.Size(251, 24);
-            this.chk12.TabIndex = 11;
-            this.chk12.Text = "Verify upload finished successly";
-            this.chk12.UseVisualStyleBackColor = true;
-            // 
-            // chk11
-            // 
-            this.chk11.AutoSize = true;
-            this.chk11.Checked = true;
-            this.chk11.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk11.Location = new System.Drawing.Point(16, 415);
-            this.chk11.Name = "chk11";
-            this.chk11.Size = new System.Drawing.Size(189, 24);
-            this.chk11.TabIndex = 12;
-            this.chk11.Text = "Upload revised to ebay";
-            this.chk11.UseVisualStyleBackColor = true;
-            // 
-            // chk10
-            // 
-            this.chk10.AutoSize = true;
-            this.chk10.Checked = true;
-            this.chk10.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk10.Location = new System.Drawing.Point(16, 378);
-            this.chk10.Name = "chk10";
-            this.chk10.Size = new System.Drawing.Size(293, 24);
-            this.chk10.TabIndex = 13;
-            this.chk10.Text = "Optimize Images (watermark, collage)";
-            this.chk10.UseVisualStyleBackColor = true;
-            // 
-            // chk9
-            // 
-            this.chk9.AutoSize = true;
-            this.chk9.Enabled = false;
-            this.chk9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk9.Location = new System.Drawing.Point(16, 341);
-            this.chk9.Name = "chk9";
-            this.chk9.Size = new System.Drawing.Size(123, 24);
-            this.chk9.TabIndex = 14;
-            this.chk9.Text = "Optimize Title";
-            this.chk9.UseVisualStyleBackColor = true;
-            // 
-            // chk8
-            // 
-            this.chk8.AutoSize = true;
-            this.chk8.Checked = true;
-            this.chk8.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk8.Location = new System.Drawing.Point(16, 304);
-            this.chk8.Name = "chk8";
-            this.chk8.Size = new System.Drawing.Size(156, 24);
-            this.chk8.TabIndex = 10;
-            this.chk8.Text = "Download Images";
-            this.chk8.UseVisualStyleBackColor = true;
-            // 
-            // chk7
-            // 
-            this.chk7.AutoSize = true;
-            this.chk7.Checked = true;
-            this.chk7.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk7.Location = new System.Drawing.Point(16, 267);
-            this.chk7.Name = "chk7";
-            this.chk7.Size = new System.Drawing.Size(164, 24);
-            this.chk7.TabIndex = 10;
-            this.chk7.Text = "Import UPCs to DB";
-            this.chk7.UseVisualStyleBackColor = true;
-            // 
-            // chk4
-            // 
-            this.chk4.AutoSize = true;
-            this.chk4.Checked = true;
-            this.chk4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk4.Location = new System.Drawing.Point(16, 156);
-            this.chk4.Name = "chk4";
-            this.chk4.Size = new System.Drawing.Size(171, 24);
-            this.chk4.TabIndex = 10;
-            this.chk4.Text = "Import listings to DB";
-            this.chk4.UseVisualStyleBackColor = true;
-            // 
-            // chk6
-            // 
-            this.chk6.AutoSize = true;
-            this.chk6.Checked = true;
-            this.chk6.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk6.Location = new System.Drawing.Point(16, 230);
-            this.chk6.Name = "chk6";
-            this.chk6.Size = new System.Drawing.Size(192, 24);
-            this.chk6.TabIndex = 10;
-            this.chk6.Text = "Download UPCs (ebay)";
-            this.chk6.UseVisualStyleBackColor = true;
-            // 
-            // chk3
-            // 
-            this.chk3.AutoSize = true;
-            this.chk3.Checked = true;
-            this.chk3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk3.Location = new System.Drawing.Point(16, 119);
-            this.chk3.Name = "chk3";
-            this.chk3.Size = new System.Drawing.Size(199, 24);
-            this.chk3.TabIndex = 10;
-            this.chk3.Text = "Download listings (ebay)";
-            this.chk3.UseVisualStyleBackColor = true;
-            // 
-            // chk5
-            // 
-            this.chk5.AutoSize = true;
-            this.chk5.Checked = true;
-            this.chk5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk5.Location = new System.Drawing.Point(16, 193);
-            this.chk5.Name = "chk5";
-            this.chk5.Size = new System.Drawing.Size(196, 24);
-            this.chk5.TabIndex = 10;
-            this.chk5.Text = "Prepare Download UPC";
-            this.chk5.UseVisualStyleBackColor = true;
-            // 
-            // chk2
-            // 
-            this.chk2.AutoSize = true;
-            this.chk2.Checked = true;
-            this.chk2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk2.Location = new System.Drawing.Point(16, 82);
-            this.chk2.Name = "chk2";
-            this.chk2.Size = new System.Drawing.Size(238, 24);
-            this.chk2.TabIndex = 10;
-            this.chk2.Text = "Prepare download ebay listing";
-            this.chk2.UseVisualStyleBackColor = true;
-            // 
-            // chk1
-            // 
-            this.chk1.AutoSize = true;
-            this.chk1.Enabled = false;
-            this.chk1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.chk1.Location = new System.Drawing.Point(18, 45);
-            this.chk1.Name = "chk1";
-            this.chk1.Size = new System.Drawing.Size(212, 24);
-            this.chk1.TabIndex = 10;
-            this.chk1.Text = "Create Listing from ASINs";
-            this.chk1.UseVisualStyleBackColor = true;
             // 
             // panel
             // 
@@ -481,11 +190,173 @@ namespace RSBot
             this.btnShowSettings.UseVisualStyleBackColor = true;
             this.btnShowSettings.Click += new System.EventHandler(this.btnShowSettings_Click);
             // 
+            // stepPrepareUpcDownload
+            // 
+            this.stepPrepareUpcDownload.Checked = true;
+            this.stepPrepareUpcDownload.Description = "Prepare UPCs file";
+            this.stepPrepareUpcDownload.Location = new System.Drawing.Point(12, 228);
+            this.stepPrepareUpcDownload.Name = "stepPrepareUpcDownload";
+            this.stepPrepareUpcDownload.ProgressBarValue = 0;
+            this.stepPrepareUpcDownload.Size = new System.Drawing.Size(838, 32);
+            this.stepPrepareUpcDownload.TabIndex = 27;
+            // 
+            // stepImportListings
+            // 
+            this.stepImportListings.Checked = true;
+            this.stepImportListings.Description = "Import listings to DB";
+            this.stepImportListings.Location = new System.Drawing.Point(12, 190);
+            this.stepImportListings.Name = "stepImportListings";
+            this.stepImportListings.ProgressBarValue = 0;
+            this.stepImportListings.Size = new System.Drawing.Size(838, 32);
+            this.stepImportListings.TabIndex = 27;
+            // 
+            // stepDownloadListing
+            // 
+            this.stepDownloadListing.Checked = true;
+            this.stepDownloadListing.Description = "Download listings file";
+            this.stepDownloadListing.Location = new System.Drawing.Point(12, 152);
+            this.stepDownloadListing.Name = "stepDownloadListing";
+            this.stepDownloadListing.ProgressBarValue = 0;
+            this.stepDownloadListing.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadListing.TabIndex = 27;
+            // 
+            // stepUploadVerify
+            // 
+            this.stepUploadVerify.Checked = true;
+            this.stepUploadVerify.Description = "Verify upload processed without errors";
+            this.stepUploadVerify.Location = new System.Drawing.Point(12, 605);
+            this.stepUploadVerify.Name = "stepUploadVerify";
+            this.stepUploadVerify.ProgressBarValue = 0;
+            this.stepUploadVerify.Size = new System.Drawing.Size(838, 32);
+            this.stepUploadVerify.TabIndex = 27;
+            // 
+            // stepDownloadVerificationForUpload
+            // 
+            this.stepDownloadVerificationForUpload.Checked = true;
+            this.stepDownloadVerificationForUpload.Description = "Download verification for the upload";
+            this.stepDownloadVerificationForUpload.Location = new System.Drawing.Point(12, 567);
+            this.stepDownloadVerificationForUpload.Name = "stepDownloadVerificationForUpload";
+            this.stepDownloadVerificationForUpload.ProgressBarValue = 0;
+            this.stepDownloadVerificationForUpload.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadVerificationForUpload.TabIndex = 27;
+            // 
+            // stepUploadRevised
+            // 
+            this.stepUploadRevised.Checked = true;
+            this.stepUploadRevised.Description = "Upload Revised file";
+            this.stepUploadRevised.Location = new System.Drawing.Point(12, 529);
+            this.stepUploadRevised.Name = "stepUploadRevised";
+            this.stepUploadRevised.ProgressBarValue = 0;
+            this.stepUploadRevised.Size = new System.Drawing.Size(838, 32);
+            this.stepUploadRevised.TabIndex = 27;
+            // 
+            // stepPrepareRevisedFile
+            // 
+            this.stepPrepareRevisedFile.Checked = true;
+            this.stepPrepareRevisedFile.Description = "Prepare Revised file";
+            this.stepPrepareRevisedFile.Location = new System.Drawing.Point(12, 491);
+            this.stepPrepareRevisedFile.Name = "stepPrepareRevisedFile";
+            this.stepPrepareRevisedFile.ProgressBarValue = 0;
+            this.stepPrepareRevisedFile.Size = new System.Drawing.Size(838, 32);
+            this.stepPrepareRevisedFile.TabIndex = 27;
+            // 
+            // stepOptimizeTitles
+            // 
+            this.stepOptimizeTitles.Checked = false;
+            this.stepOptimizeTitles.Description = "Optimize Titles";
+            this.stepOptimizeTitles.Enabled = false;
+            this.stepOptimizeTitles.Location = new System.Drawing.Point(12, 453);
+            this.stepOptimizeTitles.Name = "stepOptimizeTitles";
+            this.stepOptimizeTitles.ProgressBarValue = 0;
+            this.stepOptimizeTitles.Size = new System.Drawing.Size(838, 32);
+            this.stepOptimizeTitles.TabIndex = 27;
+            // 
+            // stepDownloadImages
+            // 
+            this.stepDownloadImages.Checked = true;
+            this.stepDownloadImages.Description = "Download Images";
+            this.stepDownloadImages.Location = new System.Drawing.Point(12, 377);
+            this.stepDownloadImages.Name = "stepDownloadImages";
+            this.stepDownloadImages.ProgressBarValue = 0;
+            this.stepDownloadImages.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadImages.TabIndex = 27;
+            // 
+            // stepOptimizeImages
+            // 
+            this.stepOptimizeImages.Checked = true;
+            this.stepOptimizeImages.Description = "Optimize Images";
+            this.stepOptimizeImages.Location = new System.Drawing.Point(12, 415);
+            this.stepOptimizeImages.Name = "stepOptimizeImages";
+            this.stepOptimizeImages.ProgressBarValue = 0;
+            this.stepOptimizeImages.Size = new System.Drawing.Size(838, 32);
+            this.stepOptimizeImages.TabIndex = 27;
+            // 
+            // stepImportUpcs
+            // 
+            this.stepImportUpcs.Checked = true;
+            this.stepImportUpcs.Description = "Import UPC file";
+            this.stepImportUpcs.Location = new System.Drawing.Point(12, 340);
+            this.stepImportUpcs.Name = "stepImportUpcs";
+            this.stepImportUpcs.ProgressBarValue = 0;
+            this.stepImportUpcs.Size = new System.Drawing.Size(838, 32);
+            this.stepImportUpcs.TabIndex = 27;
+            // 
+            // stepDownloadUpc
+            // 
+            this.stepDownloadUpc.Checked = true;
+            this.stepDownloadUpc.Description = "Download UPC file";
+            this.stepDownloadUpc.Location = new System.Drawing.Point(12, 302);
+            this.stepDownloadUpc.Name = "stepDownloadUpc";
+            this.stepDownloadUpc.ProgressBarValue = 0;
+            this.stepDownloadUpc.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadUpc.TabIndex = 27;
+            // 
+            // stepWaitUpcFile
+            // 
+            this.stepWaitUpcFile.Checked = true;
+            this.stepWaitUpcFile.Description = "Wait for UPC file to be ready";
+            this.stepWaitUpcFile.Location = new System.Drawing.Point(12, 266);
+            this.stepWaitUpcFile.Name = "stepWaitUpcFile";
+            this.stepWaitUpcFile.ProgressBarValue = 0;
+            this.stepWaitUpcFile.Size = new System.Drawing.Size(838, 32);
+            this.stepWaitUpcFile.TabIndex = 27;
+            // 
+            // stepWaitForListingDownload
+            // 
+            this.stepWaitForListingDownload.Checked = true;
+            this.stepWaitForListingDownload.Description = "Wait for listing file to be ready";
+            this.stepWaitForListingDownload.Location = new System.Drawing.Point(12, 114);
+            this.stepWaitForListingDownload.Name = "stepWaitForListingDownload";
+            this.stepWaitForListingDownload.ProgressBarValue = 0;
+            this.stepWaitForListingDownload.Size = new System.Drawing.Size(838, 32);
+            this.stepWaitForListingDownload.TabIndex = 27;
+            // 
+            // stepCreateListings
+            // 
+            this.stepCreateListings.Checked = false;
+            this.stepCreateListings.Description = "Create Listings from ASINs";
+            this.stepCreateListings.Enabled = false;
+            this.stepCreateListings.Location = new System.Drawing.Point(12, 38);
+            this.stepCreateListings.Name = "stepCreateListings";
+            this.stepCreateListings.ProgressBarValue = 0;
+            this.stepCreateListings.Size = new System.Drawing.Size(838, 32);
+            this.stepCreateListings.TabIndex = 27;
+            // 
+            // stepPrepareListingDownload
+            // 
+            this.stepPrepareListingDownload.Checked = true;
+            this.stepPrepareListingDownload.Description = "Prepare listings file for download";
+            this.stepPrepareListingDownload.Location = new System.Drawing.Point(12, 76);
+            this.stepPrepareListingDownload.Name = "stepPrepareListingDownload";
+            this.stepPrepareListingDownload.ProgressBarValue = 0;
+            this.stepPrepareListingDownload.Size = new System.Drawing.Size(838, 32);
+            this.stepPrepareListingDownload.TabIndex = 27;
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 601);
+            this.ClientSize = new System.Drawing.Size(862, 763);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.panel);
             this.Name = "Form";
@@ -507,35 +378,25 @@ namespace RSBot
         private Button btnShowSettings;
         private Label label11;
         private Button btnStart;
-        private CheckBox chk12;
-        private CheckBox chk11;
-        private CheckBox chk10;
-        private CheckBox chk9;
-        private CheckBox chk8;
-        private CheckBox chk7;
-        private CheckBox chk4;
-        private CheckBox chk6;
-        private CheckBox chk3;
-        private CheckBox chk5;
-        private CheckBox chk2;
-        private CheckBox chk1;
-        private ProgressBar pg10;
-        private ProgressBar pg9;
-        private ProgressBar pg8;
-        private ProgressBar pg7;
-        private ProgressBar pg12;
-        private ProgressBar pg11;
-        private ProgressBar pg6;
-        private ProgressBar pg5;
-        private ProgressBar pg4;
-        private ProgressBar pg3;
-        private ProgressBar pg2;
-        private ProgressBar pg1;
-        private ProgressBar pg13;
-        private CheckBox chk13;
         private LinkLabel linkLabel2;
         private LinkLabel linkLabel1;
         public PropertyGrid settingsGrid;
+        private StepControl stepPrepareListingDownload;
+        private StepControl stepWaitForListingDownload;
+        private StepControl stepDownloadListing;
+        private StepControl stepImportListings;
+        private StepControl stepPrepareUpcDownload;
+        private StepControl stepDownloadUpc;
+        private StepControl stepWaitUpcFile;
+        private StepControl stepImportUpcs;
+        private StepControl stepCreateListings;
+        private StepControl stepOptimizeTitles;
+        private StepControl stepDownloadImages;
+        private StepControl stepOptimizeImages;
+        private StepControl stepUploadRevised;
+        private StepControl stepPrepareRevisedFile;
+        private StepControl stepUploadVerify;
+        private StepControl stepDownloadVerificationForUpload;
     }
 }
 

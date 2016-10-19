@@ -1,37 +1,37 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
-
 namespace RSBot
 {
     public class Workflow
     {
-        private readonly List<Step> steps;
+        private readonly List<StepControl> steps;
 
         public Workflow()
         {
-            steps = new List<Step>();
+            steps = new List<StepControl>();
         }
 
-        public IEnumerable<Step> Steps => steps.AsReadOnly();
+        public IEnumerable<StepControl> Steps => steps.AsReadOnly();
 
-        public void Add(CheckBox checkBox, ProgressBar proessbar, Action action)
+        public void Add(StepControl step, Action<IActionController> action)
         {
-            Add(new Step(checkBox, proessbar, action));
-        }
-
-        public void Add(Step step)
-        {
+            step.OnAction += (sender, args) => action(args.Content);
             steps.Add(step);
         }
 
         public void Run()
-        {            
-            foreach (var step in steps.Where(step => step.StepCheckBox.Checked))
+        {
+            var tasks = steps.Where(step => step.Checked).Select(step => step.GetTask()).ToArray();
+
+            var root = tasks[0];
+            for (var i = 1; i < tasks.Length; i++)
             {
-                step.Run();
+                var index = i;
+                tasks[i - 1].ContinueWith(task => tasks[index].Start());
             }
+
+            root.Start();
         }
     }
 }
