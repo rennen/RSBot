@@ -286,7 +286,7 @@ namespace Engine
 
             using (var db = GetDb())
             {
-                db.DeleteMany<Listing>().Execute();
+                db.DeleteMany<Listing>().Where(listing => true).Execute();
                 db.InsertBulk(listings);
 
                 //// There is no save bulk. Only insert bulk. We want to make sure we insert or update existing
