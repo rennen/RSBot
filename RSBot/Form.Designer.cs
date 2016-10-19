@@ -160,86 +160,98 @@ namespace RSBot
             // 
             // pg10
             // 
-            this.pg10.Location = new System.Drawing.Point(397, 378);
+            this.pg10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg10.Location = new System.Drawing.Point(452, 378);
             this.pg10.Name = "pg10";
-            this.pg10.Size = new System.Drawing.Size(453, 27);
+            this.pg10.Size = new System.Drawing.Size(398, 27);
             this.pg10.TabIndex = 24;
             // 
             // pg9
             // 
-            this.pg9.Location = new System.Drawing.Point(397, 341);
+            this.pg9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg9.Location = new System.Drawing.Point(452, 341);
             this.pg9.Name = "pg9";
-            this.pg9.Size = new System.Drawing.Size(453, 27);
+            this.pg9.Size = new System.Drawing.Size(398, 27);
             this.pg9.TabIndex = 23;
             // 
             // pg8
             // 
-            this.pg8.Location = new System.Drawing.Point(397, 304);
+            this.pg8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg8.Location = new System.Drawing.Point(452, 304);
             this.pg8.Name = "pg8";
-            this.pg8.Size = new System.Drawing.Size(453, 27);
+            this.pg8.Size = new System.Drawing.Size(398, 27);
             this.pg8.TabIndex = 24;
             // 
             // pg7
             // 
-            this.pg7.Location = new System.Drawing.Point(397, 267);
+            this.pg7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg7.Location = new System.Drawing.Point(452, 267);
             this.pg7.Name = "pg7";
-            this.pg7.Size = new System.Drawing.Size(453, 27);
+            this.pg7.Size = new System.Drawing.Size(398, 27);
             this.pg7.TabIndex = 23;
             // 
             // pg13
             // 
-            this.pg13.Location = new System.Drawing.Point(397, 488);
+            this.pg13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg13.Location = new System.Drawing.Point(452, 488);
             this.pg13.Name = "pg13";
-            this.pg13.Size = new System.Drawing.Size(453, 27);
+            this.pg13.Size = new System.Drawing.Size(398, 27);
             this.pg13.TabIndex = 22;
             // 
             // pg12
             // 
-            this.pg12.Location = new System.Drawing.Point(397, 452);
+            this.pg12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg12.Location = new System.Drawing.Point(452, 452);
             this.pg12.Name = "pg12";
-            this.pg12.Size = new System.Drawing.Size(453, 27);
+            this.pg12.Size = new System.Drawing.Size(398, 27);
             this.pg12.TabIndex = 22;
             // 
             // pg11
             // 
-            this.pg11.Location = new System.Drawing.Point(397, 415);
+            this.pg11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg11.Location = new System.Drawing.Point(452, 415);
             this.pg11.Name = "pg11";
-            this.pg11.Size = new System.Drawing.Size(453, 27);
+            this.pg11.Size = new System.Drawing.Size(398, 27);
             this.pg11.TabIndex = 21;
             // 
             // pg6
             // 
-            this.pg6.Location = new System.Drawing.Point(397, 230);
+            this.pg6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg6.Location = new System.Drawing.Point(452, 230);
             this.pg6.Name = "pg6";
-            this.pg6.Size = new System.Drawing.Size(453, 27);
+            this.pg6.Size = new System.Drawing.Size(398, 27);
             this.pg6.TabIndex = 20;
             // 
             // pg5
             // 
-            this.pg5.Location = new System.Drawing.Point(397, 193);
+            this.pg5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg5.Location = new System.Drawing.Point(452, 193);
             this.pg5.Name = "pg5";
-            this.pg5.Size = new System.Drawing.Size(453, 27);
+            this.pg5.Size = new System.Drawing.Size(398, 27);
             this.pg5.TabIndex = 19;
             // 
             // pg4
             // 
-            this.pg4.Location = new System.Drawing.Point(397, 156);
+            this.pg4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg4.Location = new System.Drawing.Point(452, 156);
             this.pg4.Name = "pg4";
-            this.pg4.Size = new System.Drawing.Size(453, 27);
+            this.pg4.Size = new System.Drawing.Size(398, 27);
             this.pg4.TabIndex = 18;
             // 
             // pg3
             // 
-            this.pg3.Location = new System.Drawing.Point(397, 119);
+            this.pg3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg3.Location = new System.Drawing.Point(452, 119);
             this.pg3.Name = "pg3";
-            this.pg3.Size = new System.Drawing.Size(453, 27);
+            this.pg3.Size = new System.Drawing.Size(398, 27);
             this.pg3.TabIndex = 17;
             // 
             // pg2
             // 
-            this.pg2.Location = new System.Drawing.Point(397, 82);
+            this.pg2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg2.Location = new System.Drawing.Point(452, 82);
             this.pg2.Name = "pg2";
-            this.pg2.Size = new System.Drawing.Size(453, 27);
+            this.pg2.Size = new System.Drawing.Size(398, 27);
             this.pg2.TabIndex = 16;
             // 
             // chk13
@@ -257,9 +269,10 @@ namespace RSBot
             // 
             // pg1
             // 
-            this.pg1.Location = new System.Drawing.Point(397, 45);
+            this.pg1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pg1.Location = new System.Drawing.Point(452, 45);
             this.pg1.Name = "pg1";
-            this.pg1.Size = new System.Drawing.Size(453, 27);
+            this.pg1.Size = new System.Drawing.Size(398, 27);
             this.pg1.TabIndex = 15;
             // 
             // chk12
