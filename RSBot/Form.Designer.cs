@@ -32,12 +32,6 @@ namespace RSBot
         {
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.settingsGrid = new System.Windows.Forms.PropertyGrid();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.panel = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnShowSettings = new System.Windows.Forms.Button();
             this.stepPrepareUpcDownload = new RSBot.StepControl();
             this.stepImportListings = new RSBot.StepControl();
             this.stepDownloadListing = new RSBot.StepControl();
@@ -54,6 +48,12 @@ namespace RSBot
             this.stepWaitForListingDownload = new RSBot.StepControl();
             this.stepCreateListings = new RSBot.StepControl();
             this.stepPrepareListingDownload = new RSBot.StepControl();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.panel = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnShowSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -111,6 +111,200 @@ namespace RSBot
             this.settingsGrid.Size = new System.Drawing.Size(150, 267);
             this.settingsGrid.TabIndex = 7;
             this.settingsGrid.ToolbarVisible = false;
+            // 
+            // stepPrepareUpcDownload
+            // 
+            this.stepPrepareUpcDownload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepPrepareUpcDownload.Checked = true;
+            this.stepPrepareUpcDownload.Description = "Prepare UPCs file";
+            this.stepPrepareUpcDownload.Location = new System.Drawing.Point(12, 228);
+            this.stepPrepareUpcDownload.Name = "stepPrepareUpcDownload";
+            this.stepPrepareUpcDownload.ProgressBarValue = 0;
+            this.stepPrepareUpcDownload.Size = new System.Drawing.Size(838, 32);
+            this.stepPrepareUpcDownload.TabIndex = 27;
+            // 
+            // stepImportListings
+            // 
+            this.stepImportListings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepImportListings.Checked = true;
+            this.stepImportListings.Description = "Import listings to DB";
+            this.stepImportListings.Location = new System.Drawing.Point(12, 190);
+            this.stepImportListings.Name = "stepImportListings";
+            this.stepImportListings.ProgressBarValue = 0;
+            this.stepImportListings.Size = new System.Drawing.Size(838, 32);
+            this.stepImportListings.TabIndex = 27;
+            // 
+            // stepDownloadListing
+            // 
+            this.stepDownloadListing.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepDownloadListing.Checked = true;
+            this.stepDownloadListing.Description = "Download listings file";
+            this.stepDownloadListing.Location = new System.Drawing.Point(12, 152);
+            this.stepDownloadListing.Name = "stepDownloadListing";
+            this.stepDownloadListing.ProgressBarValue = 0;
+            this.stepDownloadListing.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadListing.TabIndex = 27;
+            // 
+            // stepUploadVerify
+            // 
+            this.stepUploadVerify.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepUploadVerify.Checked = true;
+            this.stepUploadVerify.Description = "Verify upload processed without errors";
+            this.stepUploadVerify.Location = new System.Drawing.Point(12, 605);
+            this.stepUploadVerify.Name = "stepUploadVerify";
+            this.stepUploadVerify.ProgressBarValue = 0;
+            this.stepUploadVerify.Size = new System.Drawing.Size(838, 32);
+            this.stepUploadVerify.TabIndex = 27;
+            // 
+            // stepDownloadVerificationForUpload
+            // 
+            this.stepDownloadVerificationForUpload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepDownloadVerificationForUpload.Checked = true;
+            this.stepDownloadVerificationForUpload.Description = "Download verification for the upload";
+            this.stepDownloadVerificationForUpload.Location = new System.Drawing.Point(12, 567);
+            this.stepDownloadVerificationForUpload.Name = "stepDownloadVerificationForUpload";
+            this.stepDownloadVerificationForUpload.ProgressBarValue = 0;
+            this.stepDownloadVerificationForUpload.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadVerificationForUpload.TabIndex = 27;
+            // 
+            // stepUploadRevised
+            // 
+            this.stepUploadRevised.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepUploadRevised.Checked = true;
+            this.stepUploadRevised.Description = "Upload Revised file";
+            this.stepUploadRevised.Location = new System.Drawing.Point(12, 529);
+            this.stepUploadRevised.Name = "stepUploadRevised";
+            this.stepUploadRevised.ProgressBarValue = 0;
+            this.stepUploadRevised.Size = new System.Drawing.Size(838, 32);
+            this.stepUploadRevised.TabIndex = 27;
+            // 
+            // stepPrepareRevisedFile
+            // 
+            this.stepPrepareRevisedFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepPrepareRevisedFile.Checked = true;
+            this.stepPrepareRevisedFile.Description = "Prepare Revised file";
+            this.stepPrepareRevisedFile.Location = new System.Drawing.Point(12, 491);
+            this.stepPrepareRevisedFile.Name = "stepPrepareRevisedFile";
+            this.stepPrepareRevisedFile.ProgressBarValue = 0;
+            this.stepPrepareRevisedFile.Size = new System.Drawing.Size(838, 32);
+            this.stepPrepareRevisedFile.TabIndex = 27;
+            // 
+            // stepOptimizeTitles
+            // 
+            this.stepOptimizeTitles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepOptimizeTitles.Checked = false;
+            this.stepOptimizeTitles.Description = "Optimize Titles";
+            this.stepOptimizeTitles.Enabled = false;
+            this.stepOptimizeTitles.Location = new System.Drawing.Point(12, 453);
+            this.stepOptimizeTitles.Name = "stepOptimizeTitles";
+            this.stepOptimizeTitles.ProgressBarValue = 0;
+            this.stepOptimizeTitles.Size = new System.Drawing.Size(838, 32);
+            this.stepOptimizeTitles.TabIndex = 27;
+            // 
+            // stepDownloadImages
+            // 
+            this.stepDownloadImages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepDownloadImages.Checked = true;
+            this.stepDownloadImages.Description = "Download Images";
+            this.stepDownloadImages.Location = new System.Drawing.Point(12, 377);
+            this.stepDownloadImages.Name = "stepDownloadImages";
+            this.stepDownloadImages.ProgressBarValue = 0;
+            this.stepDownloadImages.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadImages.TabIndex = 27;
+            // 
+            // stepOptimizeImages
+            // 
+            this.stepOptimizeImages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepOptimizeImages.Checked = true;
+            this.stepOptimizeImages.Description = "Optimize Images";
+            this.stepOptimizeImages.Location = new System.Drawing.Point(12, 415);
+            this.stepOptimizeImages.Name = "stepOptimizeImages";
+            this.stepOptimizeImages.ProgressBarValue = 0;
+            this.stepOptimizeImages.Size = new System.Drawing.Size(838, 32);
+            this.stepOptimizeImages.TabIndex = 27;
+            // 
+            // stepImportUpcs
+            // 
+            this.stepImportUpcs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepImportUpcs.Checked = true;
+            this.stepImportUpcs.Description = "Import UPC file";
+            this.stepImportUpcs.Location = new System.Drawing.Point(12, 340);
+            this.stepImportUpcs.Name = "stepImportUpcs";
+            this.stepImportUpcs.ProgressBarValue = 0;
+            this.stepImportUpcs.Size = new System.Drawing.Size(838, 32);
+            this.stepImportUpcs.TabIndex = 27;
+            // 
+            // stepDownloadUpc
+            // 
+            this.stepDownloadUpc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepDownloadUpc.Checked = true;
+            this.stepDownloadUpc.Description = "Download UPC file";
+            this.stepDownloadUpc.Location = new System.Drawing.Point(12, 302);
+            this.stepDownloadUpc.Name = "stepDownloadUpc";
+            this.stepDownloadUpc.ProgressBarValue = 0;
+            this.stepDownloadUpc.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadUpc.TabIndex = 27;
+            // 
+            // stepWaitUpcFile
+            // 
+            this.stepWaitUpcFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepWaitUpcFile.Checked = true;
+            this.stepWaitUpcFile.Description = "Wait for UPC file to be ready";
+            this.stepWaitUpcFile.Location = new System.Drawing.Point(12, 266);
+            this.stepWaitUpcFile.Name = "stepWaitUpcFile";
+            this.stepWaitUpcFile.ProgressBarValue = 0;
+            this.stepWaitUpcFile.Size = new System.Drawing.Size(838, 32);
+            this.stepWaitUpcFile.TabIndex = 27;
+            // 
+            // stepWaitForListingDownload
+            // 
+            this.stepWaitForListingDownload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepWaitForListingDownload.Checked = true;
+            this.stepWaitForListingDownload.Description = "Wait for listing file to be ready";
+            this.stepWaitForListingDownload.Location = new System.Drawing.Point(12, 114);
+            this.stepWaitForListingDownload.Name = "stepWaitForListingDownload";
+            this.stepWaitForListingDownload.ProgressBarValue = 0;
+            this.stepWaitForListingDownload.Size = new System.Drawing.Size(838, 32);
+            this.stepWaitForListingDownload.TabIndex = 27;
+            // 
+            // stepCreateListings
+            // 
+            this.stepCreateListings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepCreateListings.Checked = false;
+            this.stepCreateListings.Description = "Create Listings from ASINs";
+            this.stepCreateListings.Enabled = false;
+            this.stepCreateListings.Location = new System.Drawing.Point(12, 38);
+            this.stepCreateListings.Name = "stepCreateListings";
+            this.stepCreateListings.ProgressBarValue = 0;
+            this.stepCreateListings.Size = new System.Drawing.Size(838, 32);
+            this.stepCreateListings.TabIndex = 27;
+            // 
+            // stepPrepareListingDownload
+            // 
+            this.stepPrepareListingDownload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepPrepareListingDownload.Checked = true;
+            this.stepPrepareListingDownload.Description = "Prepare listings file for download";
+            this.stepPrepareListingDownload.Location = new System.Drawing.Point(12, 76);
+            this.stepPrepareListingDownload.Name = "stepPrepareListingDownload";
+            this.stepPrepareListingDownload.ProgressBarValue = 0;
+            this.stepPrepareListingDownload.Size = new System.Drawing.Size(838, 32);
+            this.stepPrepareListingDownload.TabIndex = 27;
             // 
             // linkLabel2
             // 
@@ -189,168 +383,6 @@ namespace RSBot
             this.btnShowSettings.Text = "Show Settings";
             this.btnShowSettings.UseVisualStyleBackColor = true;
             this.btnShowSettings.Click += new System.EventHandler(this.btnShowSettings_Click);
-            // 
-            // stepPrepareUpcDownload
-            // 
-            this.stepPrepareUpcDownload.Checked = true;
-            this.stepPrepareUpcDownload.Description = "Prepare UPCs file";
-            this.stepPrepareUpcDownload.Location = new System.Drawing.Point(12, 228);
-            this.stepPrepareUpcDownload.Name = "stepPrepareUpcDownload";
-            this.stepPrepareUpcDownload.ProgressBarValue = 0;
-            this.stepPrepareUpcDownload.Size = new System.Drawing.Size(838, 32);
-            this.stepPrepareUpcDownload.TabIndex = 27;
-            // 
-            // stepImportListings
-            // 
-            this.stepImportListings.Checked = true;
-            this.stepImportListings.Description = "Import listings to DB";
-            this.stepImportListings.Location = new System.Drawing.Point(12, 190);
-            this.stepImportListings.Name = "stepImportListings";
-            this.stepImportListings.ProgressBarValue = 0;
-            this.stepImportListings.Size = new System.Drawing.Size(838, 32);
-            this.stepImportListings.TabIndex = 27;
-            // 
-            // stepDownloadListing
-            // 
-            this.stepDownloadListing.Checked = true;
-            this.stepDownloadListing.Description = "Download listings file";
-            this.stepDownloadListing.Location = new System.Drawing.Point(12, 152);
-            this.stepDownloadListing.Name = "stepDownloadListing";
-            this.stepDownloadListing.ProgressBarValue = 0;
-            this.stepDownloadListing.Size = new System.Drawing.Size(838, 32);
-            this.stepDownloadListing.TabIndex = 27;
-            // 
-            // stepUploadVerify
-            // 
-            this.stepUploadVerify.Checked = true;
-            this.stepUploadVerify.Description = "Verify upload processed without errors";
-            this.stepUploadVerify.Location = new System.Drawing.Point(12, 605);
-            this.stepUploadVerify.Name = "stepUploadVerify";
-            this.stepUploadVerify.ProgressBarValue = 0;
-            this.stepUploadVerify.Size = new System.Drawing.Size(838, 32);
-            this.stepUploadVerify.TabIndex = 27;
-            // 
-            // stepDownloadVerificationForUpload
-            // 
-            this.stepDownloadVerificationForUpload.Checked = true;
-            this.stepDownloadVerificationForUpload.Description = "Download verification for the upload";
-            this.stepDownloadVerificationForUpload.Location = new System.Drawing.Point(12, 567);
-            this.stepDownloadVerificationForUpload.Name = "stepDownloadVerificationForUpload";
-            this.stepDownloadVerificationForUpload.ProgressBarValue = 0;
-            this.stepDownloadVerificationForUpload.Size = new System.Drawing.Size(838, 32);
-            this.stepDownloadVerificationForUpload.TabIndex = 27;
-            // 
-            // stepUploadRevised
-            // 
-            this.stepUploadRevised.Checked = true;
-            this.stepUploadRevised.Description = "Upload Revised file";
-            this.stepUploadRevised.Location = new System.Drawing.Point(12, 529);
-            this.stepUploadRevised.Name = "stepUploadRevised";
-            this.stepUploadRevised.ProgressBarValue = 0;
-            this.stepUploadRevised.Size = new System.Drawing.Size(838, 32);
-            this.stepUploadRevised.TabIndex = 27;
-            // 
-            // stepPrepareRevisedFile
-            // 
-            this.stepPrepareRevisedFile.Checked = true;
-            this.stepPrepareRevisedFile.Description = "Prepare Revised file";
-            this.stepPrepareRevisedFile.Location = new System.Drawing.Point(12, 491);
-            this.stepPrepareRevisedFile.Name = "stepPrepareRevisedFile";
-            this.stepPrepareRevisedFile.ProgressBarValue = 0;
-            this.stepPrepareRevisedFile.Size = new System.Drawing.Size(838, 32);
-            this.stepPrepareRevisedFile.TabIndex = 27;
-            // 
-            // stepOptimizeTitles
-            // 
-            this.stepOptimizeTitles.Checked = false;
-            this.stepOptimizeTitles.Description = "Optimize Titles";
-            this.stepOptimizeTitles.Enabled = false;
-            this.stepOptimizeTitles.Location = new System.Drawing.Point(12, 453);
-            this.stepOptimizeTitles.Name = "stepOptimizeTitles";
-            this.stepOptimizeTitles.ProgressBarValue = 0;
-            this.stepOptimizeTitles.Size = new System.Drawing.Size(838, 32);
-            this.stepOptimizeTitles.TabIndex = 27;
-            // 
-            // stepDownloadImages
-            // 
-            this.stepDownloadImages.Checked = true;
-            this.stepDownloadImages.Description = "Download Images";
-            this.stepDownloadImages.Location = new System.Drawing.Point(12, 377);
-            this.stepDownloadImages.Name = "stepDownloadImages";
-            this.stepDownloadImages.ProgressBarValue = 0;
-            this.stepDownloadImages.Size = new System.Drawing.Size(838, 32);
-            this.stepDownloadImages.TabIndex = 27;
-            // 
-            // stepOptimizeImages
-            // 
-            this.stepOptimizeImages.Checked = true;
-            this.stepOptimizeImages.Description = "Optimize Images";
-            this.stepOptimizeImages.Location = new System.Drawing.Point(12, 415);
-            this.stepOptimizeImages.Name = "stepOptimizeImages";
-            this.stepOptimizeImages.ProgressBarValue = 0;
-            this.stepOptimizeImages.Size = new System.Drawing.Size(838, 32);
-            this.stepOptimizeImages.TabIndex = 27;
-            // 
-            // stepImportUpcs
-            // 
-            this.stepImportUpcs.Checked = true;
-            this.stepImportUpcs.Description = "Import UPC file";
-            this.stepImportUpcs.Location = new System.Drawing.Point(12, 340);
-            this.stepImportUpcs.Name = "stepImportUpcs";
-            this.stepImportUpcs.ProgressBarValue = 0;
-            this.stepImportUpcs.Size = new System.Drawing.Size(838, 32);
-            this.stepImportUpcs.TabIndex = 27;
-            // 
-            // stepDownloadUpc
-            // 
-            this.stepDownloadUpc.Checked = true;
-            this.stepDownloadUpc.Description = "Download UPC file";
-            this.stepDownloadUpc.Location = new System.Drawing.Point(12, 302);
-            this.stepDownloadUpc.Name = "stepDownloadUpc";
-            this.stepDownloadUpc.ProgressBarValue = 0;
-            this.stepDownloadUpc.Size = new System.Drawing.Size(838, 32);
-            this.stepDownloadUpc.TabIndex = 27;
-            // 
-            // stepWaitUpcFile
-            // 
-            this.stepWaitUpcFile.Checked = true;
-            this.stepWaitUpcFile.Description = "Wait for UPC file to be ready";
-            this.stepWaitUpcFile.Location = new System.Drawing.Point(12, 266);
-            this.stepWaitUpcFile.Name = "stepWaitUpcFile";
-            this.stepWaitUpcFile.ProgressBarValue = 0;
-            this.stepWaitUpcFile.Size = new System.Drawing.Size(838, 32);
-            this.stepWaitUpcFile.TabIndex = 27;
-            // 
-            // stepWaitForListingDownload
-            // 
-            this.stepWaitForListingDownload.Checked = true;
-            this.stepWaitForListingDownload.Description = "Wait for listing file to be ready";
-            this.stepWaitForListingDownload.Location = new System.Drawing.Point(12, 114);
-            this.stepWaitForListingDownload.Name = "stepWaitForListingDownload";
-            this.stepWaitForListingDownload.ProgressBarValue = 0;
-            this.stepWaitForListingDownload.Size = new System.Drawing.Size(838, 32);
-            this.stepWaitForListingDownload.TabIndex = 27;
-            // 
-            // stepCreateListings
-            // 
-            this.stepCreateListings.Checked = false;
-            this.stepCreateListings.Description = "Create Listings from ASINs";
-            this.stepCreateListings.Enabled = false;
-            this.stepCreateListings.Location = new System.Drawing.Point(12, 38);
-            this.stepCreateListings.Name = "stepCreateListings";
-            this.stepCreateListings.ProgressBarValue = 0;
-            this.stepCreateListings.Size = new System.Drawing.Size(838, 32);
-            this.stepCreateListings.TabIndex = 27;
-            // 
-            // stepPrepareListingDownload
-            // 
-            this.stepPrepareListingDownload.Checked = true;
-            this.stepPrepareListingDownload.Description = "Prepare listings file for download";
-            this.stepPrepareListingDownload.Location = new System.Drawing.Point(12, 76);
-            this.stepPrepareListingDownload.Name = "stepPrepareListingDownload";
-            this.stepPrepareListingDownload.ProgressBarValue = 0;
-            this.stepPrepareListingDownload.Size = new System.Drawing.Size(838, 32);
-            this.stepPrepareListingDownload.TabIndex = 27;
             // 
             // Form
             // 
