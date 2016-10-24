@@ -11,7 +11,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using RSBot;
+using Engine.Amazon;
 
 namespace Engine
 {
@@ -46,8 +46,7 @@ namespace Engine
             {
                 var listings = db.Query<Listing>().ToArray();
 
-                var lines = new List<string>();
-                lines.Add(ReviseFileHeaders);
+                var lines = new List<string> { ReviseFileHeaders };
 
                 foreach (var listing in listings)
                 {
@@ -189,6 +188,10 @@ namespace Engine
 
                 var refId = settings.UploadRefId;
                 driver.Navigate().GoToUrl($"http://bulksell.ebay.com/ws/eBayISAPI.dll?FileExchangeDownload&jobId={refId}");
+
+                Thread.Sleep(30 * 1000);
+
+                driver.Close();
             }
         }
 
@@ -243,7 +246,8 @@ namespace Engine
                         refId = new Regex(@"\d+").Match(match.Value).Value;
                     }
                 }
-                driver.Quit();
+
+                driver.Close();
             }
 
             return refId;
@@ -288,12 +292,6 @@ namespace Engine
             {
                 db.DeleteMany<Listing>().Where(listing => true).Execute();
                 db.InsertBulk(listings);
-
-                //// There is no save bulk. Only insert bulk. We want to make sure we insert or update existing
-                //foreach (var listing in listings)
-                //{
-                //    db.Save(listing);
-                //}
             }
         }
 
@@ -323,32 +321,33 @@ namespace Engine
 
         public void OptimizeImages(IActionController controller)
         {
-            var account = new Account(settings.CloudinaryAppName, settings.CloudinaryKey, settings.CloudinarySecret);
-            var cloudinary = new Cloudinary(account);
-
-            Listing[] listings = null;
+            Listing[] listings;
 
             using (var db = GetDb())
             {
-                listings =
-                    db.Query<Listing>(Sql.Builder.Where("ebay_id not in (select ebay_id from listing_trans_log)"))
-                        .ToArray();
+                listings = db.Query<Listing>().ToArray();
             }
 
             var tranformationLogs = new List<ListingTransformationLog>();
 
+            var cloudinaryAccount = new Account(settings.CloudinaryAppName, settings.CloudinaryKey, settings.CloudinarySecret);
+            var cloudinary = new Cloudinary(cloudinaryAccount);
+
             foreach (var listing in listings)
             {
-                var picUrls = listing.PicUrl.Split(EbayImageSeparator[0]);
+                var picUrls = GetAmazonImages(listing.Asin);
+
+                if (picUrls == null)
+                {
+                    controller.ReportWarning("Cannot get images from Amazon to product " + listing.Asin);
+                    continue;
+                }
 
                 var uploadResults = new List<ImageUploadResult>();
                 var updatedImageUrls = new List<string>();
 
-                foreach (var image in picUrls)
+                foreach (var uploadResult in picUrls.Select(image => new ImageUploadParams {File = new FileDescription(image)}).Select(uploadParams => cloudinary.Upload(uploadParams)))
                 {
-                    var uploadParams = new ImageUploadParams {File = new FileDescription(image)};
-                    var uploadResult = cloudinary.Upload(uploadParams);
-
                     uploadResults.Add(uploadResult);
 
                     var url = cloudinary.Api.UrlImgUp.Transform(new Transformation()
@@ -406,7 +405,10 @@ namespace Engine
 
             using (var db = GetDb())
             {
-                db.InsertBatch(tranformationLogs, new BatchOptions {BatchSize = 100});
+                foreach (var tranformationLog in tranformationLogs)
+                {
+                    db.Save(tranformationLog);
+                }
 
                 foreach (var listing in listings)
                 {
@@ -420,9 +422,44 @@ namespace Engine
             Thread.Sleep(settings.WaitForListingFileSeconds * 1000);
         }
 
-        public void OptimizeTitles(IActionController obj)
+        public void OptimizeTitles(IActionController controller)
         {
             // TODO
+        }
+
+        private IEnumerable<string> GetAmazonImages(string asin)
+        {
+            var lookup = new ItemLookup
+            {
+                AssociateTag = settings.AmazonAssociateId,
+                AWSAccessKeyId = settings.AmazonKeyId
+            };
+
+            var request = new ItemLookupRequest
+            {
+                ItemId = new[] {asin},
+                IdType = ItemLookupRequestIdType.ASIN,
+                ResponseGroup = new[] {"Images"}
+            };
+
+            lookup.Request = new[] { request };
+
+            AWSECommerceServicePortTypeClient amzwc = new AWSECommerceServicePortTypeClient();
+            amzwc.ChannelFactory.Endpoint.EndpointBehaviors.Add(new AmazonSigningEndpointBehavior(settings.AmazonKeyId, settings.AmazonKeySecret));
+
+            var result = amzwc.ItemLookup(lookup);
+
+            var item = result.Items[0]?.Item?[0];
+
+            if (item == null || result.OperationRequest.Errors != null || item.Errors != null)
+            {
+                return null;
+            }
+
+            var mainImageUrl = item.LargeImage?.URL;
+            var otherUrls = item.ImageSets.Select(image => image.LargeImage.URL).Where(url => url != mainImageUrl).Distinct().ToArray();
+
+            return new[] {mainImageUrl}.Concat(otherUrls).ToArray().Where(url => url != null).Distinct();
         }
 
         private void Download(string refId)

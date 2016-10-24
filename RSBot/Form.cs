@@ -31,7 +31,6 @@ namespace RSBot
             workflow.Add(stepDownloadUpc, engine.DownloadUpc);
             workflow.Add(stepImportUpcs, engine.ImportUpcs);
 
-            workflow.Add(stepDownloadImages, engine.DownloadImages);
             workflow.Add(stepOptimizeImages, engine.OptimizeImages);
             workflow.Add(stepOptimizeTitles, engine.OptimizeTitles);
 

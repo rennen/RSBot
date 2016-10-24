@@ -32,6 +32,10 @@ namespace RSBot
         {
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.settingsGrid = new System.Windows.Forms.PropertyGrid();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.stepPrepareUpcDownload = new RSBot.StepControl();
             this.stepImportListings = new RSBot.StepControl();
             this.stepDownloadListing = new RSBot.StepControl();
@@ -40,7 +44,6 @@ namespace RSBot
             this.stepUploadRevised = new RSBot.StepControl();
             this.stepPrepareRevisedFile = new RSBot.StepControl();
             this.stepOptimizeTitles = new RSBot.StepControl();
-            this.stepDownloadImages = new RSBot.StepControl();
             this.stepOptimizeImages = new RSBot.StepControl();
             this.stepImportUpcs = new RSBot.StepControl();
             this.stepDownloadUpc = new RSBot.StepControl();
@@ -78,6 +81,10 @@ namespace RSBot
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.AutoScroll = true;
+            this.splitContainer.Panel2.Controls.Add(this.label3);
+            this.splitContainer.Panel2.Controls.Add(this.label4);
+            this.splitContainer.Panel2.Controls.Add(this.label2);
+            this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.stepPrepareUpcDownload);
             this.splitContainer.Panel2.Controls.Add(this.stepImportListings);
             this.splitContainer.Panel2.Controls.Add(this.stepDownloadListing);
@@ -86,7 +93,6 @@ namespace RSBot
             this.splitContainer.Panel2.Controls.Add(this.stepUploadRevised);
             this.splitContainer.Panel2.Controls.Add(this.stepPrepareRevisedFile);
             this.splitContainer.Panel2.Controls.Add(this.stepOptimizeTitles);
-            this.splitContainer.Panel2.Controls.Add(this.stepDownloadImages);
             this.splitContainer.Panel2.Controls.Add(this.stepOptimizeImages);
             this.splitContainer.Panel2.Controls.Add(this.stepImportUpcs);
             this.splitContainer.Panel2.Controls.Add(this.stepDownloadUpc);
@@ -96,7 +102,7 @@ namespace RSBot
             this.splitContainer.Panel2.Controls.Add(this.stepPrepareListingDownload);
             this.splitContainer.Panel2.Controls.Add(this.linkLabel2);
             this.splitContainer.Panel2.Controls.Add(this.linkLabel1);
-            this.splitContainer.Size = new System.Drawing.Size(862, 696);
+            this.splitContainer.Size = new System.Drawing.Size(911, 743);
             this.splitContainer.SplitterDistance = 267;
             this.splitContainer.TabIndex = 12;
             // 
@@ -112,16 +118,60 @@ namespace RSBot
             this.settingsGrid.TabIndex = 7;
             this.settingsGrid.ToolbarVisible = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label3.ForeColor = System.Drawing.Color.Indigo;
+            this.label3.Location = new System.Drawing.Point(8, 569);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(135, 20);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Upload Revised";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label4.ForeColor = System.Drawing.Color.Indigo;
+            this.label4.Location = new System.Drawing.Point(8, 445);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(163, 20);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Download Optimize";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label2.ForeColor = System.Drawing.Color.Indigo;
+            this.label2.Location = new System.Drawing.Point(8, 258);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 20);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Download UPCs";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label1.ForeColor = System.Drawing.Color.Indigo;
+            this.label1.Location = new System.Drawing.Point(8, 76);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(155, 20);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Download Listings";
+            // 
             // stepPrepareUpcDownload
             // 
             this.stepPrepareUpcDownload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepPrepareUpcDownload.Checked = true;
             this.stepPrepareUpcDownload.Description = "Prepare UPCs file";
-            this.stepPrepareUpcDownload.Location = new System.Drawing.Point(12, 228);
+            this.stepPrepareUpcDownload.Location = new System.Drawing.Point(12, 284);
             this.stepPrepareUpcDownload.Name = "stepPrepareUpcDownload";
             this.stepPrepareUpcDownload.ProgressBarValue = 0;
-            this.stepPrepareUpcDownload.Size = new System.Drawing.Size(838, 32);
+            this.stepPrepareUpcDownload.Size = new System.Drawing.Size(895, 32);
             this.stepPrepareUpcDownload.TabIndex = 27;
             // 
             // stepImportListings
@@ -130,10 +180,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepImportListings.Checked = true;
             this.stepImportListings.Description = "Import listings to DB";
-            this.stepImportListings.Location = new System.Drawing.Point(12, 190);
+            this.stepImportListings.Location = new System.Drawing.Point(12, 213);
             this.stepImportListings.Name = "stepImportListings";
             this.stepImportListings.ProgressBarValue = 0;
-            this.stepImportListings.Size = new System.Drawing.Size(838, 32);
+            this.stepImportListings.Size = new System.Drawing.Size(895, 32);
             this.stepImportListings.TabIndex = 27;
             // 
             // stepDownloadListing
@@ -142,10 +192,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepDownloadListing.Checked = true;
             this.stepDownloadListing.Description = "Download listings file";
-            this.stepDownloadListing.Location = new System.Drawing.Point(12, 152);
+            this.stepDownloadListing.Location = new System.Drawing.Point(12, 175);
             this.stepDownloadListing.Name = "stepDownloadListing";
             this.stepDownloadListing.ProgressBarValue = 0;
-            this.stepDownloadListing.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadListing.Size = new System.Drawing.Size(895, 32);
             this.stepDownloadListing.TabIndex = 27;
             // 
             // stepUploadVerify
@@ -154,10 +204,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepUploadVerify.Checked = true;
             this.stepUploadVerify.Description = "Verify upload processed without errors";
-            this.stepUploadVerify.Location = new System.Drawing.Point(12, 605);
+            this.stepUploadVerify.Location = new System.Drawing.Point(12, 706);
             this.stepUploadVerify.Name = "stepUploadVerify";
             this.stepUploadVerify.ProgressBarValue = 0;
-            this.stepUploadVerify.Size = new System.Drawing.Size(838, 32);
+            this.stepUploadVerify.Size = new System.Drawing.Size(895, 32);
             this.stepUploadVerify.TabIndex = 27;
             // 
             // stepDownloadVerificationForUpload
@@ -166,10 +216,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepDownloadVerificationForUpload.Checked = true;
             this.stepDownloadVerificationForUpload.Description = "Download verification for the upload";
-            this.stepDownloadVerificationForUpload.Location = new System.Drawing.Point(12, 567);
+            this.stepDownloadVerificationForUpload.Location = new System.Drawing.Point(12, 668);
             this.stepDownloadVerificationForUpload.Name = "stepDownloadVerificationForUpload";
             this.stepDownloadVerificationForUpload.ProgressBarValue = 0;
-            this.stepDownloadVerificationForUpload.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadVerificationForUpload.Size = new System.Drawing.Size(895, 32);
             this.stepDownloadVerificationForUpload.TabIndex = 27;
             // 
             // stepUploadRevised
@@ -178,10 +228,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepUploadRevised.Checked = true;
             this.stepUploadRevised.Description = "Upload Revised file";
-            this.stepUploadRevised.Location = new System.Drawing.Point(12, 529);
+            this.stepUploadRevised.Location = new System.Drawing.Point(12, 630);
             this.stepUploadRevised.Name = "stepUploadRevised";
             this.stepUploadRevised.ProgressBarValue = 0;
-            this.stepUploadRevised.Size = new System.Drawing.Size(838, 32);
+            this.stepUploadRevised.Size = new System.Drawing.Size(895, 32);
             this.stepUploadRevised.TabIndex = 27;
             // 
             // stepPrepareRevisedFile
@@ -190,10 +240,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepPrepareRevisedFile.Checked = true;
             this.stepPrepareRevisedFile.Description = "Prepare Revised file";
-            this.stepPrepareRevisedFile.Location = new System.Drawing.Point(12, 491);
+            this.stepPrepareRevisedFile.Location = new System.Drawing.Point(12, 592);
             this.stepPrepareRevisedFile.Name = "stepPrepareRevisedFile";
             this.stepPrepareRevisedFile.ProgressBarValue = 0;
-            this.stepPrepareRevisedFile.Size = new System.Drawing.Size(838, 32);
+            this.stepPrepareRevisedFile.Size = new System.Drawing.Size(895, 32);
             this.stepPrepareRevisedFile.TabIndex = 27;
             // 
             // stepOptimizeTitles
@@ -203,34 +253,22 @@ namespace RSBot
             this.stepOptimizeTitles.Checked = false;
             this.stepOptimizeTitles.Description = "Optimize Titles";
             this.stepOptimizeTitles.Enabled = false;
-            this.stepOptimizeTitles.Location = new System.Drawing.Point(12, 453);
+            this.stepOptimizeTitles.Location = new System.Drawing.Point(12, 516);
             this.stepOptimizeTitles.Name = "stepOptimizeTitles";
             this.stepOptimizeTitles.ProgressBarValue = 0;
-            this.stepOptimizeTitles.Size = new System.Drawing.Size(838, 32);
+            this.stepOptimizeTitles.Size = new System.Drawing.Size(895, 32);
             this.stepOptimizeTitles.TabIndex = 27;
-            // 
-            // stepDownloadImages
-            // 
-            this.stepDownloadImages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.stepDownloadImages.Checked = true;
-            this.stepDownloadImages.Description = "Download Images";
-            this.stepDownloadImages.Location = new System.Drawing.Point(12, 377);
-            this.stepDownloadImages.Name = "stepDownloadImages";
-            this.stepDownloadImages.ProgressBarValue = 0;
-            this.stepDownloadImages.Size = new System.Drawing.Size(838, 32);
-            this.stepDownloadImages.TabIndex = 27;
             // 
             // stepOptimizeImages
             // 
             this.stepOptimizeImages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepOptimizeImages.Checked = true;
-            this.stepOptimizeImages.Description = "Optimize Images";
-            this.stepOptimizeImages.Location = new System.Drawing.Point(12, 415);
+            this.stepOptimizeImages.Description = "Download images from Amazon and Optimize";
+            this.stepOptimizeImages.Location = new System.Drawing.Point(12, 478);
             this.stepOptimizeImages.Name = "stepOptimizeImages";
             this.stepOptimizeImages.ProgressBarValue = 0;
-            this.stepOptimizeImages.Size = new System.Drawing.Size(838, 32);
+            this.stepOptimizeImages.Size = new System.Drawing.Size(895, 32);
             this.stepOptimizeImages.TabIndex = 27;
             // 
             // stepImportUpcs
@@ -239,10 +277,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepImportUpcs.Checked = true;
             this.stepImportUpcs.Description = "Import UPC file";
-            this.stepImportUpcs.Location = new System.Drawing.Point(12, 340);
+            this.stepImportUpcs.Location = new System.Drawing.Point(12, 396);
             this.stepImportUpcs.Name = "stepImportUpcs";
             this.stepImportUpcs.ProgressBarValue = 0;
-            this.stepImportUpcs.Size = new System.Drawing.Size(838, 32);
+            this.stepImportUpcs.Size = new System.Drawing.Size(895, 32);
             this.stepImportUpcs.TabIndex = 27;
             // 
             // stepDownloadUpc
@@ -251,10 +289,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepDownloadUpc.Checked = true;
             this.stepDownloadUpc.Description = "Download UPC file";
-            this.stepDownloadUpc.Location = new System.Drawing.Point(12, 302);
+            this.stepDownloadUpc.Location = new System.Drawing.Point(12, 358);
             this.stepDownloadUpc.Name = "stepDownloadUpc";
             this.stepDownloadUpc.ProgressBarValue = 0;
-            this.stepDownloadUpc.Size = new System.Drawing.Size(838, 32);
+            this.stepDownloadUpc.Size = new System.Drawing.Size(895, 32);
             this.stepDownloadUpc.TabIndex = 27;
             // 
             // stepWaitUpcFile
@@ -263,10 +301,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepWaitUpcFile.Checked = true;
             this.stepWaitUpcFile.Description = "Wait for UPC file to be ready";
-            this.stepWaitUpcFile.Location = new System.Drawing.Point(12, 266);
+            this.stepWaitUpcFile.Location = new System.Drawing.Point(12, 322);
             this.stepWaitUpcFile.Name = "stepWaitUpcFile";
             this.stepWaitUpcFile.ProgressBarValue = 0;
-            this.stepWaitUpcFile.Size = new System.Drawing.Size(838, 32);
+            this.stepWaitUpcFile.Size = new System.Drawing.Size(895, 32);
             this.stepWaitUpcFile.TabIndex = 27;
             // 
             // stepWaitForListingDownload
@@ -275,10 +313,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepWaitForListingDownload.Checked = true;
             this.stepWaitForListingDownload.Description = "Wait for listing file to be ready";
-            this.stepWaitForListingDownload.Location = new System.Drawing.Point(12, 114);
+            this.stepWaitForListingDownload.Location = new System.Drawing.Point(12, 137);
             this.stepWaitForListingDownload.Name = "stepWaitForListingDownload";
             this.stepWaitForListingDownload.ProgressBarValue = 0;
-            this.stepWaitForListingDownload.Size = new System.Drawing.Size(838, 32);
+            this.stepWaitForListingDownload.Size = new System.Drawing.Size(895, 32);
             this.stepWaitForListingDownload.TabIndex = 27;
             // 
             // stepCreateListings
@@ -288,10 +326,10 @@ namespace RSBot
             this.stepCreateListings.Checked = false;
             this.stepCreateListings.Description = "Create Listings from ASINs";
             this.stepCreateListings.Enabled = false;
-            this.stepCreateListings.Location = new System.Drawing.Point(12, 38);
+            this.stepCreateListings.Location = new System.Drawing.Point(12, 37);
             this.stepCreateListings.Name = "stepCreateListings";
             this.stepCreateListings.ProgressBarValue = 0;
-            this.stepCreateListings.Size = new System.Drawing.Size(838, 32);
+            this.stepCreateListings.Size = new System.Drawing.Size(895, 32);
             this.stepCreateListings.TabIndex = 27;
             // 
             // stepPrepareListingDownload
@@ -300,10 +338,10 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepPrepareListingDownload.Checked = true;
             this.stepPrepareListingDownload.Description = "Prepare listings file for download";
-            this.stepPrepareListingDownload.Location = new System.Drawing.Point(12, 76);
+            this.stepPrepareListingDownload.Location = new System.Drawing.Point(12, 99);
             this.stepPrepareListingDownload.Name = "stepPrepareListingDownload";
             this.stepPrepareListingDownload.ProgressBarValue = 0;
-            this.stepPrepareListingDownload.Size = new System.Drawing.Size(838, 32);
+            this.stepPrepareListingDownload.Size = new System.Drawing.Size(895, 32);
             this.stepPrepareListingDownload.TabIndex = 27;
             // 
             // linkLabel2
@@ -311,7 +349,7 @@ namespace RSBot
             this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.linkLabel2.Location = new System.Drawing.Point(754, 7);
+            this.linkLabel2.Location = new System.Drawing.Point(803, 3);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(96, 20);
             this.linkLabel2.TabIndex = 26;
@@ -324,7 +362,7 @@ namespace RSBot
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.linkLabel1.Location = new System.Drawing.Point(673, 7);
+            this.linkLabel1.Location = new System.Drawing.Point(722, 3);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(75, 20);
             this.linkLabel1.TabIndex = 25;
@@ -341,7 +379,7 @@ namespace RSBot
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(862, 67);
+            this.panel.Size = new System.Drawing.Size(911, 67);
             this.panel.TabIndex = 8;
             // 
             // label11
@@ -363,7 +401,7 @@ namespace RSBot
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(708, 13);
+            this.btnStart.Location = new System.Drawing.Point(757, 13);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(142, 41);
             this.btnStart.TabIndex = 0;
@@ -376,7 +414,7 @@ namespace RSBot
             this.btnShowSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShowSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnShowSettings.ForeColor = System.Drawing.Color.Indigo;
-            this.btnShowSettings.Location = new System.Drawing.Point(560, 13);
+            this.btnShowSettings.Location = new System.Drawing.Point(609, 13);
             this.btnShowSettings.Name = "btnShowSettings";
             this.btnShowSettings.Size = new System.Drawing.Size(142, 41);
             this.btnShowSettings.TabIndex = 0;
@@ -388,7 +426,7 @@ namespace RSBot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(862, 763);
+            this.ClientSize = new System.Drawing.Size(911, 810);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.panel);
             this.Name = "Form";
@@ -423,12 +461,15 @@ namespace RSBot
         private StepControl stepImportUpcs;
         private StepControl stepCreateListings;
         private StepControl stepOptimizeTitles;
-        private StepControl stepDownloadImages;
         private StepControl stepOptimizeImages;
         private StepControl stepUploadRevised;
         private StepControl stepPrepareRevisedFile;
         private StepControl stepUploadVerify;
         private StepControl stepDownloadVerificationForUpload;
+        private Label label3;
+        private Label label4;
+        private Label label2;
+        private Label label1;
     }
 }
 

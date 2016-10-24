@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Engine;
@@ -8,12 +10,14 @@ namespace RSBot
 {
     public partial class StepControl : UserControl, IActionController
     {
+        private readonly List<string> errors;
+        private readonly List<string> warnings;
+
         public StepControl()
         {
             InitializeComponent();
-
-            progressBar.Minimum = 0;
-            progressBar.Maximum = 100;
+            errors = new List<string>();
+            warnings = new List<string>();
         }
 
         [Browsable(true)]
@@ -44,27 +48,70 @@ namespace RSBot
         {
             return new Task(() =>
             {
-                Progress(0);
-                OnAction?.Invoke(this, new EventArgs<IActionController> {Content = this});
-                Progress(100);
+                StartProgress();
+                try
+                {
+                    OnAction?.Invoke(this, new EventArgs<IActionController> {Content = this});
+                    StopProgress(true);
+                }
+                catch (Exception ex)
+                {
+                    ReportError(ex.Message);
+                    StopProgress(false);
+                }
             });
-
         }
 
-        public void Progress(int percetangeCopleted)
+        public void StartProgress()
         {
             if (InvokeRequired)
             {
-                Invoke(new Action(() => Progress(percetangeCopleted)));
+                Invoke(new Action(StartProgress));
                 return;
             }
 
-            ProgressBarValue = percetangeCopleted;
+            progressBar.Style = ProgressBarStyle.Marquee;
+            labelStatus.Text = @"Started";
+        }
+
+        public void StopProgress(bool success)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => StopProgress(success)));
+                return;
+            }
+
+            progressBar.Style = ProgressBarStyle.Continuous;
+            labelStatus.Text = success ? @"Success" : @"Failed";
         }
 
         public void ReportError(string message)
         {
-            
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => ReportError(message)));
+                return;
+            }
+
+            errors.Add(message);
+
+            var allMessages = errors.Aggregate((s, s1) => s + "\n" + s1);
+            errorProvider.SetError(labelStatus, allMessages);
+        }
+
+        public void ReportWarning(string message)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => ReportWarning(message)));
+                return;
+            }
+
+            warnings.Add(message);
+
+            var allMessages = warnings.Aggregate((s, s1) => s + "\n" + s1);
+            warningProvider.SetError(labelStatus, allMessages);
         }
     }
 }

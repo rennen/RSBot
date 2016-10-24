@@ -14,11 +14,17 @@ namespace Engine
             CloudinarySecret = ConfigurationManager.AppSettings["CloudinarySecret"];
             CloudinaryWatermarkId = ConfigurationManager.AppSettings["CloudinaryWatermarkId"];
             WaitForListingFileSeconds = int.Parse(ConfigurationManager.AppSettings["WaitForListingFileSeconds"]);
+            AmazonAssociateId = ConfigurationManager.AppSettings["AmazonAssociateId"];
+            AmazonKeyId = ConfigurationManager.AppSettings["AmazonKeyId"];
+            AmazonKeySecret = ConfigurationManager.AppSettings["AmazonKeySecret"];
         }
 
         public string EbayUser { get; set; }
         public string EbayPassword { get; set; }
         public string Database { get; set; }
+        public string AmazonAssociateId { get; set; }
+        public string AmazonKeyId { get; set; }
+        public string AmazonKeySecret { get; set; }
         public string CloudinaryAppName { get; set; }
         public string CloudinaryKey { get; set; }
         public string CloudinarySecret { get; set; }

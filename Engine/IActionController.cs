@@ -1,11 +1,12 @@
-﻿using Engine;
-
-namespace RSBot
+﻿namespace Engine
 {
     public interface IActionController
     {
-        void Progress(int percetangeCopleted);
+        void StartProgress();
+        void StopProgress(bool success);
+
         void ReportError(string message);
+        void ReportWarning(string message);
     }
 
     public class ActionControllerEvents
