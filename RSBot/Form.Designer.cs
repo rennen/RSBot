@@ -36,13 +36,6 @@ namespace RSBot
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.panel = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnShowSettings = new System.Windows.Forms.Button();
-            this.labelElapsed = new System.Windows.Forms.Label();
             this.stepPrepareUpcDownload = new RSBot.StepControl();
             this.stepImportListings = new RSBot.StepControl();
             this.stepDownloadListing = new RSBot.StepControl();
@@ -59,6 +52,13 @@ namespace RSBot
             this.stepWaitForListingDownload = new RSBot.StepControl();
             this.stepCreateListings = new RSBot.StepControl();
             this.stepPrepareListingDownload = new RSBot.StepControl();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.panel = new System.Windows.Forms.Panel();
+            this.labelElapsed = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnShowSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -164,94 +164,6 @@ namespace RSBot
             this.label1.Size = new System.Drawing.Size(155, 20);
             this.label1.TabIndex = 28;
             this.label1.Text = "Download Listings";
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.linkLabel2.Location = new System.Drawing.Point(803, 3);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(96, 20);
-            this.linkLabel2.TabIndex = 26;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Select None";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.selectNone_Click);
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.linkLabel1.Location = new System.Drawing.Point(722, 3);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(75, 20);
-            this.linkLabel1.TabIndex = 25;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Select All";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.selectAll_Click);
-            // 
-            // panel
-            // 
-            this.panel.BackColor = System.Drawing.Color.White;
-            this.panel.Controls.Add(this.labelElapsed);
-            this.panel.Controls.Add(this.label11);
-            this.panel.Controls.Add(this.btnStart);
-            this.panel.Controls.Add(this.btnShowSettings);
-            this.panel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel.Location = new System.Drawing.Point(0, 0);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(911, 67);
-            this.panel.TabIndex = 8;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Mistral", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Indigo;
-            this.label11.Location = new System.Drawing.Point(23, 13);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(95, 44);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "RSBot";
-            // 
-            // btnStart
-            // 
-            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.BackColor = System.Drawing.Color.Indigo;
-            this.btnStart.FlatAppearance.BorderSize = 0;
-            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnStart.ForeColor = System.Drawing.Color.White;
-            this.btnStart.Location = new System.Drawing.Point(757, 13);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(142, 41);
-            this.btnStart.TabIndex = 0;
-            this.btnStart.Text = "Run";
-            this.btnStart.UseVisualStyleBackColor = false;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // btnShowSettings
-            // 
-            this.btnShowSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnShowSettings.ForeColor = System.Drawing.Color.Indigo;
-            this.btnShowSettings.Location = new System.Drawing.Point(609, 13);
-            this.btnShowSettings.Name = "btnShowSettings";
-            this.btnShowSettings.Size = new System.Drawing.Size(142, 41);
-            this.btnShowSettings.TabIndex = 0;
-            this.btnShowSettings.Text = "Show Settings";
-            this.btnShowSettings.UseVisualStyleBackColor = true;
-            this.btnShowSettings.Click += new System.EventHandler(this.btnShowSettings_Click);
-            // 
-            // labelElapsed
-            // 
-            this.labelElapsed.AutoSize = true;
-            this.labelElapsed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelElapsed.Location = new System.Drawing.Point(388, 19);
-            this.labelElapsed.Name = "labelElapsed";
-            this.labelElapsed.Size = new System.Drawing.Size(0, 25);
-            this.labelElapsed.TabIndex = 2;
             // 
             // stepPrepareUpcDownload
             // 
@@ -447,6 +359,94 @@ namespace RSBot
             this.stepPrepareListingDownload.Size = new System.Drawing.Size(895, 32);
             this.stepPrepareListingDownload.TabIndex = 27;
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.linkLabel2.Location = new System.Drawing.Point(803, 3);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(96, 20);
+            this.linkLabel2.TabIndex = 26;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Select None";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.selectNone_Click);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.linkLabel1.Location = new System.Drawing.Point(722, 3);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(75, 20);
+            this.linkLabel1.TabIndex = 25;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Select All";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.selectAll_Click);
+            // 
+            // panel
+            // 
+            this.panel.BackColor = System.Drawing.Color.White;
+            this.panel.Controls.Add(this.labelElapsed);
+            this.panel.Controls.Add(this.label11);
+            this.panel.Controls.Add(this.btnStart);
+            this.panel.Controls.Add(this.btnShowSettings);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel.Location = new System.Drawing.Point(0, 0);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(911, 67);
+            this.panel.TabIndex = 8;
+            // 
+            // labelElapsed
+            // 
+            this.labelElapsed.AutoSize = true;
+            this.labelElapsed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelElapsed.Location = new System.Drawing.Point(388, 19);
+            this.labelElapsed.Name = "labelElapsed";
+            this.labelElapsed.Size = new System.Drawing.Size(0, 25);
+            this.labelElapsed.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Mistral", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Indigo;
+            this.label11.Location = new System.Drawing.Point(23, 13);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(95, 44);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "RSBot";
+            // 
+            // btnStart
+            // 
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStart.BackColor = System.Drawing.Color.Indigo;
+            this.btnStart.FlatAppearance.BorderSize = 0;
+            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnStart.ForeColor = System.Drawing.Color.White;
+            this.btnStart.Location = new System.Drawing.Point(757, 13);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(142, 41);
+            this.btnStart.TabIndex = 0;
+            this.btnStart.Text = "Run";
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // btnShowSettings
+            // 
+            this.btnShowSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShowSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnShowSettings.ForeColor = System.Drawing.Color.Indigo;
+            this.btnShowSettings.Location = new System.Drawing.Point(609, 13);
+            this.btnShowSettings.Name = "btnShowSettings";
+            this.btnShowSettings.Size = new System.Drawing.Size(142, 41);
+            this.btnShowSettings.TabIndex = 0;
+            this.btnShowSettings.Text = "Show Settings";
+            this.btnShowSettings.UseVisualStyleBackColor = true;
+            this.btnShowSettings.Click += new System.EventHandler(this.btnShowSettings_Click);
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -456,6 +456,7 @@ namespace RSBot
             this.Controls.Add(this.panel);
             this.Name = "Form";
             this.Text = "RSBot";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             this.splitContainer.Panel2.PerformLayout();
