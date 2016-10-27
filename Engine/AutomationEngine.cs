@@ -359,10 +359,10 @@ namespace Engine
                         .Chain()
                         .Effect("gradient_fade:20")
                         .Gravity("south_east")
-                        .Height(100)
+                        .Height(200)
                         .Overlay(settings.CloudinaryWatermarkId)
                         .Opacity(30)
-                        .Width(100)
+                        .Width(200)
                         .X(10)
                         .Y(10)
                         .Crop("thumb")).BuildImageTag(uploadResult.PublicId + ".jpg");
@@ -379,17 +379,17 @@ namespace Engine
                             .Concat(uploadResults.Where(item => item.Faces == null)).Take(2).ToList();
 
                     var collageUrl = cloudinary.Api.UrlImgUp.Transform(new Transformation()
-                        .Width(500).Height(1000).Crop("fill").Chain()
+                        .Width(1000).Height(1000).Crop("fill").Chain()
                         .Overlay(collageCandidates[1].PublicId)
-                        .Width(500).Height(1000).X(250).Crop("fill").Quality("auto:eco").Chain()
+                        .Width(200).Height(200).X(-250).Y(-250).Crop("fill").Quality("auto:eco").Chain()
                         .Effect("gradient_fade:20").Gravity("south_east")
-                        .Height(100).Width(100)
+                        .Height(200).Width(200)
                         .X(10).Y(10)
                         .Overlay(settings.CloudinaryWatermarkId)
                         .Opacity(30)
                         .Crop("thumb")).BuildImageTag(collageCandidates[0].PublicId + ".jpg");
 
-                    updatedImageUrls.Insert(0, collageUrl.ToHtmlString());
+                    updatedImageUrls.Insert(0, collageUrl.ToString());
                 }
 
                 tranformationLogs.Add(new ListingTransformationLog
@@ -399,8 +399,17 @@ namespace Engine
                     CollageAdded = addCollage
                 });
 
-                listing.PicUrl =
-                    updatedImageUrls.Distinct().Aggregate((left, right) => left + EbayImageSeparator + right);
+                var nakedUrls = updatedImageUrls
+                    .Select(item =>
+                    {
+                        var start = item.IndexOf("\"", StringComparison.Ordinal);
+                        var end = item.LastIndexOf("\"", StringComparison.Ordinal);
+                        return item.Substring(start, end - start).Trim('"');
+                    })
+                    .ToList();
+
+                listing.PicUrl = string.Format("\"{0}\"",
+                    nakedUrls.Distinct().Aggregate((left, right) => left + EbayImageSeparator + right));
             }
 
             using (var db = GetDb())
@@ -417,9 +426,14 @@ namespace Engine
             }
         }
 
-        public void WaitForFile(IActionController controller)
+        public void WaitForDownloadFile(IActionController controller)
         {
-            Thread.Sleep(settings.WaitForListingFileSeconds * 1000);
+            Thread.Sleep(settings.WaitForDownloadSeconds * 1000);
+        }
+
+        public void WaitForUploadFile(IActionController controller)
+        {
+            Thread.Sleep(settings.WaitForUploadSeconds * 1000);
         }
 
         public void OptimizeTitles(IActionController controller)

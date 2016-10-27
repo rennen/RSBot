@@ -13,7 +13,8 @@ namespace Engine
             CloudinaryKey = ConfigurationManager.AppSettings["CloudinaryKey"];
             CloudinarySecret = ConfigurationManager.AppSettings["CloudinarySecret"];
             CloudinaryWatermarkId = ConfigurationManager.AppSettings["CloudinaryWatermarkId"];
-            WaitForListingFileSeconds = int.Parse(ConfigurationManager.AppSettings["WaitForListingFileSeconds"]);
+            WaitForDownloadSeconds = int.Parse(ConfigurationManager.AppSettings["WaitForDownloadSeconds"]);
+            WaitForUploadSeconds = int.Parse(ConfigurationManager.AppSettings["WaitForUploadSeconds"]);
             AmazonAssociateId = ConfigurationManager.AppSettings["AmazonAssociateId"];
             AmazonKeyId = ConfigurationManager.AppSettings["AmazonKeyId"];
             AmazonKeySecret = ConfigurationManager.AppSettings["AmazonKeySecret"];
@@ -29,7 +30,8 @@ namespace Engine
         public string CloudinaryKey { get; set; }
         public string CloudinarySecret { get; set; }
         public string CloudinaryWatermarkId { get; set; }
-        public int WaitForListingFileSeconds { get; set; }
+        public int WaitForDownloadSeconds { get; set; }
+        public int WaitForUploadSeconds { get; set; }
 
         public string DownloadRefId { get; set; }
         public string DownloadUpcRefId { get; set; }

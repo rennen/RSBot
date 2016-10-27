@@ -57,6 +57,7 @@ namespace RSBot
             this.label11 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnShowSettings = new System.Windows.Forms.Button();
+            this.stepWaitForUpload = new RSBot.StepControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -90,6 +91,7 @@ namespace RSBot
             this.splitContainer.Panel2.Controls.Add(this.stepDownloadListing);
             this.splitContainer.Panel2.Controls.Add(this.stepUploadVerify);
             this.splitContainer.Panel2.Controls.Add(this.stepDownloadVerificationForUpload);
+            this.splitContainer.Panel2.Controls.Add(this.stepWaitForUpload);
             this.splitContainer.Panel2.Controls.Add(this.stepUploadRevised);
             this.splitContainer.Panel2.Controls.Add(this.stepPrepareRevisedFile);
             this.splitContainer.Panel2.Controls.Add(this.stepOptimizeTitles);
@@ -102,7 +104,7 @@ namespace RSBot
             this.splitContainer.Panel2.Controls.Add(this.stepPrepareListingDownload);
             this.splitContainer.Panel2.Controls.Add(this.linkLabel2);
             this.splitContainer.Panel2.Controls.Add(this.linkLabel1);
-            this.splitContainer.Size = new System.Drawing.Size(911, 743);
+            this.splitContainer.Size = new System.Drawing.Size(911, 776);
             this.splitContainer.SplitterDistance = 267;
             this.splitContainer.TabIndex = 12;
             // 
@@ -204,7 +206,7 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepUploadVerify.Checked = true;
             this.stepUploadVerify.Description = "Verify upload processed without errors";
-            this.stepUploadVerify.Location = new System.Drawing.Point(12, 706);
+            this.stepUploadVerify.Location = new System.Drawing.Point(12, 739);
             this.stepUploadVerify.Name = "stepUploadVerify";
             this.stepUploadVerify.ProgressBarValue = 0;
             this.stepUploadVerify.Size = new System.Drawing.Size(895, 32);
@@ -216,7 +218,7 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepDownloadVerificationForUpload.Checked = true;
             this.stepDownloadVerificationForUpload.Description = "Download verification for the upload";
-            this.stepDownloadVerificationForUpload.Location = new System.Drawing.Point(12, 668);
+            this.stepDownloadVerificationForUpload.Location = new System.Drawing.Point(12, 701);
             this.stepDownloadVerificationForUpload.Name = "stepDownloadVerificationForUpload";
             this.stepDownloadVerificationForUpload.ProgressBarValue = 0;
             this.stepDownloadVerificationForUpload.Size = new System.Drawing.Size(895, 32);
@@ -422,11 +424,23 @@ namespace RSBot
             this.btnShowSettings.UseVisualStyleBackColor = true;
             this.btnShowSettings.Click += new System.EventHandler(this.btnShowSettings_Click);
             // 
+            // stepWaitForUpload
+            // 
+            this.stepWaitForUpload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepWaitForUpload.Checked = true;
+            this.stepWaitForUpload.Description = "Wait For Upload";
+            this.stepWaitForUpload.Location = new System.Drawing.Point(12, 663);
+            this.stepWaitForUpload.Name = "stepWaitForUpload";
+            this.stepWaitForUpload.ProgressBarValue = 0;
+            this.stepWaitForUpload.Size = new System.Drawing.Size(895, 32);
+            this.stepWaitForUpload.TabIndex = 27;
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 810);
+            this.ClientSize = new System.Drawing.Size(911, 843);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.panel);
             this.Name = "Form";
@@ -470,6 +484,7 @@ namespace RSBot
         private Label label4;
         private Label label2;
         private Label label1;
+        private StepControl stepWaitForUpload;
     }
 }
 

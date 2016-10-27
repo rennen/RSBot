@@ -22,12 +22,12 @@ namespace RSBot
             workflow = new Workflow();
 
             workflow.Add(stepPrepareListingDownload, engine.PrepareDownloadListing);
-            workflow.Add(stepWaitForListingDownload, engine.WaitForFile);
+            workflow.Add(stepWaitForListingDownload, engine.WaitForDownloadFile);
             workflow.Add(stepDownloadListing, engine.DownloadListing);
             workflow.Add(stepImportListings, engine.ImportListings);
 
             workflow.Add(stepPrepareUpcDownload, engine.PrepareDownloadUpc);
-            workflow.Add(stepWaitUpcFile, engine.WaitForFile);
+            workflow.Add(stepWaitUpcFile, engine.WaitForDownloadFile);
             workflow.Add(stepDownloadUpc, engine.DownloadUpc);
             workflow.Add(stepImportUpcs, engine.ImportUpcs);
 
@@ -36,6 +36,7 @@ namespace RSBot
 
             workflow.Add(stepPrepareRevisedFile, engine.PrepareRevisedFile);
             workflow.Add(stepUploadRevised, engine.UploadRevised);
+            workflow.Add(stepWaitForUpload, engine.WaitForUploadFile);
             workflow.Add(stepDownloadVerificationForUpload, engine.DownloadUploadVerification);
             workflow.Add(stepUploadVerify, engine.VerifyUploadNoErrors);
 
