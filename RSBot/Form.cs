@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Windows.Forms;
 using Engine;
 
 namespace RSBot
@@ -40,17 +42,17 @@ namespace RSBot
             workflow.Add(stepDownloadVerificationForUpload, engine.DownloadUploadVerification);
             workflow.Add(stepUploadVerify, engine.VerifyUploadNoErrors);
 
-            //workflow.Add(chk8, pg8, () => engine.DownloadImages());
+            var timer = new Timer { Interval = 100 };
+            timer.Tick += OnTick;
+            timer.Start();
+        }
 
-            //workflow.Add(chk9, pg9, () => { });
-
-            //workflow.Add(chk10, pg10, () => engine.OptimizeImages());
-
-            //workflow.Add(chk11, pg11, () => engine.UploadRevised());
-
-            //workflow.Add(chk12, pg12, () => engine.DownloadUploadVerification());
-
-            //workflow.Add(chk13, pg13, () => engine.VerifyUploadNoErrors());
+        private void OnTick(object sender, EventArgs eventArgs)
+        {
+            if (workflow.Elapsed.HasValue)
+            {
+                labelElapsed.Text = workflow.Elapsed.Value.ToString(@"mm\:ss\.fff");
+            }
         }
 
         private void btnShowSettings_Click(object sender = null, EventArgs e = null)

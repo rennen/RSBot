@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Engine;
 
@@ -8,6 +9,7 @@ namespace RSBot
     public class Workflow
     {
         private readonly List<StepControl> steps;
+        private Stopwatch stopwatch;
 
         public Workflow()
         {
@@ -15,6 +17,8 @@ namespace RSBot
         }
 
         public IEnumerable<StepControl> Steps => steps.AsReadOnly();
+
+        public TimeSpan? Elapsed => stopwatch?.Elapsed;
 
         public void Add(StepControl step, Action<IActionController> action)
         {
@@ -32,6 +36,10 @@ namespace RSBot
                 var index = i;
                 tasks[i - 1].ContinueWith(task => tasks[index].Start());
             }
+
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
+            tasks.Last().ContinueWith(task => stopwatch.Stop());
 
             root.Start();
         }
