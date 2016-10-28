@@ -41,6 +41,7 @@ namespace RSBot
             this.stepDownloadListing = new RSBot.StepControl();
             this.stepUploadVerify = new RSBot.StepControl();
             this.stepDownloadVerificationForUpload = new RSBot.StepControl();
+            this.stepWaitForUpload = new RSBot.StepControl();
             this.stepUploadRevised = new RSBot.StepControl();
             this.stepPrepareRevisedFile = new RSBot.StepControl();
             this.stepOptimizeTitles = new RSBot.StepControl();
@@ -54,10 +55,10 @@ namespace RSBot
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel = new System.Windows.Forms.Panel();
+            this.labelElapsed = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnShowSettings = new System.Windows.Forms.Button();
-            this.stepWaitForUpload = new RSBot.StepControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -224,6 +225,18 @@ namespace RSBot
             this.stepDownloadVerificationForUpload.Size = new System.Drawing.Size(895, 32);
             this.stepDownloadVerificationForUpload.TabIndex = 27;
             // 
+            // stepWaitForUpload
+            // 
+            this.stepWaitForUpload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stepWaitForUpload.Checked = true;
+            this.stepWaitForUpload.Description = "Wait For Upload";
+            this.stepWaitForUpload.Location = new System.Drawing.Point(12, 663);
+            this.stepWaitForUpload.Name = "stepWaitForUpload";
+            this.stepWaitForUpload.ProgressBarValue = 0;
+            this.stepWaitForUpload.Size = new System.Drawing.Size(895, 32);
+            this.stepWaitForUpload.TabIndex = 27;
+            // 
             // stepUploadRevised
             // 
             this.stepUploadRevised.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -375,6 +388,7 @@ namespace RSBot
             // panel
             // 
             this.panel.BackColor = System.Drawing.Color.White;
+            this.panel.Controls.Add(this.labelElapsed);
             this.panel.Controls.Add(this.label11);
             this.panel.Controls.Add(this.btnStart);
             this.panel.Controls.Add(this.btnShowSettings);
@@ -384,12 +398,21 @@ namespace RSBot
             this.panel.Size = new System.Drawing.Size(911, 67);
             this.panel.TabIndex = 8;
             // 
+            // labelElapsed
+            // 
+            this.labelElapsed.AutoSize = true;
+            this.labelElapsed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelElapsed.Location = new System.Drawing.Point(388, 19);
+            this.labelElapsed.Name = "labelElapsed";
+            this.labelElapsed.Size = new System.Drawing.Size(0, 25);
+            this.labelElapsed.TabIndex = 2;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Mistral", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Indigo;
-            this.label11.Location = new System.Drawing.Point(21, 13);
+            this.label11.Location = new System.Drawing.Point(23, 13);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(95, 44);
             this.label11.TabIndex = 1;
@@ -424,18 +447,6 @@ namespace RSBot
             this.btnShowSettings.UseVisualStyleBackColor = true;
             this.btnShowSettings.Click += new System.EventHandler(this.btnShowSettings_Click);
             // 
-            // stepWaitForUpload
-            // 
-            this.stepWaitForUpload.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.stepWaitForUpload.Checked = true;
-            this.stepWaitForUpload.Description = "Wait For Upload";
-            this.stepWaitForUpload.Location = new System.Drawing.Point(12, 663);
-            this.stepWaitForUpload.Name = "stepWaitForUpload";
-            this.stepWaitForUpload.ProgressBarValue = 0;
-            this.stepWaitForUpload.Size = new System.Drawing.Size(895, 32);
-            this.stepWaitForUpload.TabIndex = 27;
-            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,6 +456,7 @@ namespace RSBot
             this.Controls.Add(this.panel);
             this.Name = "Form";
             this.Text = "RSBot";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             this.splitContainer.Panel2.PerformLayout();
@@ -485,6 +497,7 @@ namespace RSBot
         private Label label2;
         private Label label1;
         private StepControl stepWaitForUpload;
+        private Label labelElapsed;
     }
 }
 

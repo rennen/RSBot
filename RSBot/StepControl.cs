@@ -13,6 +13,8 @@ namespace RSBot
         private readonly List<string> errors;
         private readonly List<string> warnings;
 
+        private DateTime started;
+
         public StepControl()
         {
             InitializeComponent();
@@ -71,6 +73,7 @@ namespace RSBot
             }
 
             progressBar.Style = ProgressBarStyle.Marquee;
+            started = DateTime.Now;
             labelStatus.Text = @"Started";
         }
 
@@ -83,7 +86,8 @@ namespace RSBot
             }
 
             progressBar.Style = ProgressBarStyle.Continuous;
-            labelStatus.Text = success ? @"Success" : @"Failed";
+            var secondsStr = $"({DateTime.Now.Subtract(started).TotalSeconds} seconds)";
+            labelStatus.Text = success ? $@"Success {secondsStr}" : $@"Failed {secondsStr}";
         }
 
         public void ReportError(string message)
