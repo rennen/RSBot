@@ -378,16 +378,25 @@ namespace Engine
                         uploadResults.Where(item => item.Faces != null && item.Faces.Length >= 1)
                             .Concat(uploadResults.Where(item => item.Faces == null)).Take(2).ToList();
 
-                    var collageUrl = cloudinary.Api.UrlImgUp.Transform(new Transformation()
-                        .Width(1000).Height(1000).Crop("fill").Chain()
+                    // Make 1000x1000 with white padding, no scaling
+                    var transformation = new Transformation()
+                            .Width(1000).Height(1000).Crop("pad").Chain()
+                            .Width(1000).Height(1000).Crop("fill").Chain();
+
+                    // Add the 2nd item to the collage, to the top left corner
+                    transformation = transformation
                         .Overlay(collageCandidates[1].PublicId)
-                        .Width(200).Height(200).X(-250).Y(-250).Crop("fill").Quality("auto:eco").Chain()
-                        .Effect("gradient_fade:20").Gravity("south_east")
-                        .Height(200).Width(200)
-                        .X(10).Y(10)
-                        .Overlay(settings.CloudinaryWatermarkId)
-                        .Opacity(30)
-                        .Crop("thumb")).BuildImageTag(collageCandidates[0].PublicId + ".jpg");
+                        .Width(240).Height(240).X(-250).Y(-250).Crop("fill").Quality("auto:eco").Chain();
+
+                    // Add watermark
+                    transformation = transformation
+                        .Effect("gradient_fade:20").Gravity("south_east").Height(200).Width(200).X(10).Y(10)
+                        .Overlay(settings.CloudinaryWatermarkId).Opacity(30).Crop("thumb");
+
+                    // Get the final URL
+                    var collageUrl = cloudinary.Api.UrlImgUp
+                        .Transform(transformation)
+                        .BuildImageTag(collageCandidates[0].PublicId + ".jpg");
 
                     updatedImageUrls.Insert(0, collageUrl.ToString());
                 }
