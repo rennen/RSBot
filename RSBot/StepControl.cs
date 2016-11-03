@@ -10,7 +10,10 @@ namespace RSBot
 {
     public partial class StepControl : UserControl, IActionController
     {
+        public delegate void dlgReport(object sender, EventArgs<string> message);
+
         private readonly List<string> errors;
+
         private readonly List<string> warnings;
 
         private DateTime started;
@@ -24,6 +27,12 @@ namespace RSBot
 
         [Browsable(true)]
         public event ActionControllerEvents.InvokeActionHandler OnAction;
+
+        [Browsable(true)]
+        public event dlgReport OnError;
+
+        [Browsable(true)]
+        public event dlgReport OnWarning;
 
         [Browsable(true)]
         public string Description
@@ -99,6 +108,7 @@ namespace RSBot
             }
 
             errors.Add(message);
+            OnError?.Invoke(this, new EventArgs<string>(message));
 
             var allMessages = errors.Aggregate((s, s1) => s + "\n" + s1);
             errorProvider.SetError(labelStatus, allMessages);
@@ -113,6 +123,7 @@ namespace RSBot
             }
 
             warnings.Add(message);
+            OnWarning?.Invoke(this, new EventArgs<string>(message));
 
             var allMessages = warnings.Aggregate((s, s1) => s + "\n" + s1);
             warningProvider.SetError(labelStatus, allMessages);

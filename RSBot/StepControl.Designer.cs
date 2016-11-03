@@ -54,7 +54,7 @@
             this.checkBox.AutoSize = true;
             this.checkBox.Checked = true;
             this.checkBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.checkBox.Location = new System.Drawing.Point(0, 3);
             this.checkBox.Name = "checkBox";
             this.checkBox.Size = new System.Drawing.Size(15, 14);
@@ -88,7 +88,7 @@
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.checkBox);
             this.Name = "StepControl";
-            this.Size = new System.Drawing.Size(660, 31);
+            this.Size = new System.Drawing.Size(660, 25);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.warningProvider)).EndInit();
             this.ResumeLayout(false);

@@ -80,5 +80,15 @@ namespace RSBot
         {
             workflow.Run();
         }
+
+        private void OnError(object sender, EventArgs<string> args)
+        {
+            txtLog.Text += $"Warning:\t{args.Content}" + Environment.NewLine;
+        }
+
+        private void OnWarning(object sender, EventArgs<string> args)
+        {
+            txtLog.Text += $"Warning:\t{args.Content}" + Environment.NewLine;
+        }
     }
 }
