@@ -474,7 +474,7 @@ namespace Engine
 
             var item = result.Items[0]?.Item?[0];
 
-            if (item == null || result.OperationRequest.Errors != null || item.Errors != null)
+            if (item == null || result.OperationRequest.Errors != null || item.Errors != null || item.LargeImage == null || item.ImageSets == null)
             {
                 return null;
             }
