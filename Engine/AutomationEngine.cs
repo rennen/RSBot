@@ -367,10 +367,10 @@ namespace Engine
                         .Chain()
                         .Effect("gradient_fade:20")
                         .Gravity("south_east")
-                        .Height(200)
+                        .Height(100)
                         .Overlay(settings.CloudinaryWatermarkId)
                         .Opacity(30)
-                        .Width(445)
+                        .Width(225)
                         .X(10)
                         .Y(10)
                         .Crop("thumb")).BuildImageTag(uploadResult.PublicId + ".jpg");
@@ -398,7 +398,7 @@ namespace Engine
 
                     // Add watermark
                     transformation = transformation
-                        .Effect("gradient_fade:20").Gravity("south_east").Height(200).Width(200).X(10).Y(10)
+                        .Effect("gradient_fade:20").Gravity("south_east").Height(100).Width(225).X(10).Y(10)
                         .Overlay(settings.CloudinaryWatermarkId).Opacity(30).Crop("thumb");
 
                     // Get the final URL
