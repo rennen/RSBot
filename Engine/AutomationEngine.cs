@@ -362,7 +362,7 @@ namespace Engine
                         .Height(200)
                         .Overlay(settings.CloudinaryWatermarkId)
                         .Opacity(30)
-                        .Width(200)
+                        .Width(445)
                         .X(10)
                         .Y(10)
                         .Crop("thumb")).BuildImageTag(uploadResult.PublicId + ".jpg");
