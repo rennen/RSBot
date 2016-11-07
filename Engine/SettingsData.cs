@@ -18,6 +18,7 @@ namespace Engine
             AmazonAssociateId = ConfigurationManager.AppSettings["AmazonAssociateId"];
             AmazonKeyId = ConfigurationManager.AppSettings["AmazonKeyId"];
             AmazonKeySecret = ConfigurationManager.AppSettings["AmazonKeySecret"];
+            AmazonOptimizeImagesOnlyForNewProducts = bool.Parse(ConfigurationManager.AppSettings["AmazonOptimizeImagesOnlyForNewProducts"]);
         }
 
         public string EbayUser { get; set; }
@@ -26,6 +27,7 @@ namespace Engine
         public string AmazonAssociateId { get; set; }
         public string AmazonKeyId { get; set; }
         public string AmazonKeySecret { get; set; }
+        public bool AmazonOptimizeImagesOnlyForNewProducts { get; set; }
         public string CloudinaryAppName { get; set; }
         public string CloudinaryKey { get; set; }
         public string CloudinarySecret { get; set; }

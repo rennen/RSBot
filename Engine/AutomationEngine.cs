@@ -12,6 +12,7 @@ using OpenQA.Selenium.Support.UI;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Engine.Amazon;
+using NPoco.Linq;
 
 namespace Engine
 {
@@ -325,7 +326,14 @@ namespace Engine
 
             using (var db = GetDb())
             {
-                listings = db.Query<Listing>().ToArray();
+                IQueryProvider<Listing> query = db.Query<Listing>();
+                
+                if (settings.AmazonOptimizeImagesOnlyForNewProducts)
+                {
+                    query = query.Where("ebay_id not in (select ebay_id from listing_trans_log)");
+                }
+
+                listings = query.ToArray();
             }
 
             var tranformationLogs = new List<ListingTransformationLog>();
