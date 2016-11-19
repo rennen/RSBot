@@ -343,7 +343,7 @@ namespace Engine
 
             foreach (var listing in listings)
             {
-                var picUrls = GetAmazonImages(listing.Asin);
+                var picUrls = GetAmazonImages(listing.Asin, controller);
 
                 if (picUrls == null)
                 {
@@ -458,36 +458,63 @@ namespace Engine
             // TODO
         }
 
-        private IEnumerable<string> GetAmazonImages(string asin)
+        private IEnumerable<string> GetAmazonImages(string asin, IActionController controller)
         {
-            var lookup = new ItemLookup
+            ItemLookupResponse result = null;
+            var retryCount = 0;
+
+            while (result == null)
             {
-                AssociateTag = settings.AmazonAssociateId,
-                AWSAccessKeyId = settings.AmazonKeyId
-            };
+                try
+                {
+                    var lookup = new ItemLookup
+                    {
+                        AssociateTag = settings.AmazonAssociateId,
+                        AWSAccessKeyId = settings.AmazonKeyId
+                    };
 
-            var request = new ItemLookupRequest
-            {
-                ItemId = new[] {asin},
-                IdType = ItemLookupRequestIdType.ASIN,
-                ResponseGroup = new[] {"Images"}
-            };
+                    var request = new ItemLookupRequest
+                    {
+                        ItemId = new[] { asin },
+                        IdType = ItemLookupRequestIdType.ASIN,
+                        ResponseGroup = new[] { "Images" }
+                    };
 
-            lookup.Request = new[] { request };
+                    lookup.Request = new[] { request };
 
-            AWSECommerceServicePortTypeClient amzwc = new AWSECommerceServicePortTypeClient();
-            amzwc.ChannelFactory.Endpoint.EndpointBehaviors.Add(new AmazonSigningEndpointBehavior(settings.AmazonKeyId, settings.AmazonKeySecret));
+                    AWSECommerceServicePortTypeClient amzwc = new AWSECommerceServicePortTypeClient();
+                    amzwc.ChannelFactory.Endpoint.EndpointBehaviors.Add(new AmazonSigningEndpointBehavior(settings.AmazonKeyId, settings.AmazonKeySecret));
 
-            var result = amzwc.ItemLookup(lookup);
+                    result = amzwc.ItemLookup(lookup);
+                }
+                catch
+                {
+                    retryCount++;
+                    if (retryCount == 3)
+                    {
+                        return null;
+                    }
+
+                    var sleepTime = 30 * retryCount;
+                    controller.ReportWarning($"Amazon request failed for asin { asin }. Will retry in { sleepTime } seconds");
+                    Thread.Sleep(sleepTime * 1000);
+                }
+            }
 
             var item = result.Items[0]?.Item?[0];
 
-            if (item == null || result.OperationRequest.Errors != null || item.Errors != null || item.LargeImage == null || item.ImageSets == null)
+            var mainImageUrl = item?.LargeImage?.URL;
+
+            if (mainImageUrl == null)
+            {
+                mainImageUrl = item?.ImageSets?.First().LargeImage?.URL;
+            }
+
+            if (item == null || result.OperationRequest.Errors != null || item.Errors != null || string.IsNullOrWhiteSpace(mainImageUrl))
             {
                 return null;
             }
 
-            var mainImageUrl = item.LargeImage?.URL;
             var otherUrls = item.ImageSets.Select(image => image.LargeImage.URL).Where(url => url != mainImageUrl).Distinct().ToArray();
 
             return new[] {mainImageUrl}.Concat(otherUrls).ToArray().Where(url => url != null).Distinct();
