@@ -391,7 +391,6 @@ namespace RSBot
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stepOptimizeTitles.Checked = false;
             this.stepOptimizeTitles.Description = "Optimize Titles";
-            this.stepOptimizeTitles.Enabled = false;
             this.stepOptimizeTitles.Location = new System.Drawing.Point(3, 418);
             this.stepOptimizeTitles.Name = "stepOptimizeTitles";
             this.stepOptimizeTitles.ProgressBarValue = 0;

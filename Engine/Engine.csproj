@@ -82,11 +82,16 @@
     <Compile Include="AmazonSigningEndpointBehavior.cs" />
     <Compile Include="AmazonSigningMessageInspector.cs" />
     <Compile Include="AutomationEngine.cs" />
+    <Compile Include="CompetativeItemComparer.cs" />
+    <Compile Include="CompetativeItemTransactionComparer.cs" />
+    <Compile Include="Models\CompetativeItem.cs" />
+    <Compile Include="CompetiveItemsLoader.cs" />
+    <Compile Include="Models\CompetativeItemTransaction.cs" />
     <Compile Include="CsvLine.cs" />
     <Compile Include="CsvReader.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="IActionController.cs" />
-    <Compile Include="Listing.cs" />
+    <Compile Include="Models\Listing.cs" />
     <Compile Include="ListingTransformationLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\Amazon\Reference.cs">

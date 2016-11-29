@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using NPoco;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -12,6 +15,7 @@ using OpenQA.Selenium.Support.UI;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Engine.Amazon;
+using Engine.Models;
 using NPoco.Linq;
 
 namespace Engine
@@ -455,7 +459,36 @@ namespace Engine
 
         public void OptimizeTitles(IActionController controller)
         {
-            // TODO
+            CompetiveItemsLoader loader = new CompetiveItemsLoader(settings, controller);
+            using (var db = GetDb())
+            {
+                var dbListring = db.Query<Listing>().ToArray();
+
+                foreach (var listing in dbListring)
+                {
+                    IEnumerable<CompetativeItem> competativeItems = loader.GetCompetativeItems(listing.Upc);
+
+                    db.BeginTransaction();
+
+                    var itemIds = new {ids = competativeItems.Select(item => item.EbayId)};
+                    db.Delete<CompetativeItem>(Sql.Builder.Where("ebay_id in (@ids)", itemIds ));
+                    db.InsertBulk(competativeItems);
+
+                    db.CompleteTransaction();
+
+                    foreach (var item in competativeItems)
+                    {
+                        db.BeginTransaction();
+
+                        var transIds = new {ids = item.Transactions.Select(trans => trans.TransactionId)};
+                        db.Delete<CompetativeItemTransaction>(Sql.Builder.Where("transaction_id in (@ids)", transIds));
+                        db.InsertBulk(item.Transactions);
+
+                        db.CompleteTransaction();
+                    }
+
+                }
+            }
         }
 
         private IEnumerable<string> GetAmazonImages(string asin, IActionController controller)

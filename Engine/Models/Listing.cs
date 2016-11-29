@@ -1,7 +1,7 @@
 using System;
 using NPoco;
 
-namespace Engine
+namespace Engine.Models
 {
     [TableName("listing")]
     [PrimaryKey("ebay_id", AutoIncrement = false)]
