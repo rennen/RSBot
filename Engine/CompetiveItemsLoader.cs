@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using eBay.Service.Call;
@@ -91,12 +92,12 @@ namespace Engine
 
             // var filteredOut = dynList.Select(x => x.itemId[0].ToString()).Where(id => itemsByEbayId.All(ci => ci.EbayId != id)).ToList();
 
-            EnrichedWIthTransactions(itemsByEbayId, upc);
+            EnrichedItem(itemsByEbayId, upc);
 
             return itemsByEbayId;
         }
 
-        private void EnrichedWIthTransactions(List<CompetativeItem> items, string targetUpc)
+        private void EnrichedItem(List<CompetativeItem> items, string targetUpc)
         {
             var apiContext = new ApiContext();
             apiContext.SoapApiServerUrl = "https://api.ebay.com/wsapi";
@@ -120,7 +121,10 @@ namespace Engine
             {
                 var itemResult = itemCall.GetItem(item.EbayId, true, false, true, false, null, null, null, null, false);
 
-                var itemUpc = itemResult.ItemSpecifics.ToArray().ToList().Find(specific => specific.Name == "UPC")?.Value[0];
+                item.WatchCount = itemResult.WatchCount;
+
+                var itemUpc = string.Empty;
+                Retry(() => itemUpc = itemResult.ItemSpecifics.ToArray().ToList().Find(specific => specific.Name == "UPC")?.Value[0]);
 
                 if (itemUpc != targetUpc)
                 {
@@ -128,10 +132,11 @@ namespace Engine
                 }
                 else
                 {
-                    var results = transactionsCall.GetItemTransactions(item.EbayId, officialNow.AddDays(-30), officialNow);
+                    TransactionTypeCollection results = null;
+                    Retry(() => results = transactionsCall.GetItemTransactions(item.EbayId, officialNow.AddDays(-30), officialNow));
 
                     item.Transactions =
-                        results
+                        results?
                         .ToArray()
                         .Select(
                             transaction =>
@@ -141,7 +146,7 @@ namespace Engine
                                     TransactionId = transaction.TransactionID,
                                     Price = transaction.ConvertedTransactionPrice.Value,
                                     Quantity = transaction.QuantityPurchased,
-                                    TransactionTime = transaction.PaidTime
+                                    TransactionTime = transaction.CreatedDate
                                 })
                         .Distinct(transactionComparer)
                         .ToList();
@@ -151,6 +156,30 @@ namespace Engine
             foreach (var itemToRemove in itemsToRemove)
             {
                 items.Remove(itemToRemove);
+            }
+        }
+
+        public void Retry(Action action, int maxRetries = 3)
+        {
+            var count = 0;
+            var success = false;
+
+            while (count < maxRetries && !success)
+            {
+                try
+                {
+                    action();
+                    success = true;
+                }
+                catch (Exception)
+                {
+                    count++;
+
+                    if (count == maxRetries)
+                    {
+                        throw;
+                    }
+                }
             }
         }
     }

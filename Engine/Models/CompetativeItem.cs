@@ -25,6 +25,9 @@ namespace Engine.Models
         [Column("price")]
         public double Price { get; set; }
 
+        [Column("watch_count")]
+        public long WatchCount { get; set; }
+
         [Ignore]
         public List<CompetativeItemTransaction> Transactions = new List<CompetativeItemTransaction>();
     }

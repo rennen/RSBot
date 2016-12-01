@@ -21,7 +21,8 @@ CREATE TABLE competative_item
 	title VARCHAR(200),
 	category VARCHAR(200),
 	url VARCHAR(2000),
-	price DOUBLE
+	price DOUBLE,
+    watch_count LONG
 );
 
 DROP TABLE IF EXISTS competative_item_transaction;
