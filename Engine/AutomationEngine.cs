@@ -469,7 +469,7 @@ namespace Engine
 
             foreach (var listing in listings.Where(item => !string.IsNullOrEmpty(item.Upc)))
             {
-                IEnumerable<CompetativeItem> competativeItems = loader.GetCompetativeItems(listing.EbayId, listing.Upc, settings.EbayApiAppToken);
+                IEnumerable<CompetativeItem> competativeItems = loader.GetCompetativeItems(listing.EbayId, listing.Upc);
 
                 using (var db = GetDb())
                 {
