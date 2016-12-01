@@ -7,6 +7,9 @@ namespace Engine.Models
     [PrimaryKey("ebay_id", AutoIncrement = false)]
     public class CompetativeItem
     {
+        [Column("upc")]
+        public string Upc { get; set; }
+
         [Column("ebay_id")]
         public string EbayId { get; set; }
 

@@ -459,34 +459,42 @@ namespace Engine
 
         public void OptimizeTitles(IActionController controller)
         {
-            CompetiveItemsLoader loader = new CompetiveItemsLoader(settings, controller);
+            var loader = new CompetiveItemsLoader(settings, controller);
+
+            Listing[] listings = null;
             using (var db = GetDb())
             {
-                var dbListring = db.Query<Listing>().ToArray();
+                listings = db.Query<Listing>().ToArray();
+            }
 
-                foreach (var listing in dbListring)
+            foreach (var listing in listings.Where(item => !string.IsNullOrEmpty(item.Upc)))
+            {
+                IEnumerable<CompetativeItem> competativeItems = loader.GetCompetativeItems(listing.EbayId, listing.Upc);
+
+                using (var db = GetDb())
                 {
-                    IEnumerable<CompetativeItem> competativeItems = loader.GetCompetativeItems(listing.Upc);
-
                     db.BeginTransaction();
 
                     var itemIds = new {ids = competativeItems.Select(item => item.EbayId)};
-                    db.Delete<CompetativeItem>(Sql.Builder.Where("ebay_id in (@ids)", itemIds ));
+                    db.Delete<CompetativeItem>(Sql.Builder.Where("ebay_id in (@ids)", itemIds));
                     db.InsertBulk(competativeItems);
 
                     db.CompleteTransaction();
+                }
 
-                    foreach (var item in competativeItems)
+                foreach (var item in competativeItems)
+                {
+                    using (var db = GetDb())
                     {
                         db.BeginTransaction();
 
                         var transIds = new {ids = item.Transactions.Select(trans => trans.TransactionId)};
-                        db.Delete<CompetativeItemTransaction>(Sql.Builder.Where("transaction_id in (@ids)", transIds));
+                        db.Delete<CompetativeItemTransaction>(Sql.Builder.Where("transaction_id in (@ids)",
+                            transIds));
                         db.InsertBulk(item.Transactions);
 
                         db.CompleteTransaction();
                     }
-
                 }
             }
         }

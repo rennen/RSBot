@@ -24,7 +24,7 @@ namespace Engine
             this.transactionComparer = new CompetativeItemTransactionComparer();
         }
 
-        public IList<CompetativeItem> GetCompetativeItems(string upc)
+        public IList<CompetativeItem> GetCompetativeItems(string origEbayId, string upc)
         {
             string SecurityAppName = settings.EbayApiAppName;
 
@@ -70,19 +70,25 @@ namespace Engine
             var itemsByEbayId = dynList
                 .Where(
                     item =>
-                        item.country[0].ToString() == "US" && item.globalId[0].ToString() == "EBAY-US" && item.condition[0].conditionId[0].ToString() == "1000")
+                        item != null &&
+                        item.globalId[0]?.ToString() == "EBAY-US" &&
+                        (item.condition[0]?.conditionId[0]?.ToString() == "1000" || item.condition[0]?.conditionId[0]?.ToString() == "1500") &&
+                        item.itemId[0].ToString() != origEbayId)
                 .Select(
                     item =>
                         new CompetativeItem
                         {
                             Category = item.primaryCategory[0].categoryName[0].ToString(),
                             EbayId = item.itemId[0].ToString(),
+                            Upc = upc,
                             Title = item.title[0].ToString(),
                             Url = item.viewItemURL[0].ToString(),
                             Price = double.Parse(item.sellingStatus[0].convertedCurrentPrice[0].__value__.ToString())  // Always use converted to ensure USD
                         })
                 .Distinct(competativeItemComparer)
                 .ToList();
+
+            // var filteredOut = dynList.Select(x => x.itemId[0].ToString()).Where(id => itemsByEbayId.All(ci => ci.EbayId != id)).ToList();
 
             EnrichedWIthTransactions(itemsByEbayId, upc);
 

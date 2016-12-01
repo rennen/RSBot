@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS competative_item;
 CREATE TABLE competative_item
 (
 	ebay_id VARCHAR(30) PRIMARY KEY,
+    upc VARCHAR(30),
 	title VARCHAR(200),
 	category VARCHAR(200),
 	url VARCHAR(2000),
@@ -31,5 +32,5 @@ CREATE TABLE competative_item_transaction
     transaction_time_utc DATE,
     quantity INTEGER,
     price DOUBLE,
-    FOREIGN KEY (ebay_item_id) REFERENCES competative_item(ebay_id)
+    FOREIGN KEY (ebay_item_id) REFERENCES competative_item(ebay_id) ON DELETE SET NULL
 );
