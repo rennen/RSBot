@@ -9,6 +9,7 @@ namespace Engine
             EbayUser = ConfigurationManager.AppSettings["EbayUser"];
             EbayPassword = ConfigurationManager.AppSettings["EbayPassword"];
             EbayApiAppName = ConfigurationManager.AppSettings["EbayApiAppName"];
+            EbayApiAppToken = ConfigurationManager.AppSettings["EbayApiAppToken"];
             Database = ConfigurationManager.AppSettings["Database"];
             CloudinaryAppName = ConfigurationManager.AppSettings["CloudinaryAppName"];
             CloudinaryKey = ConfigurationManager.AppSettings["CloudinaryKey"];
@@ -25,6 +26,7 @@ namespace Engine
         public string EbayUser { get; set; }
         public string EbayPassword { get; set; }
         public string EbayApiAppName { get; set; }
+        public string EbayApiAppToken { get; set; }
         public string Database { get; set; }
         public string AmazonAssociateId { get; set; }
         public string AmazonKeyId { get; set; }

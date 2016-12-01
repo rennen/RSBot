@@ -25,9 +25,9 @@ namespace Engine
             this.transactionComparer = new CompetativeItemTransactionComparer();
         }
 
-        public IList<CompetativeItem> GetCompetativeItems(string origEbayId, string upc)
+        public IList<CompetativeItem> GetCompetativeItems(string origEbayId, string upc, string ebayAppToken)
         {
-            string SecurityAppName = settings.EbayApiAppName;
+            var SecurityAppName = settings.EbayApiAppName;
 
             string BaseUrl = $"http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsAdvanced&SERVICE-VERSION=1.13.0&SECURITY-APPNAME={SecurityAppName}&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&globalId=EBAY-US&keywords={upc}&paginationInput.entriesPerPage=100&paginationInput.pageNumber="; ;
 
@@ -92,19 +92,19 @@ namespace Engine
 
             // var filteredOut = dynList.Select(x => x.itemId[0].ToString()).Where(id => itemsByEbayId.All(ci => ci.EbayId != id)).ToList();
 
-            EnrichedItem(itemsByEbayId, upc);
+            EnrichedItem(itemsByEbayId, upc, ebayAppToken);
 
             return itemsByEbayId;
         }
 
-        private void EnrichedItem(List<CompetativeItem> items, string targetUpc)
+        private void EnrichedItem(List<CompetativeItem> items, string targetUpc, string ebayAppToken)
         {
             var apiContext = new ApiContext();
             apiContext.SoapApiServerUrl = "https://api.ebay.com/wsapi";
 
             var apiCredential = new ApiCredential();
-            apiCredential.eBayToken =
-                "AgAAAA**AQAAAA**aAAAAA**eZE8WA**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6AAlYWgAJmCqAqdj6x9nY+seQ**9XYDAA**AAMAAA**rNE8oscp0rCyARJTNiX9mxGsKyRxKxR3Pw4KGu3TBtcwQ8bCDQU1VDj2JzGcxozYqvsHqjqkUOT37jAXRQ4XHLM2Ny+7XKXaI2Nh7YrosN9ndWhvk5l9ldiZzgRDxBGbRp4Znn1BuS7yOpZFrkdSWlzZWfREnGTb8jyBAFaXwNC5NEAvk8rd4YzddP11CEh7TqMxYzVd91ST2hW/DrFt018o2riN0ZPs22o8kzi1xi4g7SwNAlYeQ5/lD85MUdz0uVixoGGT/vhsU18x4zO71oNklYCpESkVneDshL5uvSc0tBg8jkpox2r8PQnePVR+lbhEkJSDWNRxWBvSBbKnO42EnHs5T0cVooSxrL7adOCz0FcRyeY27nW/ss/TLeunKG3I9/T3JF5sXrqhLiwtY/YwU9S2vELlbv1/9w94EKE45oAOKEPH9pSK39eaB5RbwuVzZoFFjPkU0HpMI134aqXPPck0az8Dl4/vlhw86Z86KxHDmX59LGM+Ijg1ou2ThIkLj+/KRsyE9w+TCLLUTJKTQykobdLqL9ZDpwYYSOxRIflQ9GaJsKWW4n2ueETrHMJlLm5+hMjnXgOE6HTP/FIqP0Y+aCrOGzf/71z5Ky6G884zi10oO7uZtSkyzZzBfaoXilr7Z+GPC/PfSNbR0caHTtuy8hw341ysY1hyLBG7jaOn59foRtdRDv8pBFVqjd25BCRe91Mrg/kIF8FkdaUJJMOWjAqf06l+NfOOuytQuKhcoOfnO2wn4kTZODw4";
+            apiCredential.eBayToken = ebayAppToken;
+//                "AgAAAA**AQAAAA**aAAAAA**eZE8WA**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6AAlYWgAJmCqAqdj6x9nY+seQ**9XYDAA**AAMAAA**rNE8oscp0rCyARJTNiX9mxGsKyRxKxR3Pw4KGu3TBtcwQ8bCDQU1VDj2JzGcxozYqvsHqjqkUOT37jAXRQ4XHLM2Ny+7XKXaI2Nh7YrosN9ndWhvk5l9ldiZzgRDxBGbRp4Znn1BuS7yOpZFrkdSWlzZWfREnGTb8jyBAFaXwNC5NEAvk8rd4YzddP11CEh7TqMxYzVd91ST2hW/DrFt018o2riN0ZPs22o8kzi1xi4g7SwNAlYeQ5/lD85MUdz0uVixoGGT/vhsU18x4zO71oNklYCpESkVneDshL5uvSc0tBg8jkpox2r8PQnePVR+lbhEkJSDWNRxWBvSBbKnO42EnHs5T0cVooSxrL7adOCz0FcRyeY27nW/ss/TLeunKG3I9/T3JF5sXrqhLiwtY/YwU9S2vELlbv1/9w94EKE45oAOKEPH9pSK39eaB5RbwuVzZoFFjPkU0HpMI134aqXPPck0az8Dl4/vlhw86Z86KxHDmX59LGM+Ijg1ou2ThIkLj+/KRsyE9w+TCLLUTJKTQykobdLqL9ZDpwYYSOxRIflQ9GaJsKWW4n2ueETrHMJlLm5+hMjnXgOE6HTP/FIqP0Y+aCrOGzf/71z5Ky6G884zi10oO7uZtSkyzZzBfaoXilr7Z+GPC/PfSNbR0caHTtuy8hw341ysY1hyLBG7jaOn59foRtdRDv8pBFVqjd25BCRe91Mrg/kIF8FkdaUJJMOWjAqf06l+NfOOuytQuKhcoOfnO2wn4kTZODw4";
 
             apiContext.ApiCredential = apiCredential;
             apiContext.Site = SiteCodeType.US;
