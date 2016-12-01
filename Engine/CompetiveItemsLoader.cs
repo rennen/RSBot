@@ -73,7 +73,8 @@ namespace Engine
                         item != null &&
                         item.globalId[0]?.ToString() == "EBAY-US" &&
                         (item.condition[0]?.conditionId[0]?.ToString() == "1000" || item.condition[0]?.conditionId[0]?.ToString() == "1500") &&
-                        item.itemId[0].ToString() != origEbayId)
+                        item.itemId[0].ToString() != origEbayId &&
+                        !item.listingInfo[0]?.listingType[0].ToString().StartsWith("Auction"))
                 .Select(
                     item =>
                         new CompetativeItem
