@@ -121,7 +121,7 @@ namespace Engine
             {
                 var itemResult = itemCall.GetItem(item.EbayId, true, false, true, false, null, null, null, null, false);
 
-                item.WatchCount = itemResult.WatchCount;
+                item.HitCount = itemResult.HitCount;
 
                 var itemUpc = string.Empty;
                 Retry(() => itemUpc = itemResult.ItemSpecifics.ToArray().ToList().Find(specific => specific.Name == "UPC")?.Value[0]);
