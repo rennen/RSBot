@@ -56,9 +56,9 @@ namespace Engine
                 foreach (var listing in listings)
                 {
                     var title = listing.Title.Replace("\"", "\"\"");
-                    var picUrl = listing.PicUrl.Replace("\"", "\"\"");
+                    var picUrl = listing.PicUrl == null ? string.Empty : $"\"{ listing.PicUrl?.Replace("\"", "\"\"") }\"";
 
-                    string currentLine = $"Revise,{listing.EbayId},\"{title}\",\"{picUrl}\"";
+                    string currentLine = $"Revise,{listing.EbayId},\"{title}\",{picUrl}";
                     lines.Add(currentLine);
                 }
 
