@@ -10,7 +10,7 @@ CREATE TABLE listing (
   end_date DATE DEFAULT NULL,
   title CHAR(100) DEFAULT NULL,
   category CHAR(100) DEFAULT NULL,
-  pic_url TEXT,
+  pic_url TEXT
 );
 
 DROP TABLE IF EXISTS competative_item;
